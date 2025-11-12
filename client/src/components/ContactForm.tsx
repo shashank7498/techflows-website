@@ -51,21 +51,69 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="py-32">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" data-testid="text-contact-heading">
-            Let's Build the Future
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto" data-testid="text-contact-description">
-            Get your engineering team deployed in 48 hours
-          </p>
+    <section className="min-h-screen">
+      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+        {/* Left side - Dark with info */}
+        <div className="bg-black text-white p-8 lg:p-16 flex flex-col justify-center">
+          <div className="max-w-lg">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6" data-testid="text-contact-heading">
+              Let's Build the Future
+            </h2>
+            <p className="text-xl text-white/70 mb-12" data-testid="text-contact-description">
+              Get your engineering team deployed in 48 hours
+            </p>
+
+            <div className="space-y-8">
+              <div className="flex items-start gap-4">
+                <Calendar className="h-6 w-6 mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="font-semibold mb-2">Schedule a Call</h3>
+                  <p className="text-sm text-white/70 mb-3">
+                    Book a 30-minute discovery call to discuss your project
+                  </p>
+                  <a 
+                    href="https://calendly.com/shashankchauhan7498" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-sm underline hover:text-white/70 transition-colors" 
+                    data-testid="link-calendly"
+                  >
+                    Open Calendly →
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <Mail className="h-6 w-6 mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="font-semibold mb-2">Email Us</h3>
+                  <p className="text-sm text-white/70 mb-2">
+                    Prefer email? Drop us a line
+                  </p>
+                  <a href="mailto:shashank@techflows.co" className="text-sm underline hover:text-white/70 transition-colors" data-testid="link-email-direct">
+                    shashank@techflows.co
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <Clock className="h-6 w-6 mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="font-semibold mb-2">48-Hour Guarantee</h3>
+                  <p className="text-sm text-white/70">
+                    Your engineering team deployed and ready to start in just 48 hours
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
-          <div className="lg:col-span-3">
+        {/* Right side - White with form */}
+        <div className="bg-white p-8 lg:p-16 flex flex-col justify-center">
+          <div className="max-w-lg mx-auto w-full">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 glass-card p-8 rounded-lg">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField
                     control={form.control}
@@ -74,7 +122,7 @@ export default function ContactForm() {
                       <FormItem>
                         <FormLabel>Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" {...field} className="bg-white/5 border-white/20" data-testid="input-name" />
+                          <Input placeholder="John Doe" {...field} data-testid="input-name" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -87,7 +135,7 @@ export default function ContactForm() {
                       <FormItem>
                         <FormLabel>Company</FormLabel>
                         <FormControl>
-                          <Input placeholder="Acme Inc." {...field} className="bg-white/5 border-white/20" data-testid="input-company" />
+                          <Input placeholder="Acme Inc." {...field} data-testid="input-company" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -102,7 +150,7 @@ export default function ContactForm() {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input type="email" placeholder="john@acme.com" {...field} className="bg-white/5 border-white/20" data-testid="input-email" />
+                        <Input type="email" placeholder="john@acme.com" {...field} data-testid="input-email" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -118,7 +166,7 @@ export default function ContactForm() {
                       <FormControl>
                         <Textarea
                           placeholder="Tell us about your project needs - AI/ML, full-stack development, cloud infrastructure, or complete product teams..."
-                          className="min-h-32 bg-white/5 border-white/20"
+                          className="min-h-32"
                           {...field}
                           data-testid="input-message"
                         />
@@ -131,7 +179,7 @@ export default function ContactForm() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full md:w-auto px-10 shadow-3d hover:shadow-3d-lg transition-all"
+                  className="w-full px-8"
                   disabled={submitMutation.isPending}
                   data-testid="button-submit-contact"
                 >
@@ -146,62 +194,6 @@ export default function ContactForm() {
                 </Button>
               </form>
             </Form>
-          </div>
-
-          <div className="lg:col-span-2 space-y-6">
-            <div className="glass-card p-6 rounded-lg">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center flex-shrink-0 shadow-3d-sm">
-                  <Calendar className="h-6 w-6 text-black" />
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2 text-lg">Schedule a Call</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Book a 30-minute discovery call to discuss your project
-                  </p>
-                  <a 
-                    href="https://calendly.com/shashankchauhan7498" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-sm text-white hover:text-muted-foreground transition-colors underline" 
-                    data-testid="link-calendly"
-                  >
-                    Open Calendly →
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="glass-card p-6 rounded-lg">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center flex-shrink-0 shadow-3d-sm">
-                  <Mail className="h-6 w-6 text-black" />
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2 text-lg">Email Us</h3>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Prefer email? Drop us a line
-                  </p>
-                  <a href="mailto:shashank@techflows.co" className="text-sm text-white hover:text-muted-foreground transition-colors" data-testid="link-email-direct">
-                    shashank@techflows.co
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="glass-card p-6 rounded-lg">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center flex-shrink-0 shadow-3d-sm">
-                  <Clock className="h-6 w-6 text-black" />
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2 text-lg">48-Hour Guarantee</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Your engineering team deployed and ready to start in just 48 hours
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
