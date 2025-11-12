@@ -1,4 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Zap, Award, Globe, DollarSign, Rocket, Target } from "lucide-react";
 
 export default function WhyUs() {

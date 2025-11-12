@@ -1,4 +1,3 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Brain, Bot, Database, Code2, Cloud, Globe } from "lucide-react";
 
 export default function ServicesGrid() {
@@ -42,32 +41,28 @@ export default function ServicesGrid() {
   ];
 
   return (
-    <section className="py-32 max-w-7xl mx-auto px-6 lg:px-8">
-      <div className="text-center mb-16">
-        <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" data-testid="text-services-heading">
-          Our Expertise
-        </h2>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto" data-testid="text-services-description">
-          AI/ML specialists and full-stack engineering teams deployed in 48 hours
-        </p>
-      </div>
+    <section className="py-24 bg-secondary/30">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4" data-testid="text-services-heading">
+            What We Do
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto" data-testid="text-services-description">
+            AI/ML specialists and full-stack engineering teams deployed in 48 hours
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {services.map((service, index) => (
-          <Card key={index} className="card-3d shadow-3d-lg" data-testid={`card-service-${index}`}>
-            <CardHeader>
-              <div className="w-16 h-16 bg-black rounded-lg flex items-center justify-center mb-4 shadow-3d">
-                <service.icon className="h-8 w-8 text-white" />
-              </div>
-              <CardTitle className="text-2xl font-bold" data-testid={`text-service-title-${index}`}>{service.title}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription className="text-base leading-relaxed text-neutral-600" data-testid={`text-service-description-${index}`}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <div key={index} className="bg-white p-8 rounded-lg border hover-lift" data-testid={`card-service-${index}`}>
+              <service.icon className="h-8 w-8 mb-4" />
+              <h3 className="text-xl font-semibold mb-3" data-testid={`text-service-title-${index}`}>{service.title}</h3>
+              <p className="text-muted-foreground leading-relaxed" data-testid={`text-service-description-${index}`}>
                 {service.description}
-              </CardDescription>
-            </CardContent>
-          </Card>
-        ))}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -1,8 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Zap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
-import { Badge } from "@/components/ui/badge";
-import heroImage from "@assets/generated_images/Tech_team_collaboration_hero_83f64830.png";
 
 export default function Hero() {
   return (
