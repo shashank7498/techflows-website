@@ -1,181 +1,170 @@
-# Design Guidelines: TechFlows - 3D Monochrome Software Solutions Platform
+# TechFlows Design Guidelines - Premium Minimalist
 
-## Design Approach
+## Design Philosophy
+Premium minimalist design that looks like a high-end product. Clean, clear messaging that shows exactly what we do and how we do it. No clutter, no unnecessary effects - just powerful simplicity.
 
-**Selected Approach:** Custom 3D Glass System with Brutalist Minimalism
+## Visual Style
+- **Approach**: Clean, spacious, premium minimalist
+- **Inspiration**: Apple, Stripe, Linear - high-end SaaS products
+- **Focus**: Typography, white space, subtle elegance
+- **NO**: Heavy shadows, 3D effects, glassmorphism, gradients, clutter
 
-Inspired by Apple's spatial design language, Stripe's refined minimalism, and Linear's precision, this approach creates dramatic visual depth through monochrome sophistication. The black-and-white palette with 3D transforms and glassmorphism establishes immediate technical credibility while showcasing cutting-edge design capabilities.
+## Color Palette
 
-**Core Principle:** Depth through layering, not color. Every element floats, casts shadows, and exists in 3D space.
+### Light Mode (Primary)
+- **Background**: Pure white (#FFFFFF)
+- **Text Primary**: Deep black (#000000)
+- **Text Secondary**: Medium gray (#666666)
+- **Text Tertiary**: Light gray (#999999)
+- **Accent**: Pure black (#000000)
+- **Border**: Very light gray (#E5E5E5)
+- **Subtle Background**: Off-white (#FAFAFA)
 
-## Core Design Elements
+### Dark Mode (Optional)
+- **Background**: Deep black (#000000)
+- **Text Primary**: Pure white (#FFFFFF)
+- **Text Secondary**: Light gray (#CCCCCC)
+- **Border**: Dark gray (#333333)
 
-### A. Typography
+## Typography
 
-**Primary Font:** Inter (Google Fonts CDN)
-- H1 (Hero): 4rem (64px) font-black, tracking-tighter, leading-none
-- H2 (Sections): 3rem (48px) font-bold, tracking-tight
-- H3 (Cards): 1.5rem (24px) font-semibold
-- Body Large: 1.25rem (20px) font-normal, leading-relaxed
-- Body: 1rem (16px) font-normal, leading-relaxed
-- Tech Labels: 0.75rem (12px) font-mono, uppercase, tracking-widest
+### Font Stack
+- **Primary**: Inter (clean, modern, professional)
+- **Mono**: JetBrains Mono or similar (for technical elements)
 
-### B. Visual Treatment
+### Type Scale
+- **Hero Headline**: 72px (bold, tight tracking)
+- **Page Headline**: 48px (bold)
+- **Section Heading**: 32px (semibold)
+- **Subsection**: 24px (medium)
+- **Body Large**: 20px (regular)
+- **Body**: 16px (regular)
+- **Small**: 14px (regular)
 
-**Monochrome Palette Strategy:**
-- Pure Black: #000000 (backgrounds, text on white)
-- Pure White: #FFFFFF (text on black, card backgrounds)
-- Gray Scale: #171717, #262626, #404040, #737373, #A3A3A3, #E5E5E5
-- Gradients: Subtle black-to-gray (from-black via-neutral-900 to-neutral-800)
+### Type Guidelines
+- Use plenty of white space around headlines
+- Keep line lengths readable (60-80 characters max)
+- Line height: 1.5-1.6 for body text
+- Headlines can be tighter: 1.1-1.2
 
-**3D Transform System:**
-- Floating cards: transform translate-y-[-8px] with rotate-x-[2deg]
-- Hover lifts: translate-y-[-16px] scale-[1.02]
-- Perspective containers: perspective-[1000px] on parent wrappers
-- Layered depth: Multiple overlapping elements with staggered z-index
+## Spacing System
+- **XS**: 8px
+- **SM**: 16px
+- **MD**: 24px
+- **LG**: 48px
+- **XL**: 96px
+- **2XL**: 144px
 
-**Glassmorphism Specifications:**
-- Background blur: backdrop-blur-xl (24px blur)
-- Border treatment: border border-white/10
-- Background opacity: bg-white/5 to bg-white/10
-- Used for: Navigation, floating cards, overlay elements
+Use consistent spacing throughout. Sections should breathe.
 
-**Shadow Depth System:**
-- Level 1 (Subtle): shadow-[0_8px_30px_rgb(0,0,0,0.12)]
-- Level 2 (Medium): shadow-[0_20px_50px_rgb(0,0,0,0.3)]
-- Level 3 (Dramatic): shadow-[0_35px_80px_rgba(0,0,0,0.5)]
-- Glow effect: shadow-[0_0_50px_rgba(255,255,255,0.1)]
+## Components
 
-### C. Layout System
+### Cards
+- Simple white background (or subtle off-white #FAFAFA)
+- 1px solid border (#E5E5E5)
+- NO shadows (or minimal: 0 1px 2px rgba(0,0,0,0.05))
+- Border radius: 8px (subtle, not overly rounded)
+- Padding: 32px
 
-**Spacing Primitives:** Tailwind units of 4, 8, 12, 16, 20, 24, 32
-- Section padding: py-32 (desktop), py-20 (mobile)
-- Card spacing: p-8 to p-12
-- Container: max-w-7xl with px-8
+### Buttons
+- **Primary**: Black background, white text
+- **Secondary**: White background, black border, black text
+- **Padding**: 12px 24px
+- **Border radius**: 6px
+- **Hover**: Subtle opacity change (0.9) or slight background shift
+- NO heavy shadows or 3D effects
 
-### D. Component Library
+### Icons
+- Use simple line icons (lucide-react)
+- Consistent stroke width (1.5-2px)
+- Size: 24px standard, 20px small, 32px large
 
-**Navigation (Glassmorphic Fixed Header):**
-- backdrop-blur-xl with bg-black/80
-- Floating appearance with shadow-[0_8px_30px_rgb(0,0,0,0.3)]
-- Logo left (white), links center, CTA right
-- Border bottom: border-b border-white/10
+### Borders
+- Use sparingly
+- 1px solid #E5E5E5 for light borders
+- Borders should define space, not decorate
 
-**Hero Section (Full-viewport Drama):**
-- Height: 100vh with gradient background (black to dark gray)
-- Large hero image: High-contrast B&W tech workspace or abstract 3D geometric patterns
-- Image treatment: grayscale filter with contrast boost
-- Floating headline card with glassmorphism (backdrop-blur-xl, bg-white/5)
-- Stacked text: "48-Hour Team Setup" badge above main headline
-- CTAs with backdrop-blur and bold borders
-- Animated grid pattern overlay (subtle white lines, opacity 5%)
+## Layout
 
-**Service Cards (3D Floating):**
-- White cards (bg-white) on black section background
-- 3-column grid (lg:grid-cols-3)
-- transform hover:translate-y-[-12px] hover:rotate-x-[5deg]
-- Dramatic shadows (Level 3)
-- Large monochrome icons (96px, using Heroicons)
-- Bold numbers for metrics ("10+ ML Models Deployed")
+### Grid
+- Max width: 1200px for content
+- Generous margins: 80px on desktop, 24px on mobile
+- Sections: 120px-160px vertical spacing
 
-**Technology Showcase:**
-- Black background section
-- Tech stack in glassmorphic containers
-- Logos: grayscale filter, white glow on hover
-- 6-column grid (lg:grid-cols-6, responsive down)
-- Categories: ML/AI, Data Science, Cloud Infrastructure
+### White Space
+- Use generous white space - it's a feature, not a bug
+- Let content breathe
+- Don't fill every pixel
 
-**Process Timeline (4 Steps):**
-- Horizontal cards with connecting lines
-- Each card: white background, 3D lift effect
-- Large step numbers (text-8xl, font-black, text-neutral-200)
-- Overlap effect: cards slightly overlap with z-index stacking
+### Navigation
+- Simple horizontal nav
+- Clean, minimal
+- Sticky optional (with subtle border on scroll)
 
-**Testimonial Cards:**
-- 2-column layout
-- Glass effect cards (backdrop-blur-xl, bg-white/5)
-- Border: border border-white/20
-- Grayscale client photos (circular, 64px)
-- Quote marks as large decorative element
+## Messaging Guidelines
 
-**CTA Section ("Ready to Scale?"):**
-- Full-width dramatic section
-- Black background with radial gradient (subtle)
-- Centered content with glassmorphic container
-- Large headline + dual CTAs (primary + secondary)
-- Floating decorative elements (abstract 3D shapes)
+### Clarity First
+- Short, punchy headlines
+- Clear value propositions
+- No jargon unless necessary
+- Show what you do, how you do it, why it matters
 
-**Contact Form:**
-- 2-column: Form (60%) + Info sidebar (40%)
-- Glass effect form container
-- Input fields: transparent bg, white border, white text
-- Submit button: white bg, black text, dramatic shadow
+### Content Structure
+Each section should answer:
+- **What**: What service/capability
+- **How**: How you deliver it
+- **Why**: Why it matters to the customer
+- **Result**: What they get
 
-**Footer:**
-- Black background, white text
-- 4-column grid collapsed to 2 on tablet, 1 on mobile
-- Minimal decoration, focus on typography hierarchy
-- Social icons with hover glow effect
+### Tone
+- Confident but not arrogant
+- Clear but not oversimplified
+- Professional but approachable
+- Direct communication
 
-## Page Structure
+## Effects & Animations
 
-**Homepage (7 Sections):**
-1. Hero (100vh) with glassmorphic headline card
-2. Services grid (3 floating white cards on black)
-3. "Why 48 Hours?" stat counters with 3D cards
-4. Tech stack showcase (glassmorphic grid)
-5. Process timeline (4-step horizontal)
-6. Testimonials (2-column glass cards)
-7. CTA section + Footer
+### Minimal Effects
+- Subtle hover states (opacity 0.9)
+- Smooth transitions (200-300ms)
+- NO 3D transforms
+- NO heavy shadows
+- NO glassmorphism
 
-**Services Detail Pages:**
-- Shorter hero (60vh) with service-specific imagery
-- Deep-dive sections per service (ML, AI Agents, Data Science)
-- Case study cards (3D floating grid)
-- Technical capabilities list with glass containers
+### Interactions
+- Buttons: Slight opacity change on hover
+- Links: Underline on hover
+- Cards: Optional subtle border color change
+- Keep it subtle and purposeful
 
-**About/Team:**
-- Mission statement in centered glass container
-- Team grid: 3-column, grayscale photos, 3D card effect
-- Office/team photo: full-width, high contrast B&W
+## Images
+- High quality, professional
+- If using photos: minimal processing, natural look
+- If using illustrations: simple, clean line art
+- Avoid heavy filters (grayscale is okay if tasteful)
 
-**Contact:**
-- Split layout with glassmorphic form
-- Calendly embed on right side
-- Map (if applicable): grayscale treatment
+## Key Principles
+1. **Less is more**: Remove anything that doesn't serve a clear purpose
+2. **Hierarchy**: Use size and weight to create clear visual hierarchy
+3. **Consistency**: Same patterns throughout
+4. **White space**: Generous spacing makes premium feel
+5. **Clarity**: Every element should communicate clearly
+6. **Purpose**: Every design choice should have a reason
 
-## Images Strategy
+## Sections to Include
+1. **Hero**: Clear headline, subheadline, primary CTA
+2. **What We Do**: Services/capabilities in simple grid
+3. **How We Work**: Process/methodology clearly explained
+4. **Why Choose Us**: Key differentiators (3-4 max)
+5. **Social Proof**: Stats or testimonials (minimal)
+6. **CTA**: Clear next step
 
-**Required Hero Images:**
-- **Homepage:** Ultra-high contrast B&W (1920x1080+) - Modern tech team, abstract 3D renders, or geometric patterns
-- **Services Pages:** Smaller banners (1920x600) - Service-specific tech imagery, all B&W treated
-- **About:** Team photo (1200x800) - Professional B&W group shot
-
-**Image Treatment:**
-- All images converted to grayscale
-- Contrast: 120%, Brightness: 110%
-- Overlay gradients for text readability
-- Sharp focus with subtle vignette
-
-**Supporting Assets:**
-- Client logos: white versions on dark, black on light
-- Tech stack: official logos, desaturated
-- Team headshots: professional B&W (400x400px)
-
-## Interactions & Accessibility
-
-- Focus states: 2px white ring with offset
-- All interactive elements: smooth 3D transform transitions (300ms)
-- Reduced motion: Disable 3D transforms, maintain shadows
-- Contrast ratio: Minimum 7:1 (black on white, white on black)
-- Touch targets: 48px minimum
-
-## Animation Budget (Strategic Only)
-
-- Page load: Stagger-fade hero elements (one-time)
-- Scroll reveals: Subtle translate-y for cards entering viewport
-- Hover: 3D transforms on cards/buttons only
-- No parallax, no continuous animations
-- Focus on shadow depth changes for feedback
-
-This design creates an unforgettable first impression through dramatic monochrome sophistication, positioning TechFlows as a technically advanced, design-forward partner capable of delivering cutting-edge ML/AI solutions with unprecedented speed.
+## What to Avoid
+- ❌ 3D effects and heavy drop shadows
+- ❌ Glassmorphism and backdrop blur
+- ❌ Complex gradients
+- ❌ Too many colors
+- ❌ Cluttered layouts
+- ❌ Overly decorative elements
+- ❌ Marketing fluff without substance
+- ❌ Too much text - be concise

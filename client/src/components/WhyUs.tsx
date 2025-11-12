@@ -36,30 +36,26 @@ export default function WhyUs() {
   ];
 
   return (
-    <section className="py-32">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" data-testid="text-why-heading">
+    <section className="py-24 bg-white">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4" data-testid="text-why-heading">
             Why TechFlows?
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto" data-testid="text-why-description">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto" data-testid="text-why-description">
             More than just team hiring - we're your complete technical partner from idea to production
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (
-            <Card key={index} className="text-center card-3d shadow-3d-lg" data-testid={`card-benefit-${index}`}>
-              <CardContent className="pt-12 pb-8">
-                <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center mx-auto mb-6 shadow-3d">
-                  <benefit.icon className="h-10 w-10 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4" data-testid={`text-benefit-title-${index}`}>{benefit.title}</h3>
-                <p className="text-neutral-600 leading-relaxed" data-testid={`text-benefit-description-${index}`}>
-                  {benefit.description}
-                </p>
-              </CardContent>
-            </Card>
+            <div key={index} className="p-8 border rounded-lg hover-lift" data-testid={`card-benefit-${index}`}>
+              <benefit.icon className="h-8 w-8 mb-4" />
+              <h3 className="text-xl font-semibold mb-3" data-testid={`text-benefit-title-${index}`}>{benefit.title}</h3>
+              <p className="text-muted-foreground leading-relaxed" data-testid={`text-benefit-description-${index}`}>
+                {benefit.description}
+              </p>
+            </div>
           ))}
         </div>
       </div>
