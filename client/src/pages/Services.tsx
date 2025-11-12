@@ -1,219 +1,194 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Brain, Bot, Database, Code2, Cloud, Layers, CheckCircle } from "lucide-react";
+import { Brain, Bot, Database, Code2, Cloud, Layers, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
-import TechStack from "@/components/TechStack";
-import servicesImage from "@assets/generated_images/Developers_pair_programming_banner_78f5b139.png";
 
 export default function Services() {
   const services = [
     {
       icon: Brain,
-      title: "Machine Learning Engineering",
+      title: "AI/ML Experts",
+      tagline: "Build intelligent models that drive insight",
       description:
-        "Deploy production-grade ML models that scale. From computer vision to NLP, our ML engineers have battle-tested experience.",
-      features: [
-        "Computer Vision & Image Recognition",
-        "Natural Language Processing (NLP)",
-        "Recommendation Systems",
-        "Time Series Forecasting",
+        "Deploy production-grade ML models that scale. From computer vision to NLP, our ML engineers bring battle-tested expertise to transform your data into actionable intelligence.",
+      capabilities: [
+        "Computer Vision & NLP",
         "Deep Learning & Neural Networks",
-        "Model Training & Optimization",
-      ],
-      benefits: [
-        "7-8+ years ML experience",
-        "Production deployment expertise",
-        "MLOps and model monitoring",
-        "Scalable ML infrastructure",
+        "MLOps & Model Monitoring",
+        "Production Deployment at Scale",
       ],
     },
     {
       icon: Bot,
       title: "AI Agent Development",
+      tagline: "Autonomous agents that reason and execute",
       description:
-        "Build intelligent autonomous agents that reason, plan, and execute complex workflows using cutting-edge LLM technology.",
-      features: [
-        "RAG (Retrieval Augmented Generation)",
-        "LLM Fine-tuning & Prompt Engineering",
+        "Build intelligent agents using cutting-edge LLM technology. From RAG systems to multi-agent workflows, we create AI that thinks, plans, and delivers results.",
+      capabilities: [
+        "RAG & Vector Databases",
+        "LLM Fine-tuning & Orchestration",
         "Multi-Agent Systems",
-        "Agentic Workflows & Orchestration",
-        "OpenAI, Anthropic, Custom Models",
-        "Vector Databases & Embeddings",
-      ],
-      benefits: [
-        "Latest AI/LLM expertise",
-        "Production-ready agents",
-        "Custom agent frameworks",
-        "Enterprise security",
+        "Enterprise AI Solutions",
       ],
     },
     {
       icon: Database,
-      title: "Data Science & Analytics",
+      title: "Data Science Teams",
+      tagline: "Turn data into decisions",
       description:
-        "End-to-end data science solutions from pipeline engineering to advanced analytics and predictive modeling.",
-      features: [
-        "Data Engineering & ETL Pipelines",
-        "Statistical Analysis & Modeling",
+        "End-to-end data science solutions from pipeline engineering to advanced analytics. We build the infrastructure and insights that power data-driven products.",
+      capabilities: [
+        "Data Engineering & ETL",
         "Predictive Analytics",
-        "A/B Testing & Experimentation",
-        "Business Intelligence Dashboards",
-        "Big Data Processing (Spark, Hadoop)",
-      ],
-      benefits: [
-        "Full-stack data capabilities",
-        "Real-time analytics",
-        "Cloud-native solutions",
-        "Data governance & security",
+        "Real-time Processing",
+        "Business Intelligence",
       ],
     },
     {
       icon: Code2,
-      title: "Full-Stack Development",
+      title: "Full-Stack Engineers",
+      tagline: "From idea to interface, we own the stack",
       description:
-        "Expert frontend, backend, and full-stack developers who build scalable web applications from the ground up.",
-      features: [
-        "Frontend: React, Angular, Vue.js",
-        "Backend: Node.js, Python, Java, Go",
-        "REST APIs & GraphQL",
-        "Database Design & Optimization",
-        "Microservices Architecture",
-        "Real-time Applications & WebSockets",
-      ],
-      benefits: [
-        "7-8+ years development experience",
-        "Modern tech stack expertise",
-        "Agile development practices",
-        "Clean, maintainable code",
+        "Expert developers who build scalable web applications from the ground up. Modern frameworks, clean architecture, and production-ready code.",
+      capabilities: [
+        "React, Vue, Angular",
+        "Node.js, Python, Go",
+        "Microservices & APIs",
+        "Real-time Applications",
       ],
     },
     {
       icon: Cloud,
-      title: "Cloud & DevOps Engineering",
+      title: "Cloud & DevOps",
+      tagline: "Scalable, secure, and cost-optimized delivery",
       description:
-        "AWS, GCP, and Azure certified engineers who design, build, and maintain scalable cloud infrastructure.",
-      features: [
-        "AWS / GCP / Azure Architecture",
-        "Infrastructure as Code (Terraform)",
-        "CI/CD Pipeline Automation",
-        "Kubernetes & Container Orchestration",
-        "Cloud Cost Optimization",
+        "AWS, GCP, and Azure certified engineers who design cloud-native infrastructure. Automated pipelines, container orchestration, and optimized costs.",
+      capabilities: [
+        "Cloud Architecture (AWS/GCP/Azure)",
+        "Infrastructure as Code",
+        "CI/CD & Kubernetes",
         "Security & Compliance",
-      ],
-      benefits: [
-        "Cloud-certified engineers",
-        "Production-grade infrastructure",
-        "24/7 monitoring & support",
-        "Scalable architecture",
       ],
     },
     {
       icon: Layers,
       title: "Complete Product Teams",
+      tagline: "End-to-end product delivery",
       description:
-        "Dedicated cross-functional teams that handle your entire product lifecycle from concept to production.",
-      features: [
-        "Product Strategy & Planning",
-        "UI/UX Design & Prototyping",
-        "Full-Stack Development",
+        "Dedicated cross-functional teams that handle your entire product lifecycle. From strategy to launch and beyond, we're your embedded tech arm.",
+      capabilities: [
+        "Product Strategy & Design",
+        "Full Development Lifecycle",
         "QA & Test Automation",
-        "Cloud Infrastructure & DevOps",
-        "Post-Launch Support",
-      ],
-      benefits: [
-        "Single point of contact",
-        "Proven delivery methodology",
-        "Transparent milestone tracking",
-        "Ongoing support included",
+        "Ongoing Support & Scaling",
       ],
     },
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <main className="pt-16">
-        <div className="relative h-96 flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0">
-            <img
-              src={servicesImage}
-              alt="Our services"
-              className="w-full h-full object-cover grayscale contrast-125"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/90 to-black/80" />
-          </div>
-          <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" data-testid="text-services-page-heading">
-              Our Services
+        {/* Hero Section */}
+        <section className="py-32 bg-white">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight" data-testid="text-services-page-heading">
+              Services Built
+              <br />
+              Around You
             </h1>
-            <p className="text-xl text-muted-foreground" data-testid="text-services-page-description">
-              End-to-end solutions, not just team hiring. Save 60-70% on costs while we handle everything from architecture to deployment.
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto" data-testid="text-services-page-description">
+              From one expert to a full product team — flexible, scalable engineering solutions that adapt to your needs.
             </p>
-          </div>
-        </div>
-
-        <section className="py-32 max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="space-y-16">
-            {services.map((service, index) => (
-              <Card key={index} className="overflow-hidden card-3d shadow-3d-lg" data-testid={`card-service-detail-${index}`}>
-                <CardHeader className="bg-card p-8">
-                  <div className="flex items-start gap-6">
-                    <div className="w-16 h-16 bg-black rounded-lg flex items-center justify-center flex-shrink-0 shadow-3d-sm">
-                      <service.icon className="h-8 w-8 text-white" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-3xl mb-3 font-bold" data-testid={`text-service-detail-title-${index}`}>{service.title}</CardTitle>
-                      <CardDescription className="text-lg text-neutral-600" data-testid={`text-service-detail-description-${index}`}>
-                        {service.description}
-                      </CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-8 pb-8">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                      <h4 className="font-semibold mb-4 text-lg">What's Included:</h4>
-                      <ul className="space-y-3">
-                        {service.features.map((feature, fIndex) => (
-                          <li key={fIndex} className="flex items-start gap-3">
-                            <CheckCircle className="h-5 w-5 text-black flex-shrink-0 mt-0.5" />
-                            <span className="text-sm text-neutral-600">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4 text-lg">Key Benefits:</h4>
-                      <ul className="space-y-3">
-                        {service.benefits.map((benefit, bIndex) => (
-                          <li key={bIndex} className="flex items-start gap-3">
-                            <CheckCircle className="h-5 w-5 text-black flex-shrink-0 mt-0.5" />
-                            <span className="text-sm text-neutral-600">{benefit}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
           </div>
         </section>
 
-        <TechStack />
+        {/* Services Grid */}
+        <section className="py-24 bg-secondary/30">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service, index) => (
+                <div 
+                  key={index} 
+                  className="bg-white p-8 rounded-lg border hover-lift" 
+                  data-testid={`card-service-detail-${index}`}
+                >
+                  <service.icon className="h-10 w-10 mb-6" />
+                  <h3 className="text-2xl font-bold mb-2" data-testid={`text-service-detail-title-${index}`}>
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-6 italic">
+                    {service.tagline}
+                  </p>
+                  <p className="text-muted-foreground mb-6 leading-relaxed" data-testid={`text-service-detail-description-${index}`}>
+                    {service.description}
+                  </p>
+                  <div className="space-y-2">
+                    {service.capabilities.map((capability, cIndex) => (
+                      <div key={cIndex} className="text-sm">
+                        • {capability}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-        <section className="py-32 max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready to Get Started?</h2>
-          <p className="text-xl text-muted-foreground mb-10">
-            Deploy your engineering team in 48 hours
-          </p>
-          <Link href="/contact">
-            <Button size="lg" className="px-10 py-6 text-lg shadow-3d-lg" data-testid="button-services-contact">
-              Schedule a Consultation
-            </Button>
-          </Link>
+        {/* Value Proposition */}
+        <section className="py-24 bg-white">
+          <div className="max-w-5xl mx-auto px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+              <div>
+                <div className="text-5xl font-bold mb-4">70%</div>
+                <div className="text-lg font-medium mb-2">Cost Savings</div>
+                <div className="text-sm text-muted-foreground">
+                  World-class talent at optimized rates
+                </div>
+              </div>
+              <div>
+                <div className="text-5xl font-bold mb-4">48h</div>
+                <div className="text-lg font-medium mb-2">Deployment Time</div>
+                <div className="text-sm text-muted-foreground">
+                  From first call to team delivery
+                </div>
+              </div>
+              <div>
+                <div className="text-5xl font-bold mb-4">7+</div>
+                <div className="text-lg font-medium mb-2">Years Experience</div>
+                <div className="text-sm text-muted-foreground">
+                  Battle-tested senior engineers
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-24 bg-black text-white">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Ready to build your way?
+            </h2>
+            <p className="text-xl text-white/70 mb-10 max-w-2xl mx-auto">
+              Start with one expert or scale to a full team. You lead, we build.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact">
+                <Button size="lg" variant="secondary" className="px-8 py-6 text-base" data-testid="button-services-contact">
+                  Get Started
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <a href="https://calendly.com/shashankchauhan7498" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" variant="outline" className="px-8 py-6 text-base border-white/20 text-white hover:bg-white/10">
+                  Book a Strategy Call
+                </Button>
+              </a>
+            </div>
+          </div>
         </section>
       </main>
       <Footer />
