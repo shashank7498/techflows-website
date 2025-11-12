@@ -3,82 +3,107 @@ import Footer from "@/components/Footer";
 import ProcessSteps from "@/components/ProcessSteps";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { ArrowRight } from "lucide-react";
 
 export default function HowItWorks() {
   const faqs = [
     {
-      question: "How can you deploy a team in just 48 hours?",
+      question: "How quickly can I get started?",
       answer:
-        "We maintain a pre-vetted pool of elite ML engineers, AI specialists, and data scientists. After your discovery call, we match the perfect team from our talent pool. Once approved, we handle all onboarding, tool access, and integration within 48 hours so your team can start building immediately.",
+        "After our first conversation, we can have your team assembled, onboarded, and building within 48 hours. We maintain a pre-vetted pool of senior engineers ready to deploy immediately.",
     },
     {
-      question: "What AI/ML technologies do your teams specialize in?",
+      question: "Can I start with just one person?",
       answer:
-        "Our specialists are experts in PyTorch, TensorFlow, LLM integration (OpenAI, Anthropic, custom models), RAG systems, vector databases, MLOps, computer vision, NLP, and production ML deployment. We cover the entire AI/ML stack from data engineering to model deployment.",
+        "Absolutely. You can start with a single specialist and scale to a full team as your needs evolve. There are no minimum team sizes or long-term commitments — complete flexibility.",
     },
     {
-      question: "How do you ensure model quality and performance?",
+      question: "What technologies do your engineers work with?",
       answer:
-        "We follow rigorous ML best practices including proper train/test splits, cross-validation, hyperparameter tuning, A/B testing, and continuous monitoring. All our engineers have 7-8+ years of experience building production ML systems with proven track records.",
+        "Our engineers are experts across the modern tech stack: AI/ML (PyTorch, TensorFlow, LLMs, RAG), Full-Stack (React, Node.js, Python, Go), Cloud & DevOps (AWS, GCP, Azure, Kubernetes), and more. We match talent to your specific tech needs.",
     },
     {
-      question: "Can you work with our existing ML infrastructure?",
+      question: "How do you ensure quality?",
       answer:
-        "Absolutely. Our teams integrate with your existing tools, cloud platforms (AWS, GCP, Azure), MLOps pipelines, and workflows. Whether you use Kubernetes, Docker, MLflow, or custom infrastructure, we adapt to your environment.",
+        "We only work with senior engineers (7+ years experience) who have proven track records building production systems. Every engineer is thoroughly vetted for technical excellence and professional collaboration.",
     },
     {
-      question: "What if we need to scale the team up or down?",
+      question: "What if I need to scale up or down?",
       answer:
-        "Our engagement is completely flexible. Need to add more ML engineers for a big launch? We can scale up within days. Need to reduce team size after a project phase? No long-term commitments. You only pay for what you need, when you need it.",
+        "Scale as needed, when needed. Add engineers for a major launch or reduce team size between project phases. You're in control with no long-term commitments — just transparent, flexible engagement.",
+    },
+    {
+      question: "How does pricing work?",
+      answer:
+        "Simple, transparent pricing with up to 70% cost savings compared to traditional hiring. You pay only for the talent you need, with no hidden fees or overhead. Contact us for detailed pricing based on your specific requirements.",
     },
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <main className="pt-16">
-        <section className="py-32 max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" data-testid="text-how-heading">
-            How It Works
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto" data-testid="text-how-description">
-            From discovery call to deployed AI/ML team in 48 hours
-          </p>
-        </section>
-
-        <ProcessSteps />
-
-        <section className="py-32">
-          <div className="max-w-3xl mx-auto px-6 lg:px-8">
-            <h2 className="text-4xl font-bold mb-12 text-center" data-testid="text-faq-heading">
-              Frequently Asked Questions
-            </h2>
-            <Accordion type="single" collapsible className="space-y-4">
-              {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="glass-card rounded-lg px-6" data-testid={`accordion-faq-${index}`}>
-                  <AccordionTrigger className="text-left font-semibold hover:no-underline py-6" data-testid={`button-faq-${index}`}>
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground leading-relaxed pb-6" data-testid={`text-faq-answer-${index}`}>
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+        {/* Hero Section */}
+        <section className="py-32 bg-white">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight" data-testid="text-how-heading">
+              Built for Speed.
+              <br />
+              Designed for You.
+            </h1>
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto" data-testid="text-how-description">
+              Deploy world-class engineering teams in 48 hours — with the flexibility to scale exactly as you need.
+            </p>
           </div>
         </section>
 
-        <section className="py-32 max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready to Begin?</h2>
-          <p className="text-xl text-muted-foreground mb-10">
-            Schedule your free discovery call and deploy your AI/ML team in 48 hours
-          </p>
-          <Link href="/contact">
-            <Button size="lg" className="px-10 py-6 text-lg shadow-3d-lg" data-testid="button-how-contact">
-              Get Started Now
-            </Button>
-          </Link>
+        {/* Process Steps */}
+        <ProcessSteps />
+
+        {/* FAQ Section */}
+        <section className="py-24 bg-secondary/30">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8">
+            <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center" data-testid="text-faq-heading">
+              Common Questions
+            </h2>
+            <div className="space-y-8">
+              {faqs.map((faq, index) => (
+                <div key={index} className="bg-white p-8 rounded-lg border" data-testid={`accordion-faq-${index}`}>
+                  <h3 className="text-xl font-bold mb-3" data-testid={`button-faq-${index}`}>
+                    {faq.question}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed" data-testid={`text-faq-answer-${index}`}>
+                    {faq.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-24 bg-black text-white">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Ready to get started?
+            </h2>
+            <p className="text-xl text-white/70 mb-10 max-w-2xl mx-auto">
+              Let's discuss your project and deploy your team within 48 hours.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact">
+                <Button size="lg" variant="secondary" className="px-8 py-6 text-base" data-testid="button-how-contact">
+                  Start Building
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <a href="https://calendly.com/shashankchauhan7498" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" variant="outline" className="px-8 py-6 text-base border-white/20 text-white hover:bg-white/10">
+                  Schedule a Call
+                </Button>
+              </a>
+            </div>
+          </div>
         </section>
       </main>
       <Footer />
