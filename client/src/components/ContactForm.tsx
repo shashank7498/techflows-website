@@ -58,7 +58,7 @@ export default function ContactForm() {
             Let's Build the Future
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto" data-testid="text-contact-description">
-            Get your AI/ML team deployed in 48 hours
+            Get your engineering team deployed in 48 hours
           </p>
         </div>
 
@@ -117,7 +117,7 @@ export default function ContactForm() {
                       <FormLabel>Message</FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder="Tell us about your AI/ML project..."
+                          placeholder="Tell us about your project needs - AI/ML, full-stack development, cloud infrastructure, or complete product teams..."
                           className="min-h-32 bg-white/5 border-white/20"
                           {...field}
                           data-testid="input-message"
@@ -168,9 +168,6 @@ export default function ContactForm() {
                   >
                     Open Calendly →
                   </a>
-                  <p className="text-xs text-muted-foreground mt-2">
-                    (Configure your Calendly link in the component)
-                  </p>
                 </div>
               </div>
             </div>
@@ -200,7 +197,7 @@ export default function ContactForm() {
                 <div>
                   <h3 className="font-semibold mb-2 text-lg">48-Hour Guarantee</h3>
                   <p className="text-sm text-muted-foreground">
-                    Your AI/ML team deployed and ready to start in just 48 hours
+                    Your engineering team deployed and ready to start in just 48 hours
                   </p>
                 </div>
               </div>

@@ -25,14 +25,14 @@ export default function Hero() {
         </Badge>
 
         <h1 className="text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 leading-none" data-testid="text-hero-headline">
-          Elite AI & ML Teams
+          Elite Engineering Teams
           <br />
           <span className="text-gradient">Deployed in 48 Hours</span>
         </h1>
         
         <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed" data-testid="text-hero-subheadline">
-          Machine Learning Engineers, AI Agents, and Data Scientists with 7-8+ years of experience. 
-          Ready to accelerate your product.
+          AI/ML Specialists, Full-Stack Developers, Cloud Experts with 7-8+ years of experience. 
+          From frontend to DevOps, we cover your entire tech stack.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
@@ -52,11 +52,11 @@ export default function Hero() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
           <div className="glass-card p-6 rounded-lg">
             <div className="text-4xl font-black mb-2" data-testid="text-stat-specialists">200+</div>
-            <div className="text-sm text-muted-foreground uppercase tracking-wide">ML Specialists</div>
+            <div className="text-sm text-muted-foreground uppercase tracking-wide">Expert Engineers</div>
           </div>
           <div className="glass-card p-6 rounded-lg">
             <div className="text-4xl font-black mb-2" data-testid="text-stat-models">500+</div>
-            <div className="text-sm text-muted-foreground uppercase tracking-wide">Models Deployed</div>
+            <div className="text-sm text-muted-foreground uppercase tracking-wide">Projects Delivered</div>
           </div>
           <div className="glass-card p-6 rounded-lg">
             <div className="text-4xl font-black mb-2" data-testid="text-stat-hours">48</div>

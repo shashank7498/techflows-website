@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Brain, Bot, Database, Users, UserPlus, Rocket, CheckCircle } from "lucide-react";
+import { Brain, Bot, Database, Code2, Cloud, Layers, CheckCircle } from "lucide-react";
 import { Link } from "wouter";
 import TechStack from "@/components/TechStack";
 import servicesImage from "@assets/generated_images/Developers_pair_programming_banner_78f5b139.png";
@@ -69,6 +69,66 @@ export default function Services() {
         "Data governance & security",
       ],
     },
+    {
+      icon: Code2,
+      title: "Full-Stack Development",
+      description:
+        "Expert frontend, backend, and full-stack developers who build scalable web applications from the ground up.",
+      features: [
+        "Frontend: React, Angular, Vue.js",
+        "Backend: Node.js, Python, Java, Go",
+        "REST APIs & GraphQL",
+        "Database Design & Optimization",
+        "Microservices Architecture",
+        "Real-time Applications & WebSockets",
+      ],
+      benefits: [
+        "7-8+ years development experience",
+        "Modern tech stack expertise",
+        "Agile development practices",
+        "Clean, maintainable code",
+      ],
+    },
+    {
+      icon: Cloud,
+      title: "Cloud & DevOps Engineering",
+      description:
+        "AWS, GCP, and Azure certified engineers who design, build, and maintain scalable cloud infrastructure.",
+      features: [
+        "AWS / GCP / Azure Architecture",
+        "Infrastructure as Code (Terraform)",
+        "CI/CD Pipeline Automation",
+        "Kubernetes & Container Orchestration",
+        "Cloud Cost Optimization",
+        "Security & Compliance",
+      ],
+      benefits: [
+        "Cloud-certified engineers",
+        "Production-grade infrastructure",
+        "24/7 monitoring & support",
+        "Scalable architecture",
+      ],
+    },
+    {
+      icon: Layers,
+      title: "Complete Product Teams",
+      description:
+        "Dedicated cross-functional teams that handle your entire product lifecycle from concept to production.",
+      features: [
+        "Product Strategy & Planning",
+        "UI/UX Design & Prototyping",
+        "Full-Stack Development",
+        "QA & Test Automation",
+        "Cloud Infrastructure & DevOps",
+        "Post-Launch Support",
+      ],
+      benefits: [
+        "Single point of contact",
+        "Proven delivery methodology",
+        "Transparent milestone tracking",
+        "Ongoing support included",
+      ],
+    },
   ];
 
   return (
@@ -86,10 +146,10 @@ export default function Services() {
           </div>
           <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" data-testid="text-services-page-heading">
-              AI/ML Services
+              Our Services
             </h1>
             <p className="text-xl text-muted-foreground" data-testid="text-services-page-description">
-              Elite teams deployed in 48 hours
+              Complete engineering solutions - AI/ML to Cloud - deployed in 48 hours
             </p>
           </div>
         </div>
@@ -147,7 +207,7 @@ export default function Services() {
         <section className="py-32 max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold mb-6">Ready to Get Started?</h2>
           <p className="text-xl text-muted-foreground mb-10">
-            Deploy your AI/ML team in 48 hours
+            Deploy your engineering team in 48 hours
           </p>
           <Link href="/contact">
             <Button size="lg" className="px-10 py-6 text-lg shadow-3d-lg" data-testid="button-services-contact">

@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Brain, Bot, Database, Users, UserPlus, Rocket } from "lucide-react";
+import { Brain, Bot, Database, Code2, Cloud, Globe } from "lucide-react";
 
 export default function ServicesGrid() {
   const services = [
@@ -22,22 +22,22 @@ export default function ServicesGrid() {
         "End-to-end data science solutions from data engineering pipelines to advanced analytics and predictive modeling.",
     },
     {
-      icon: Users,
-      title: "Dedicated AI Teams",
+      icon: Code2,
+      title: "Full-Stack Developers",
       description:
-        "Full-time dedicated teams working exclusively on your AI/ML projects. Complete focus and commitment to your success.",
+        "Expert frontend, backend, and full-stack developers. React, Node.js, Python, Java, Go - we cover your entire application stack.",
     },
     {
-      icon: UserPlus,
-      title: "Team Augmentation",
+      icon: Cloud,
+      title: "Cloud & DevOps Experts",
       description:
-        "Fill specific AI/ML skill gaps instantly. Seamless integration with your existing team and workflows.",
+        "AWS, GCP, Azure certified engineers. Infrastructure as code, CI/CD pipelines, Kubernetes, and cloud architecture at scale.",
     },
     {
-      icon: Rocket,
-      title: "Full-Stack AI Products",
+      icon: Globe,
+      title: "Complete Product Teams",
       description:
-        "From concept to production deployment. We handle the entire AI product lifecycle with cutting-edge MLOps practices.",
+        "From concept to production deployment. We handle the entire product lifecycle with world-class engineering talent.",
     },
   ];
 
@@ -48,7 +48,7 @@ export default function ServicesGrid() {
           Our Expertise
         </h2>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto" data-testid="text-services-description">
-          World-class AI/ML talent deployed in 48 hours
+          AI/ML specialists and full-stack engineering teams deployed in 48 hours
         </p>
       </div>
 

@@ -10,17 +10,17 @@ export default function About() {
     {
       icon: Target,
       title: "Excellence",
-      description: "We maintain the highest standards in ML model quality, code excellence, and delivery.",
+      description: "We maintain the highest standards in code quality, engineering practices, and delivery.",
     },
     {
       icon: Heart,
       title: "Partnership",
-      description: "Your AI success is our success. We build long-term relationships based on results.",
+      description: "Your success is our success. We build long-term relationships based on exceptional results.",
     },
     {
       icon: Award,
       title: "Expertise",
-      description: "7-8+ years of proven experience building production ML systems and AI agents.",
+      description: "7-8+ years of proven experience across AI/ML, full-stack development, and cloud infrastructure.",
     },
   ];
 
@@ -35,17 +35,16 @@ export default function About() {
                 Our Mission
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6" data-testid="text-about-mission">
-                TechFlows empowers companies to build world-class AI/ML products by providing access to 
-                elite engineering talent in just 48 hours.
+                TechFlows empowers companies to build world-class products by providing access to 
+                elite engineering talent in just 48 hours - from AI/ML specialists to cloud architects.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                We believe that breakthrough AI shouldn't take months to staff. Our rigorous vetting process 
-                ensures every ML engineer, AI specialist, and data scientist has the technical depth and 
-                communication skills to integrate seamlessly with your team.
+                We believe that breakthrough innovation shouldn't take months to staff. Our rigorous vetting process 
+                ensures every engineer has the technical depth, problem-solving skills, and communication abilities to integrate seamlessly with your team.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Since our founding, we've deployed 200+ AI/ML specialists, built 500+ production models, 
-                and helped companies accelerate their AI roadmap by 10x.
+                Since our founding, we've deployed 200+ expert engineers across AI/ML, full-stack development, 
+                and cloud infrastructure, delivering 500+ successful projects for companies worldwide.
               </p>
             </div>
             <div className="rounded-lg overflow-hidden shadow-3d-lg">
@@ -93,15 +92,15 @@ export default function About() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div className="glass-card p-8 rounded-lg text-center">
                 <div className="text-5xl font-black mb-3" data-testid="text-stat-years">5+</div>
-                <div className="text-sm text-muted-foreground uppercase tracking-wide">Years in AI/ML</div>
+                <div className="text-sm text-muted-foreground uppercase tracking-wide">Years Building Teams</div>
               </div>
               <div className="glass-card p-8 rounded-lg text-center">
                 <div className="text-5xl font-black mb-3" data-testid="text-stat-specialists-count">200+</div>
-                <div className="text-sm text-muted-foreground uppercase tracking-wide">ML Specialists</div>
+                <div className="text-sm text-muted-foreground uppercase tracking-wide">Expert Engineers</div>
               </div>
               <div className="glass-card p-8 rounded-lg text-center">
                 <div className="text-5xl font-black mb-3" data-testid="text-stat-models-deployed">500+</div>
-                <div className="text-sm text-muted-foreground uppercase tracking-wide">Models Deployed</div>
+                <div className="text-sm text-muted-foreground uppercase tracking-wide">Projects Delivered</div>
               </div>
               <div className="glass-card p-8 rounded-lg text-center">
                 <div className="text-5xl font-black mb-3" data-testid="text-stat-deployment-time">48h</div>

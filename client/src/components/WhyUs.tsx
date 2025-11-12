@@ -1,22 +1,22 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Zap, Award, Clock } from "lucide-react";
+import { Zap, Award, Globe } from "lucide-react";
 
 export default function WhyUs() {
   const benefits = [
     {
       icon: Zap,
       title: "48-Hour Deployment",
-      description: "Get your AI/ML team up and running in just 48 hours. No weeks of hiring, no lengthy onboarding.",
+      description: "Get your engineering team up and running in just 48 hours. No weeks of hiring, no lengthy onboarding.",
     },
     {
       icon: Award,
-      title: "Elite ML Specialists",
-      description: "Our engineers have 7-8+ years of proven experience building production ML systems and AI agents.",
+      title: "Elite Engineers",
+      description: "Our developers have 7-8+ years of proven experience across AI/ML, full-stack, and cloud technologies.",
     },
     {
-      icon: Clock,
-      title: "Seamless Integration",
-      description: "Our teams work in your time zone, use your tools, and integrate directly with your workflow from day one.",
+      icon: Globe,
+      title: "Full-Stack Coverage",
+      description: "From AI/ML specialists to cloud architects - we cover your entire technology stack with world-class talent.",
     },
   ];
 
@@ -28,7 +28,7 @@ export default function WhyUs() {
             Why TechFlows?
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto" data-testid="text-why-description">
-            The fastest path from idea to deployed AI/ML solution
+            The fastest path from idea to deployed engineering solution
           </p>
         </div>
 

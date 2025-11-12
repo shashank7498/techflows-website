@@ -1,30 +1,39 @@
-import { SiPython, SiPytorch, SiTensorflow, SiScikitlearn, SiJupyter, SiPostgresql, SiMongodb, SiRedis, SiAmazonwebservices, SiDocker, SiKubernetes, SiOpenai } from "react-icons/si";
-import { Brain, Database, Cloud } from "lucide-react";
+import { SiReact, SiAngular, SiVuedotjs, SiNodedotjs, SiPython, SiJavascript, SiTypescript, SiGo, SiPytorch, SiTensorflow, SiPostgresql, SiMongodb, SiRedis, SiAmazonwebservices, SiGooglecloud, SiDocker, SiKubernetes } from "react-icons/si";
+import { Cloud } from "lucide-react";
 
 export default function TechStack() {
   const technologies = [
-    { category: "ML/AI Frameworks", items: [
+    { category: "Frontend", items: [
+      { name: "React", icon: SiReact },
+      { name: "Angular", icon: SiAngular },
+      { name: "Vue.js", icon: SiVuedotjs },
+      { name: "TypeScript", icon: SiTypescript },
+    ]},
+    { category: "Backend", items: [
+      { name: "Node.js", icon: SiNodedotjs },
+      { name: "Python", icon: SiPython },
+      { name: "JavaScript", icon: SiJavascript },
+      { name: "Go", icon: SiGo },
+    ]},
+    { category: "AI/ML", items: [
       { name: "PyTorch", icon: SiPytorch },
       { name: "TensorFlow", icon: SiTensorflow },
-      { name: "Scikit-learn", icon: SiScikitlearn },
-      { name: "OpenAI", icon: SiOpenai },
-    ]},
-    { category: "Languages & Tools", items: [
       { name: "Python", icon: SiPython },
-      { name: "Jupyter", icon: SiJupyter },
-      { name: "Data Processing", icon: Brain },
-      { name: "ML Pipelines", icon: Database },
     ]},
-    { category: "Data Infrastructure", items: [
+    { category: "Databases", items: [
       { name: "PostgreSQL", icon: SiPostgresql },
       { name: "MongoDB", icon: SiMongodb },
       { name: "Redis", icon: SiRedis },
     ]},
-    { category: "MLOps & Cloud", items: [
+    { category: "Cloud Platforms", items: [
       { name: "AWS", icon: SiAmazonwebservices },
+      { name: "Google Cloud", icon: SiGooglecloud },
+      { name: "Azure", icon: Cloud },
+    ]},
+    { category: "DevOps", items: [
       { name: "Docker", icon: SiDocker },
       { name: "Kubernetes", icon: SiKubernetes },
-      { name: "Cloud ML", icon: Cloud },
+      { name: "AWS", icon: SiAmazonwebservices },
     ]},
   ];
 
@@ -36,11 +45,11 @@ export default function TechStack() {
             Technology Stack
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto" data-testid="text-tech-description">
-            Cutting-edge AI/ML tools and infrastructure
+            From AI/ML to cloud infrastructure - we master the complete tech ecosystem
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
           {technologies.map((category, catIndex) => (
             <div key={catIndex} className="glass-card p-6 rounded-lg">
               <h3 className="text-xs font-mono font-semibold uppercase tracking-widest mb-6 text-muted-foreground" data-testid={`text-tech-category-${catIndex}`}>
