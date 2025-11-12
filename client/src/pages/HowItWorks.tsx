@@ -8,29 +8,29 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 export default function HowItWorks() {
   const faqs = [
     {
-      question: "How quickly can we start working together?",
+      question: "How can you deploy a team in just 48 hours?",
       answer:
-        "After the initial discovery call, we can typically have a matched team ready for interviews within 3-5 business days. Once approved, onboarding can begin immediately, and your team can start contributing within a week.",
+        "We maintain a pre-vetted pool of elite ML engineers, AI specialists, and data scientists. After your discovery call, we match the perfect team from our talent pool. Once approved, we handle all onboarding, tool access, and integration within 48 hours so your team can start building immediately.",
     },
     {
-      question: "What time zones do you work in?",
+      question: "What AI/ML technologies do your teams specialize in?",
       answer:
-        "Our teams are flexible and can work in your preferred time zone. We have developers across multiple regions and can arrange overlapping hours to ensure smooth communication and collaboration.",
+        "Our specialists are experts in PyTorch, TensorFlow, LLM integration (OpenAI, Anthropic, custom models), RAG systems, vector databases, MLOps, computer vision, NLP, and production ML deployment. We cover the entire AI/ML stack from data engineering to model deployment.",
     },
     {
-      question: "How do you ensure code quality?",
+      question: "How do you ensure model quality and performance?",
       answer:
-        "We follow industry best practices including code reviews, automated testing, CI/CD pipelines, and regular security audits. All our developers have 7-8+ years of experience and are thoroughly vetted before joining client projects.",
+        "We follow rigorous ML best practices including proper train/test splits, cross-validation, hyperparameter tuning, A/B testing, and continuous monitoring. All our engineers have 7-8+ years of experience building production ML systems with proven track records.",
     },
     {
-      question: "What if I'm not satisfied with a team member?",
+      question: "Can you work with our existing ML infrastructure?",
       answer:
-        "We offer a risk-free trial period and guarantee satisfaction. If you're not happy with any team member, we'll replace them at no additional cost. Your success is our priority.",
+        "Absolutely. Our teams integrate with your existing tools, cloud platforms (AWS, GCP, Azure), MLOps pipelines, and workflows. Whether you use Kubernetes, Docker, MLflow, or custom infrastructure, we adapt to your environment.",
     },
     {
-      question: "How does billing work?",
+      question: "What if we need to scale the team up or down?",
       answer:
-        "We offer flexible billing models based on your engagement type. Dedicated teams are typically billed monthly, while team augmentation can be hourly or monthly. Full-product development is usually milestone-based. All terms are transparent with no hidden fees.",
+        "Our engagement is completely flexible. Need to add more ML engineers for a big launch? We can scale up within days. Need to reduce team size after a project phase? No long-term commitments. You only pay for what you need, when you need it.",
     },
   ];
 
@@ -38,29 +38,29 @@ export default function HowItWorks() {
     <div className="min-h-screen">
       <Navigation />
       <main className="pt-16">
-        <section className="py-20 max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6" data-testid="text-how-heading">
+        <section className="py-32 max-w-7xl mx-auto px-6 lg:px-8 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" data-testid="text-how-heading">
             How It Works
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-how-description">
-            From first contact to successful delivery, we've streamlined the process to get you up and running quickly
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto" data-testid="text-how-description">
+            From discovery call to deployed AI/ML team in 48 hours
           </p>
         </section>
 
         <ProcessSteps />
 
-        <section className="py-20 bg-card">
+        <section className="py-32">
           <div className="max-w-3xl mx-auto px-6 lg:px-8">
-            <h2 className="text-3xl font-bold mb-8 text-center" data-testid="text-faq-heading">
+            <h2 className="text-4xl font-bold mb-12 text-center" data-testid="text-faq-heading">
               Frequently Asked Questions
             </h2>
             <Accordion type="single" collapsible className="space-y-4">
               {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="bg-background rounded-lg border px-6" data-testid={`accordion-faq-${index}`}>
-                  <AccordionTrigger className="text-left font-semibold hover:no-underline" data-testid={`button-faq-${index}`}>
+                <AccordionItem key={index} value={`item-${index}`} className="glass-card rounded-lg px-6" data-testid={`accordion-faq-${index}`}>
+                  <AccordionTrigger className="text-left font-semibold hover:no-underline py-6" data-testid={`button-faq-${index}`}>
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground leading-relaxed" data-testid={`text-faq-answer-${index}`}>
+                  <AccordionContent className="text-muted-foreground leading-relaxed pb-6" data-testid={`text-faq-answer-${index}`}>
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -69,13 +69,13 @@ export default function HowItWorks() {
           </div>
         </section>
 
-        <section className="py-20 max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Begin?</h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Schedule your free discovery call today and let's discuss your project
+        <section className="py-32 max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <h2 className="text-4xl font-bold mb-6">Ready to Begin?</h2>
+          <p className="text-xl text-muted-foreground mb-10">
+            Schedule your free discovery call and deploy your AI/ML team in 48 hours
           </p>
           <Link href="/contact">
-            <Button size="lg" className="px-8" data-testid="button-how-contact">
+            <Button size="lg" className="px-10 py-6 text-lg shadow-3d-lg" data-testid="button-how-contact">
               Get Started Now
             </Button>
           </Link>

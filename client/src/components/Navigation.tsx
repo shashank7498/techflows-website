@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Zap } from "lucide-react";
 
 export default function Navigation() {
   const [location] = useLocation();
@@ -16,15 +16,15 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b">
+    <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" data-testid="link-home">
-            <div className="flex items-center gap-2 cursor-pointer">
-              <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">T</span>
+            <div className="flex items-center gap-2 cursor-pointer group">
+              <div className="w-9 h-9 bg-white rounded-md flex items-center justify-center shadow-3d-sm group-hover:shadow-3d transition-all duration-300">
+                <Zap className="w-5 h-5 text-black" />
               </div>
-              <span className="font-bold text-lg">TechTalent</span>
+              <span className="font-bold text-xl tracking-tight">TechFlows</span>
             </div>
           </Link>
 
@@ -32,8 +32,8 @@ export default function Navigation() {
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href} data-testid={`link-nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}>
                 <span
-                  className={`text-sm font-medium cursor-pointer transition-colors hover:text-primary ${
-                    location === link.href ? "text-primary" : "text-foreground"
+                  className={`text-sm font-medium cursor-pointer transition-colors hover:text-white ${
+                    location === link.href ? "text-white" : "text-muted-foreground"
                   }`}
                 >
                   {link.label}
@@ -41,7 +41,7 @@ export default function Navigation() {
               </Link>
             ))}
             <Link href="/contact">
-              <Button data-testid="button-book-consultation" size="sm">
+              <Button data-testid="button-book-consultation" size="sm" className="shadow-3d-sm hover:shadow-3d transition-all">
                 Book Consultation
               </Button>
             </Link>
@@ -60,13 +60,13 @@ export default function Navigation() {
       </div>
 
       {mobileMenuOpen && (
-        <div className="md:hidden border-t bg-background">
+        <div className="md:hidden border-t border-white/10 glass-card">
           <div className="px-6 py-4 space-y-3">
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href}>
                 <div
                   className={`block py-2 text-base font-medium cursor-pointer ${
-                    location === link.href ? "text-primary" : "text-foreground"
+                    location === link.href ? "text-white" : "text-muted-foreground"
                   }`}
                   onClick={() => setMobileMenuOpen(false)}
                   data-testid={`link-mobile-${link.label.toLowerCase().replace(/\s+/g, '-')}`}

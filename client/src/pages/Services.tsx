@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Users, UserPlus, Rocket, CheckCircle } from "lucide-react";
+import { Brain, Bot, Database, Users, UserPlus, Rocket, CheckCircle } from "lucide-react";
 import { Link } from "wouter";
 import TechStack from "@/components/TechStack";
 import servicesImage from "@assets/generated_images/Developers_pair_programming_banner_78f5b139.png";
@@ -10,61 +10,63 @@ import servicesImage from "@assets/generated_images/Developers_pair_programming_
 export default function Services() {
   const services = [
     {
-      icon: Users,
-      title: "Dedicated Development Team",
+      icon: Brain,
+      title: "Machine Learning Engineering",
       description:
-        "A full-time, dedicated team that works exclusively on your project with complete focus and commitment.",
+        "Deploy production-grade ML models that scale. From computer vision to NLP, our ML engineers have battle-tested experience.",
       features: [
-        "Frontend Developers (React, Angular, Vue.js)",
-        "Backend Developers (Node.js, Python, Java, Go)",
-        "QA Engineers & Test Automation Specialists",
-        "DevOps Engineers & Cloud Architects",
-        "Project Managers & Scrum Masters",
-        "UI/UX Designers",
+        "Computer Vision & Image Recognition",
+        "Natural Language Processing (NLP)",
+        "Recommendation Systems",
+        "Time Series Forecasting",
+        "Deep Learning & Neural Networks",
+        "Model Training & Optimization",
       ],
       benefits: [
-        "100% dedicated to your project",
-        "Direct communication channels",
-        "Flexible team scaling",
-        "Monthly billing model",
+        "7-8+ years ML experience",
+        "Production deployment expertise",
+        "MLOps and model monitoring",
+        "Scalable ML infrastructure",
       ],
     },
     {
-      icon: UserPlus,
-      title: "Team Augmentation",
+      icon: Bot,
+      title: "AI Agent Development",
       description:
-        "Quickly fill specific skill gaps in your existing team with expert developers who integrate seamlessly.",
+        "Build intelligent autonomous agents that reason, plan, and execute complex workflows using cutting-edge LLM technology.",
       features: [
-        "Specialized skill-set matching",
-        "Quick onboarding (within days)",
-        "Works with your existing tools & processes",
-        "Flexible engagement duration",
+        "RAG (Retrieval Augmented Generation)",
+        "LLM Fine-tuning & Prompt Engineering",
+        "Multi-Agent Systems",
+        "Agentic Workflows & Orchestration",
+        "OpenAI, Anthropic, Custom Models",
+        "Vector Databases & Embeddings",
       ],
       benefits: [
-        "No long-term commitments",
-        "Immediate availability",
-        "Cost-effective scaling",
-        "Risk-free trial period available",
+        "Latest AI/LLM expertise",
+        "Production-ready agents",
+        "Custom agent frameworks",
+        "Enterprise security",
       ],
     },
     {
-      icon: Rocket,
-      title: "Full-Product Development",
+      icon: Database,
+      title: "Data Science & Analytics",
       description:
-        "End-to-end product development from initial concept through design, development, testing, and launch.",
+        "End-to-end data science solutions from pipeline engineering to advanced analytics and predictive modeling.",
       features: [
-        "Product Strategy & Planning",
-        "UI/UX Design & Prototyping",
-        "Full-Stack Development",
-        "Quality Assurance & Testing",
-        "Cloud Infrastructure Setup",
-        "Post-Launch Support & Maintenance",
+        "Data Engineering & ETL Pipelines",
+        "Statistical Analysis & Modeling",
+        "Predictive Analytics",
+        "A/B Testing & Experimentation",
+        "Business Intelligence Dashboards",
+        "Big Data Processing (Spark, Hadoop)",
       ],
       benefits: [
-        "Single point of contact",
-        "Proven delivery methodology",
-        "Transparent milestone tracking",
-        "Ongoing support included",
+        "Full-stack data capabilities",
+        "Real-time analytics",
+        "Cloud-native solutions",
+        "Data governance & security",
       ],
     },
   ];
@@ -78,57 +80,57 @@ export default function Services() {
             <img
               src={servicesImage}
               alt="Our services"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover grayscale contrast-125"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/90 to-background/80" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/90 to-black/80" />
           </div>
           <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4" data-testid="text-services-page-heading">
-              Our Services
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" data-testid="text-services-page-heading">
+              AI/ML Services
             </h1>
-            <p className="text-lg text-muted-foreground" data-testid="text-services-page-description">
-              Flexible engagement models tailored to your specific needs and budget
+            <p className="text-xl text-muted-foreground" data-testid="text-services-page-description">
+              Elite teams deployed in 48 hours
             </p>
           </div>
         </div>
 
-        <section className="py-20 max-w-7xl mx-auto px-6 lg:px-8">
+        <section className="py-32 max-w-7xl mx-auto px-6 lg:px-8">
           <div className="space-y-16">
             {services.map((service, index) => (
-              <Card key={index} className="overflow-hidden" data-testid={`card-service-detail-${index}`}>
-                <CardHeader className="bg-card">
-                  <div className="flex items-start gap-4">
-                    <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <service.icon className="h-7 w-7 text-primary" />
+              <Card key={index} className="overflow-hidden card-3d shadow-3d-lg" data-testid={`card-service-detail-${index}`}>
+                <CardHeader className="bg-card p-8">
+                  <div className="flex items-start gap-6">
+                    <div className="w-16 h-16 bg-black rounded-lg flex items-center justify-center flex-shrink-0 shadow-3d-sm">
+                      <service.icon className="h-8 w-8 text-white" />
                     </div>
                     <div>
-                      <CardTitle className="text-2xl mb-2" data-testid={`text-service-detail-title-${index}`}>{service.title}</CardTitle>
-                      <CardDescription className="text-base" data-testid={`text-service-detail-description-${index}`}>
+                      <CardTitle className="text-3xl mb-3 font-bold" data-testid={`text-service-detail-title-${index}`}>{service.title}</CardTitle>
+                      <CardDescription className="text-lg text-neutral-600" data-testid={`text-service-detail-description-${index}`}>
                         {service.description}
                       </CardDescription>
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className="pt-6">
+                <CardContent className="pt-8 pb-8">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                      <h4 className="font-semibold mb-3">What's Included:</h4>
-                      <ul className="space-y-2">
+                      <h4 className="font-semibold mb-4 text-lg">What's Included:</h4>
+                      <ul className="space-y-3">
                         {service.features.map((feature, fIndex) => (
-                          <li key={fIndex} className="flex items-start gap-2">
-                            <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                            <span className="text-sm text-muted-foreground">{feature}</span>
+                          <li key={fIndex} className="flex items-start gap-3">
+                            <CheckCircle className="h-5 w-5 text-black flex-shrink-0 mt-0.5" />
+                            <span className="text-sm text-neutral-600">{feature}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-3">Key Benefits:</h4>
-                      <ul className="space-y-2">
+                      <h4 className="font-semibold mb-4 text-lg">Key Benefits:</h4>
+                      <ul className="space-y-3">
                         {service.benefits.map((benefit, bIndex) => (
-                          <li key={bIndex} className="flex items-start gap-2">
-                            <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                            <span className="text-sm text-muted-foreground">{benefit}</span>
+                          <li key={bIndex} className="flex items-start gap-3">
+                            <CheckCircle className="h-5 w-5 text-black flex-shrink-0 mt-0.5" />
+                            <span className="text-sm text-neutral-600">{benefit}</span>
                           </li>
                         ))}
                       </ul>
@@ -142,13 +144,13 @@ export default function Services() {
 
         <TechStack />
 
-        <section className="py-20 max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Let's discuss which service model is the best fit for your project
+        <section className="py-32 max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <h2 className="text-4xl font-bold mb-6">Ready to Get Started?</h2>
+          <p className="text-xl text-muted-foreground mb-10">
+            Deploy your AI/ML team in 48 hours
           </p>
           <Link href="/contact">
-            <Button size="lg" className="px-8" data-testid="button-services-contact">
+            <Button size="lg" className="px-10 py-6 text-lg shadow-3d-lg" data-testid="button-services-contact">
               Schedule a Consultation
             </Button>
           </Link>

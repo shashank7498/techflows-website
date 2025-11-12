@@ -9,7 +9,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useToast } from "@/hooks/use-toast";
 import { insertContactSubmissionSchema } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
-import { Mail, Clock, Send } from "lucide-react";
+import { Mail, Clock, Send, Calendar } from "lucide-react";
 
 export default function ContactForm() {
   const { toast } = useToast();
@@ -51,21 +51,21 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="py-20">
+    <section className="py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-contact-heading">
-            Let's Build Something Great Together
+        <div className="text-center mb-16">
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" data-testid="text-contact-heading">
+            Let's Build the Future
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-contact-description">
-            Get in touch and let's discuss how we can help accelerate your development
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto" data-testid="text-contact-description">
+            Get your AI/ML team deployed in 48 hours
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 glass-card p-8 rounded-lg">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField
                     control={form.control}
@@ -74,7 +74,7 @@ export default function ContactForm() {
                       <FormItem>
                         <FormLabel>Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" {...field} data-testid="input-name" />
+                          <Input placeholder="John Doe" {...field} className="bg-white/5 border-white/20" data-testid="input-name" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -87,7 +87,7 @@ export default function ContactForm() {
                       <FormItem>
                         <FormLabel>Company</FormLabel>
                         <FormControl>
-                          <Input placeholder="Acme Inc." {...field} data-testid="input-company" />
+                          <Input placeholder="Acme Inc." {...field} className="bg-white/5 border-white/20" data-testid="input-company" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -102,7 +102,7 @@ export default function ContactForm() {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input type="email" placeholder="john@acme.com" {...field} data-testid="input-email" />
+                        <Input type="email" placeholder="john@acme.com" {...field} className="bg-white/5 border-white/20" data-testid="input-email" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -117,8 +117,8 @@ export default function ContactForm() {
                       <FormLabel>Message</FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder="Tell us about your project..."
-                          className="min-h-32"
+                          placeholder="Tell us about your AI/ML project..."
+                          className="min-h-32 bg-white/5 border-white/20"
                           {...field}
                           data-testid="input-message"
                         />
@@ -131,7 +131,7 @@ export default function ContactForm() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full md:w-auto px-8"
+                  className="w-full md:w-auto px-10 shadow-3d hover:shadow-3d-lg transition-all"
                   disabled={submitMutation.isPending}
                   data-testid="button-submit-contact"
                 >
@@ -149,45 +149,61 @@ export default function ContactForm() {
           </div>
 
           <div className="lg:col-span-2 space-y-6">
-            <div className="p-6 bg-card rounded-lg border">
+            <div className="glass-card p-6 rounded-lg">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Mail className="h-5 w-5 text-primary" />
+                <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center flex-shrink-0 shadow-3d-sm">
+                  <Calendar className="h-6 w-6 text-black" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">Email Us</h3>
+                  <h3 className="font-semibold mb-2 text-lg">Schedule a Call</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Book a 30-minute discovery call to discuss your project
+                  </p>
+                  <a 
+                    href="https://calendly.com/techflows" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-sm text-white hover:text-muted-foreground transition-colors underline" 
+                    data-testid="link-calendly"
+                  >
+                    Open Calendly →
+                  </a>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    (Configure your Calendly link in the component)
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="glass-card p-6 rounded-lg">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center flex-shrink-0 shadow-3d-sm">
+                  <Mail className="h-6 w-6 text-black" />
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-2 text-lg">Email Us</h3>
                   <p className="text-sm text-muted-foreground mb-2">
                     Prefer email? Drop us a line
                   </p>
-                  <a href="mailto:hello@techtalent.com" className="text-sm text-primary hover:underline" data-testid="link-email-direct">
-                    hello@techtalent.com
+                  <a href="mailto:shashank@techflows.co" className="text-sm text-white hover:text-muted-foreground transition-colors" data-testid="link-email-direct">
+                    shashank@techflows.co
                   </a>
                 </div>
               </div>
             </div>
 
-            <div className="p-6 bg-card rounded-lg border">
+            <div className="glass-card p-6 rounded-lg">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Clock className="h-5 w-5 text-primary" />
+                <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center flex-shrink-0 shadow-3d-sm">
+                  <Clock className="h-6 w-6 text-black" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">Response Time</h3>
+                  <h3 className="font-semibold mb-2 text-lg">48-Hour Guarantee</h3>
                   <p className="text-sm text-muted-foreground">
-                    We typically respond within 24 hours on business days
+                    Your AI/ML team deployed and ready to start in just 48 hours
                   </p>
                 </div>
               </div>
-            </div>
-
-            <div className="p-6 bg-primary/5 rounded-lg border border-primary/20">
-              <h3 className="font-semibold mb-2">Book a Discovery Call</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Schedule a 30-minute consultation to discuss your project in detail
-              </p>
-              <Button variant="outline" className="w-full" data-testid="button-schedule-call">
-                Schedule Call
-              </Button>
             </div>
           </div>
         </div>
