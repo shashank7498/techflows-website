@@ -35,16 +35,19 @@ export default function About() {
                 Our Mission
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6" data-testid="text-about-mission">
-                TechFlows empowers companies to build world-class products by providing access to 
-                elite engineering talent in just 48 hours - from AI/ML specialists to cloud architects.
+                TechFlows is more than a staffing company - we're your complete technical partner. We help early-stage 
+                startups and growing companies save 60-70% on development costs while transforming ideas into reality with 
+                dedicated engineering teams deployed in just 48 hours.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                We believe that breakthrough innovation shouldn't take months to staff. Our rigorous vetting process 
-                ensures every engineer has the technical depth, problem-solving skills, and communication abilities to integrate seamlessly with your team.
+                We don't just provide teams - we deliver end-to-end solutions. From technical architecture and development 
+                to cloud infrastructure and production deployment, we handle everything. Our dedicated teams become your technical 
+                co-founders, ensuring every aspect of your product is built right from day one.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Since our founding, we've deployed 200+ expert engineers across AI/ML, full-stack development, 
-                and cloud infrastructure, delivering 500+ successful projects for companies worldwide.
+                Specializing in early-stage startups, we've helped founders turn 500+ ideas into successful products. 
+                Our 200+ elite engineers (7-8+ years experience) across AI/ML, full-stack, and cloud technologies provide the 
+                expertise you need without the overhead of traditional hiring.
               </p>
             </div>
             <div className="rounded-lg overflow-hidden shadow-3d-lg">

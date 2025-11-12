@@ -149,7 +149,7 @@ export default function Services() {
               Our Services
             </h1>
             <p className="text-xl text-muted-foreground" data-testid="text-services-page-description">
-              Complete engineering solutions - AI/ML to Cloud - deployed in 48 hours
+              End-to-end solutions, not just team hiring. Save 60-70% on costs while we handle everything from architecture to deployment.
             </p>
           </div>
         </div>

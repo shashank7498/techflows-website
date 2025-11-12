@@ -1,22 +1,37 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Zap, Award, Globe } from "lucide-react";
+import { Zap, Award, Globe, DollarSign, Rocket, Target } from "lucide-react";
 
 export default function WhyUs() {
   const benefits = [
     {
+      icon: DollarSign,
+      title: "Save 60-70% on Costs",
+      description: "Get elite engineering talent at offshore rates. Reduce your development costs dramatically without compromising on quality or expertise.",
+    },
+    {
+      icon: Target,
+      title: "End-to-End Solutions",
+      description: "We don't just provide teams - we deliver complete solutions. From technical architecture to production deployment, we handle everything.",
+    },
+    {
+      icon: Rocket,
+      title: "Early-Stage Startup Experts",
+      description: "Turn your idea into reality. We specialize in helping early-stage startups build MVPs and scale rapidly with dedicated technical teams.",
+    },
+    {
       icon: Zap,
       title: "48-Hour Deployment",
-      description: "Get your engineering team up and running in just 48 hours. No weeks of hiring, no lengthy onboarding.",
+      description: "No weeks of hiring or lengthy onboarding. Get your dedicated engineering team up and running in just 48 hours.",
     },
     {
       icon: Award,
-      title: "Elite Engineers",
-      description: "Our developers have 7-8+ years of proven experience across AI/ML, full-stack, and cloud technologies.",
+      title: "7-8+ Years Experience",
+      description: "Every engineer has proven expertise across AI/ML, full-stack development, and cloud infrastructure with battle-tested experience.",
     },
     {
       icon: Globe,
-      title: "Full-Stack Coverage",
-      description: "From AI/ML specialists to cloud architects - we cover your entire technology stack with world-class talent.",
+      title: "Complete Tech Stack",
+      description: "From AI/ML specialists to cloud architects - one partner for all your technical needs. No need to coordinate multiple vendors.",
     },
   ];
 
@@ -27,12 +42,12 @@ export default function WhyUs() {
           <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" data-testid="text-why-heading">
             Why TechFlows?
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto" data-testid="text-why-description">
-            The fastest path from idea to deployed engineering solution
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto" data-testid="text-why-description">
+            More than just team hiring - we're your complete technical partner from idea to production
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (
             <Card key={index} className="text-center card-3d shadow-3d-lg" data-testid={`card-benefit-${index}`}>
               <CardContent className="pt-12 pb-8">

@@ -13,13 +13,14 @@ export default function CTASection() {
           </div>
           
           <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" data-testid="text-cta-heading">
-            Ready to Deploy Your
+            Turn Your Idea Into Reality
             <br />
-            AI/ML Team?
+            in 48 Hours
           </h2>
           
           <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto" data-testid="text-cta-description">
-            Join companies that trust TechFlows to deliver world-class machine learning and AI solutions at unprecedented speed.
+            Early-stage startup or growing company? Save 60-70% on development costs while we handle end-to-end 
+            technical execution with dedicated AI/ML, Full-Stack, and Cloud teams.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
