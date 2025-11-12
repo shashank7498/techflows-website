@@ -31,8 +31,7 @@ export default function Hero() {
         </h1>
         
         <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed" data-testid="text-hero-subheadline">
-          We don't just hire teams - we deliver end-to-end solutions. Save 60-70% on costs while transforming 
-          your early-stage idea into reality with dedicated AI/ML, Full-Stack, and Cloud experts.
+          Build faster. Scale smarter. Spend less.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
