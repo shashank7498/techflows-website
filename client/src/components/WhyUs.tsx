@@ -3,34 +3,34 @@ import { Zap, Award, Globe, DollarSign, Rocket, Target } from "lucide-react";
 export default function WhyUs() {
   const benefits = [
     {
-      icon: DollarSign,
-      title: "Save 60-70% on Costs",
-      description: "Get elite engineering talent at offshore rates. Reduce your development costs dramatically without compromising on quality or expertise.",
+      icon: Zap,
+      title: "Flexible Engagement",
+      description: "Start with one expert, scale up anytime. We adapt to your needs whether you need a single specialist or a complete product team.",
     },
     {
       icon: Target,
-      title: "End-to-End Solutions",
-      description: "We don't just provide teams - we deliver complete solutions. From technical architecture to production deployment, we handle everything.",
+      title: "Work Under Your Guidance",
+      description: "We align with your process and culture. You stay in control while we execute - delivering exactly what you envision.",
     },
     {
       icon: Rocket,
-      title: "Early-Stage Startup Experts",
-      description: "Turn your idea into reality. We specialize in helping early-stage startups build MVPs and scale rapidly with dedicated technical teams.",
-    },
-    {
-      icon: Zap,
-      title: "48-Hour Deployment",
-      description: "No weeks of hiring or lengthy onboarding. Get your dedicated engineering team up and running in just 48 hours.",
+      title: "End-to-End Ownership",
+      description: "Design → Development → Deployment. We handle the complete product lifecycle, not just isolated features.",
     },
     {
       icon: Award,
-      title: "7-8+ Years Experience",
-      description: "Every engineer has proven expertise across AI/ML, full-stack development, and cloud infrastructure with battle-tested experience.",
+      title: "Top-Tier Expertise",
+      description: "AI/ML • Full-Stack • Cloud • DevOps. Every engineer brings 7+ years of proven experience across modern tech stacks.",
+    },
+    {
+      icon: DollarSign,
+      title: "70% Cost Efficiency",
+      description: "High-quality engineering at optimized rates. Get world-class talent without the Silicon Valley price tag.",
     },
     {
       icon: Globe,
-      title: "Complete Tech Stack",
-      description: "From AI/ML specialists to cloud architects - one partner for all your technical needs. No need to coordinate multiple vendors.",
+      title: "48-Hour Deployment",
+      description: "Your team goes live within 48 hours. No lengthy hiring processes or multi-week onboarding delays.",
     },
   ];
 
@@ -39,10 +39,10 @@ export default function WhyUs() {
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-bold mb-4" data-testid="text-why-heading">
-            Why TechFlows?
+            Why Choose Us
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto" data-testid="text-why-description">
-            More than just team hiring - we're your complete technical partner from idea to production
+            We're not just contractors — we're your product-building partners.
           </p>
         </div>
 

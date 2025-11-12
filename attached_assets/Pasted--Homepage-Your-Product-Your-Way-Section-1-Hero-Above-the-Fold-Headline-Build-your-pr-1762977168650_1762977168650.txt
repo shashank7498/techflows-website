@@ -1,0 +1,102 @@
+🏠 Homepage: “Your Product. Your Way.”
+🎯 Section 1: Hero (Above the Fold)
+
+Headline:
+
+Build your product — your way.
+
+Sub-headline:
+
+From a single expert to a full-fledged engineering team, we help you turn your idea into a world-class product — under your guidance and at up to 70% lower cost.
+
+Primary CTA:
+
+[🚀 Build With Us]
+Secondary CTA:
+[📞 Book a Free Strategy Call]
+
+Visual Ideas:
+
+A split-screen: left side showing a founder explaining an idea, right side showing a global remote team building it.
+
+Animated tagline under hero: “AI/ML • Full-Stack • Cloud • DevOps”.
+
+⚙️ Section 2: What We Do (Quick Summary)
+
+We deliver more than talent — we deliver transformation.
+Whether you need one engineer or an entire team, we plug into your workflow and build under your leadership, turning concepts into deployable products.
+
+Mini-cards:
+
+💡 AI/ML Experts — Build intelligent models that drive insight.
+
+🧩 Full-Stack Engineers — From idea to interface, we own the stack.
+
+☁️ Cloud & DevOps — Scalable, secure, and cost-optimized delivery.
+
+Optional Tagline:
+
+You lead. We build. Together, we scale.
+
+🧭 Section 3: How It Works (3-Step Flow)
+
+Step 1 — Tell Us What You Need
+
+From one developer to a complete product team, we shape the setup around your project goals.
+
+Step 2 — We Assemble & Onboard
+
+Your team goes live within 48 hours, fully integrated with your tools and workflow.
+
+Step 3 — You Guide, We Build
+
+You stay in control — we deliver milestones, updates, and results exactly to your direction.
+
+Visual Idea:
+Horizontal stepper with minimalist icons (🗣 💻 🚀).
+
+💎 Section 4: Why Choose Us
+Benefit	Description
+Flexible Engagement	Start with one expert, scale up anytime.
+Work Under Your Guidance	We align with your process and culture.
+End-to-End Ownership	Design → Development → Deployment.
+Top-Tier Expertise	AI/ML • Full-Stack • Cloud • DevOps.
+70% Cost Efficiency	High-quality engineering at optimized rates.
+
+We’re not just contractors — we’re your product-building partners.
+
+📈 Section 5: Success Stories / Proof
+
+Heading:
+
+What happens when founders build with us
+
+Examples:
+
+AI SaaS MVP in 6 weeks — saved $80 k in development costs.
+
+Scaled fintech platform to 100 k users with our cloud team.
+
+Reduced AWS spend by 55% through smart cloud architecture.
+
+Add testimonial cards once you have real clients.
+
+💬 Section 6: About Us
+
+We’re a team of engineers, designers, and problem solvers with a mission to make product building accessible, flexible, and cost-effective.
+
+With over 7 years of combined startup and enterprise experience, we act as your embedded tech arm — handling the engineering so you can focus on growth.
+
+⚡ Section 7: Call-to-Action (Closing)
+
+Headline:
+
+Ready to build your product — your way?
+
+Sub-text:
+
+Let’s turn your idea into a reality with flexible teams, transparent pricing, and end-to-end ownership.
+
+Buttons:
+
+[🚀 Get Started] [📞 Book a Free Consultation]

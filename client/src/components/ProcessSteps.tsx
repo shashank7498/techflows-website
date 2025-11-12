@@ -1,35 +1,28 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Phone, Users, CheckCircle, Rocket } from "lucide-react";
+import { MessageSquare, Users, Rocket } from "lucide-react";
 
 export default function ProcessSteps() {
   const steps = [
     {
-      icon: Phone,
+      icon: MessageSquare,
       number: "01",
-      title: "Discovery Call",
+      title: "Tell Us What You Need",
       description:
-        "30-minute call to understand your AI/ML requirements, technical stack, and team needs.",
+        "From one developer to a complete product team, we shape the setup around your project goals.",
     },
     {
       icon: Users,
       number: "02",
-      title: "Team Matching",
+      title: "We Assemble & Onboard",
       description:
-        "We handpick ML engineers, AI specialists, and data scientists from our elite talent pool. You interview them.",
-    },
-    {
-      icon: CheckCircle,
-      number: "03",
-      title: "48-Hour Setup",
-      description:
-        "Complete onboarding, tool integration, and access setup within 48 hours of approval.",
+        "Your team goes live within 48 hours, fully integrated with your tools and workflow.",
     },
     {
       icon: Rocket,
-      number: "04",
-      title: "Start Building",
+      number: "03",
+      title: "You Guide, We Build",
       description:
-        "Your team starts delivering ML models, AI agents, and data pipelines with full transparency.",
+        "You stay in control — we deliver milestones, updates, and results exactly to your direction.",
     },
   ];
 
@@ -45,7 +38,7 @@ export default function ProcessSteps() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {steps.map((step, index) => (
             <Card key={index} className="relative card-3d shadow-3d-lg" data-testid={`card-step-${index}`}>
               <CardContent className="pt-8 pb-8">

@@ -43,16 +43,19 @@ export default function ServicesGrid() {
   return (
     <section className="py-24 bg-secondary/30">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-20">
+        <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4" data-testid="text-services-heading">
             What We Do
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto" data-testid="text-services-description">
-            AI/ML specialists and full-stack engineering teams deployed in 48 hours
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6" data-testid="text-services-description">
+            We deliver more than talent — we deliver transformation.
+          </p>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto" data-testid="text-services-subdescription">
+            Whether you need one engineer or an entire team, we plug into your workflow and build under your leadership, turning concepts into deployable products.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {services.map((service, index) => (
             <div key={index} className="bg-white p-8 rounded-lg border hover-lift" data-testid={`card-service-${index}`}>
               <service.icon className="h-8 w-8 mb-4" />
@@ -62,6 +65,12 @@ export default function ServicesGrid() {
               </p>
             </div>
           ))}
+        </div>
+
+        <div className="text-center">
+          <p className="text-lg font-medium text-muted-foreground" data-testid="text-services-tagline">
+            You lead. We build. Together, we scale.
+          </p>
         </div>
       </div>
     </section>
