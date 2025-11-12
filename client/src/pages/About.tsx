@@ -1,6 +1,5 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import TeamSection from "@/components/TeamSection";
 import { Card, CardContent } from "@/components/ui/card";
 import { Target, Heart, Award } from "lucide-react";
 import aboutImage from "@assets/stock_images/professional_corpora_e26100e8.jpg";
@@ -88,11 +87,9 @@ export default function About() {
           </div>
         </section>
 
-        <TeamSection />
-
         <section className="py-32">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="glass-card p-8 rounded-lg text-center">
                 <div className="text-5xl font-black mb-3" data-testid="text-stat-years">5+</div>
                 <div className="text-sm text-muted-foreground uppercase tracking-wide">Years Building Teams</div>
@@ -100,10 +97,6 @@ export default function About() {
               <div className="glass-card p-8 rounded-lg text-center">
                 <div className="text-5xl font-black mb-3" data-testid="text-stat-specialists-count">200+</div>
                 <div className="text-sm text-muted-foreground uppercase tracking-wide">Expert Engineers</div>
-              </div>
-              <div className="glass-card p-8 rounded-lg text-center">
-                <div className="text-5xl font-black mb-3" data-testid="text-stat-models-deployed">500+</div>
-                <div className="text-sm text-muted-foreground uppercase tracking-wide">Projects Delivered</div>
               </div>
               <div className="glass-card p-8 rounded-lg text-center">
                 <div className="text-5xl font-black mb-3" data-testid="text-stat-deployment-time">48h</div>

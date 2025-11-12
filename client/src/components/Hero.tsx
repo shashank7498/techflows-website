@@ -49,14 +49,10 @@ export default function Hero() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           <div className="glass-card p-6 rounded-lg">
             <div className="text-4xl font-black mb-2" data-testid="text-stat-specialists">200+</div>
             <div className="text-sm text-muted-foreground uppercase tracking-wide">Expert Engineers</div>
-          </div>
-          <div className="glass-card p-6 rounded-lg">
-            <div className="text-4xl font-black mb-2" data-testid="text-stat-models">500+</div>
-            <div className="text-sm text-muted-foreground uppercase tracking-wide">Projects Delivered</div>
           </div>
           <div className="glass-card p-6 rounded-lg">
             <div className="text-4xl font-black mb-2" data-testid="text-stat-hours">48</div>
