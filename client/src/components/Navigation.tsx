@@ -37,11 +37,11 @@ export default function Navigation() {
                 </span>
               </Link>
             ))}
-            <Link href="/contact">
-              <Button data-testid="button-book-consultation" size="sm">
-                Book Consultation
+            <a href="https://calendly.com/shashankchauhan7498" target="_blank" rel="noopener noreferrer">
+              <Button data-testid="button-book-audit" size="sm">
+                Free Tech Audit
               </Button>
-            </Link>
+            </a>
           </div>
 
           <Button
@@ -72,11 +72,11 @@ export default function Navigation() {
                 </div>
               </Link>
             ))}
-            <Link href="/contact">
-              <Button className="w-full mt-2" onClick={() => setMobileMenuOpen(false)} data-testid="button-mobile-consultation">
-                Book Consultation
+            <a href="https://calendly.com/shashankchauhan7498" target="_blank" rel="noopener noreferrer">
+              <Button className="w-full mt-2" onClick={() => setMobileMenuOpen(false)} data-testid="button-mobile-audit">
+                Free Tech Audit
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       )}

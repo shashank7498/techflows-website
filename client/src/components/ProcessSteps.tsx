@@ -1,27 +1,27 @@
-import { MessageSquare, Users, Code } from "lucide-react";
+import { Calendar, FileText, Code } from "lucide-react";
 
 export default function ProcessSteps() {
   const steps = [
     {
-      icon: MessageSquare,
+      icon: Calendar,
       number: "01",
-      title: "Tell Us What You Need",
+      title: "Book a Free 30-min Tech Audit",
       description:
-        "Share your vision and technical requirements. Whether it's a single specialist or a full team, we'll shape the right solution for you.",
+        "Tell us about your startup and biggest tech challenge. No pitch, no commitment.",
     },
     {
-      icon: Users,
+      icon: FileText,
       number: "02",
-      title: "We Assemble & Onboard",
+      title: "We Scope Your Problem",
       description:
-        "We match you with the perfect talent and handle all onboarding. Your team is integrated and productive within 48 hours.",
+        "Within 24 hours, you get a clear tech plan with timeline and fixed price.",
     },
     {
       icon: Code,
       number: "03",
-      title: "You Guide, We Build",
+      title: "We Build It",
       description:
-        "You stay in the driver's seat. We build under your direction, delivering exactly what you envision with full transparency.",
+        "Our team ships your product. Weekly demos, Slack access, zero surprises.",
     },
   ];
 
@@ -33,7 +33,7 @@ export default function ProcessSteps() {
             Simple. Fast. Transparent.
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto" data-testid="text-process-description">
-            From first conversation to deployed team in just 48 hours
+            From first conversation to shipped product
           </p>
         </div>
 

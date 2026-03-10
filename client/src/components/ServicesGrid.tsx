@@ -1,76 +1,61 @@
-import { Brain, Bot, Database, Code2, Cloud, Globe } from "lucide-react";
+import { Rocket, Brain, Shield, Compass } from "lucide-react";
 
 export default function ServicesGrid() {
   const services = [
     {
+      icon: Rocket,
+      title: "MVP Builds",
+      pain: '"I have an idea but no one to build it"',
+      solution: "We scope, design & ship your MVP in 4-6 weeks.",
+    },
+    {
       icon: Brain,
-      title: "Machine Learning Engineers",
-      description:
-        "Expert ML engineers who build, train, and deploy production-grade models. From computer vision to NLP, we cover the full ML spectrum.",
+      title: "AI Integration",
+      pain: '"I need AI features but don\'t know where to start"',
+      solution: "We add LLMs, automation & smart workflows to your product.",
     },
     {
-      icon: Bot,
-      title: "AI Agent Development",
-      description:
-        "Build intelligent autonomous agents that reason, plan, and execute complex tasks. RAG systems, LLM integrations, and agentic workflows.",
+      icon: Shield,
+      title: "CTO-as-a-Service",
+      pain: '"I need technical leadership but can\'t afford a full-time CTO"',
+      solution: "We become your on-demand technical co-founder.",
     },
     {
-      icon: Database,
-      title: "Data Science Teams",
-      description:
-        "End-to-end data science solutions from data engineering pipelines to advanced analytics and predictive modeling.",
-    },
-    {
-      icon: Code2,
-      title: "Full-Stack Developers",
-      description:
-        "Expert frontend, backend, and full-stack developers. React, Node.js, Python, Java, Go - we cover your entire application stack.",
-    },
-    {
-      icon: Cloud,
-      title: "Cloud & DevOps Experts",
-      description:
-        "AWS, GCP, Azure certified engineers. Infrastructure as code, CI/CD pipelines, Kubernetes, and cloud architecture at scale.",
-    },
-    {
-      icon: Globe,
-      title: "Complete Product Teams",
-      description:
-        "From concept to production deployment. We handle the entire product lifecycle with world-class engineering talent.",
+      icon: Compass,
+      title: "Tech Strategy",
+      pain: '"I\'m making tech decisions blind"',
+      solution: "We review your stack, architecture & roadmap.",
     },
   ];
 
   return (
     <section className="py-24 bg-secondary/30">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4" data-testid="text-services-heading">
-            What We Do
+            What founders come to us for
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6" data-testid="text-services-description">
-            We deliver more than talent — we deliver transformation.
-          </p>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto" data-testid="text-services-subdescription">
-            Whether you need one engineer or an entire team, we plug into your workflow and build under your leadership, turning concepts into deployable products.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {services.map((service, index) => (
-            <div key={index} className="bg-white p-8 rounded-lg border hover-lift" data-testid={`card-service-${index}`}>
-              <service.icon className="h-8 w-8 mb-4" />
-              <h3 className="text-xl font-semibold mb-3" data-testid={`text-service-title-${index}`}>{service.title}</h3>
-              <p className="text-muted-foreground leading-relaxed" data-testid={`text-service-description-${index}`}>
-                {service.description}
-              </p>
+            <div key={index} className="bg-white p-8 rounded-md border hover-elevate" data-testid={`card-service-${index}`}>
+              <div className="flex items-start gap-5">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-black text-white flex-shrink-0">
+                  <service.icon className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-2" data-testid={`text-service-title-${index}`}>{service.title}</h3>
+                  <p className="text-muted-foreground italic mb-3 text-sm" data-testid={`text-service-pain-${index}`}>
+                    {service.pain}
+                  </p>
+                  <p className="text-foreground" data-testid={`text-service-solution-${index}`}>
+                    {service.solution}
+                  </p>
+                </div>
+              </div>
             </div>
           ))}
-        </div>
-
-        <div className="text-center">
-          <p className="text-lg font-medium text-muted-foreground" data-testid="text-services-tagline">
-            You lead. We build. Together, we scale.
-          </p>
         </div>
       </div>
     </section>

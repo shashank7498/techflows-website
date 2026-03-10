@@ -1,9 +1,8 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import ServicesGrid from "@/components/ServicesGrid";
-import WhyUs from "@/components/WhyUs";
-import ProcessSteps from "@/components/ProcessSteps";
-import TechStack from "@/components/TechStack";
+import PricingSection from "@/components/PricingSection";
+import TrustSection from "@/components/TrustSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
@@ -14,8 +13,8 @@ export default function Home() {
       <main className="pt-16">
         <Hero />
         <ServicesGrid />
-        <WhyUs />
-        <TechStack />
+        <PricingSection />
+        <TrustSection />
         <CTASection />
       </main>
       <Footer />

@@ -1,14 +1,26 @@
-# TechFlows - AI/ML Engineering Platform
+# TechFlows - Tech Partner for Startup Founders
 
 ## Overview
 
-TechFlows is a premium marketing website for an AI/ML engineering staffing and solutions company. The platform showcases services ranging from individual ML engineers to complete product development teams, emphasizing rapid deployment (48 hours) and cost efficiency (70% savings). The site follows a clean, minimalist design philosophy inspired by high-end SaaS products like Apple, Stripe, and Linear.
+TechFlows is a premium marketing website positioning the company as a tech partner for early-stage startup founders. The site helps founders ship products fast without hiring a CTO, overpaying an agency, or losing equity. It follows a clean, minimalist design philosophy inspired by high-end SaaS products.
 
 **Core Messaging:**
-- Primary tagline: "Build your product — your way."
-- Value proposition: From a single expert to a full-fledged engineering team, helping founders turn ideas into world-class products under their guidance at up to 70% lower cost
-- Key themes: Flexible engagement, work under your guidance, end-to-end ownership, transparent pricing
-- Process philosophy: "You lead. We build. Together, we scale."
+- Primary tagline: "Your technical co-founder. On demand."
+- Value proposition: TechFlows helps early-stage startup founders ship their product fast
+- Key proof points: 48-hour team assembly, 4-6 week MVP delivery, $0 equity taken, 60%+ cost savings vs agencies
+- Primary CTA: "Get a Free Tech Audit" (links to Calendly)
+
+**Founder-Pain-Focused Services:**
+1. MVP Builds - "I have an idea but no one to build it"
+2. AI Integration - "I need AI features but don't know where to start"
+3. CTO-as-a-Service - "I need technical leadership but can't afford a full-time CTO"
+4. Tech Strategy - "I'm making tech decisions blind"
+
+**Pricing Tiers:**
+- Starter: $1,500-$3,000 (Tech Audit + Build Plan)
+- Builder: $3,000-$7,000 (Full MVP in 4-6 weeks)
+- Scale: $7,000-$15,000 (Product + AI Integration)
+- Retainer: $2,000/mo (Ongoing CTO-as-a-Service)
 
 ## User Preferences
 
@@ -31,21 +43,20 @@ Preferred communication style: Simple, everyday language.
 - Typography-first approach using Inter font family
 - Custom Tailwind configuration with HSL color variables
 - Responsive breakpoint: 768px for mobile
+- Contact page: Full black background with white text
 - No heavy effects (no glassmorphism, 3D effects, or gradients)
-- Contact page: Full black background with white text for maximum contrast and impact
 
 **Component Architecture:**
 - Page-based routing with dedicated page components (Home, Services, HowItWorks, About, Contact)
 - Reusable UI components following atomic design principles
-- Shared components: Navigation, Footer, Hero, CTASection, ContactForm, etc.
-- All components use TypeScript with proper type definitions
+- Shared components: Navigation, Footer, Hero, CTASection, ContactForm, ServicesGrid, ProcessSteps, PricingSection, TrustSection
 
 **Homepage Sections:**
-1. Hero: "Build your product — your way" with 70% cost savings messaging
-2. What We Do: Transformation messaging with "You lead. We build. Together, we scale."
-3. How It Works: 3-step process (Tell Us, Assemble, Build)
-4. Why Choose Us: 6 benefits (Flexible Engagement, Work Under Your Guidance, End-to-End Ownership, Top-Tier Expertise, 70% Cost Efficiency, 48-Hour Deployment)
-5. CTA: "Ready to build your product — your way?"
+1. Hero: "Your technical co-founder. On demand." with social proof stats (48hrs/4-6wks/$0/60%+)
+2. What founders come to us for: 4 founder-pain-focused service cards
+3. Pricing: Simple, founder-friendly pricing (4 tiers)
+4. Trust: "Why founders choose TechFlows over agencies" (5 checkmark items)
+5. CTA: "Ready to ship your startup's tech?" with Free Tech Audit button
 
 **State Management:**
 - React Query for API data fetching and caching
@@ -67,14 +78,9 @@ Preferred communication style: Simple, everyday language.
 - Zod schema validation on incoming requests
 - Error handling with appropriate HTTP status codes
 
-**Session Management:**
-- Architecture supports Postgres session store (connect-pg-simple)
-- Currently using in-memory storage for development
-
 **Storage Layer:**
 - Interface-based storage abstraction (IStorage)
 - In-memory implementation (MemStorage) for development
-- Designed to swap to database-backed storage
 - Methods: getUser, getUserByUsername, createUser, createContactSubmission
 
 ### Data Architecture
@@ -83,32 +89,21 @@ Preferred communication style: Simple, everyday language.
 - Users table: id, username, password
 - Contact submissions table: id, name, company, email, message, createdAt
 - UUID primary keys with PostgreSQL gen_random_uuid()
-- Timestamp fields with automatic defaulting
 
 **Validation:**
 - Drizzle-Zod integration for type-safe schema validation
 - Shared schema definitions between client and server
-- Insert schemas derived from table schemas
-
-**Database Configuration:**
-- PostgreSQL dialect configured via Drizzle Kit
-- Migrations directory: ./migrations
-- Schema location: ./shared/schema.ts
-- Connection via DATABASE_URL environment variable
 
 ### Build & Development
 
 **Development Mode:**
 - Vite dev server with HMR
 - Express backend with tsx runtime
-- Replit-specific plugins (cartographer, dev-banner, runtime-error-modal)
-- Source maps for debugging
+- Workflow: `npm run dev`
 
 **Production Build:**
 - Client: Vite builds React app to dist/public
 - Server: esbuild bundles Express server to dist/index.js
-- Platform: Node.js with ESM format
-- External packages not bundled
 
 **Path Aliases:**
 - @/* maps to client/src/*
@@ -120,8 +115,8 @@ Preferred communication style: Simple, everyday language.
 ```
 client/          # Frontend React application
   src/
-    components/  # Reusable UI components
-    pages/       # Route page components
+    components/  # Reusable UI components (Hero, ServicesGrid, ProcessSteps, PricingSection, TrustSection, CTASection, ContactForm, Navigation, Footer)
+    pages/       # Route page components (Home, Services, HowItWorks, About, Contact)
     hooks/       # Custom React hooks
     lib/         # Utilities (queryClient, utils)
 server/          # Backend Express application
@@ -134,62 +129,12 @@ shared/          # Code shared between client/server
 attached_assets/ # Static assets and design docs
 ```
 
-## External Dependencies
-
-### UI Component Libraries
-- **Radix UI**: Headless UI primitives for accessibility (@radix-ui/react-*)
-- **shadcn/ui**: Pre-built component system built on Radix UI
-- **Lucide React**: Icon library
-- **cmdk**: Command palette component
-- **Embla Carousel**: Carousel/slider functionality
-
-### Form & Validation
-- **React Hook Form**: Form state management
-- **Zod**: Schema validation
-- **@hookform/resolvers**: Zod integration for React Hook Form
-
-### Data Fetching
-- **TanStack Query**: Server state management and caching
-- **date-fns**: Date manipulation utilities
-
-### Styling
-- **Tailwind CSS**: Utility-first CSS framework
-- **class-variance-authority**: Component variant management
-- **clsx & tailwind-merge**: Class name utilities
-- **PostCSS & Autoprefixer**: CSS processing
-
-### Database & ORM
-- **Drizzle ORM**: Type-safe SQL ORM
-- **@neondatabase/serverless**: Neon PostgreSQL driver
-- **drizzle-kit**: Schema migrations
-- **drizzle-zod**: Zod schema generation from Drizzle schemas
-
-### Backend
-- **Express**: Web server framework
-- **connect-pg-simple**: PostgreSQL session store (configured but not actively used)
-
-### Development Tools
-- **Vite**: Build tool and dev server
-- **@vitejs/plugin-react**: React support for Vite
-- **TypeScript**: Static typing
-- **tsx**: TypeScript execution for Node.js
-- **esbuild**: JavaScript bundler for production builds
-
-### Replit Integration
-- **@replit/vite-plugin-cartographer**: Replit file navigation
-- **@replit/vite-plugin-dev-banner**: Development mode banner
-- **@replit/vite-plugin-runtime-error-modal**: Runtime error overlay
-
-### Fonts
-- **Inter**: Primary sans-serif font (Google Fonts)
-- **Roboto Mono**: Monospace font for technical elements
-
-### External Services Referenced
-- **Calendly**: Booking integration (shashankchauhan7498)
-- Placeholder social media links (LinkedIn, Twitter, GitHub)
+### External Services
+- **Calendly**: https://calendly.com/shashankchauhan7498
+- **Contact email**: shashank@techflows.co
+- **Favicon**: client/public/favicon.png
 
 ### Notes
 - Database configured for PostgreSQL but currently uses in-memory storage
 - Session management infrastructure in place but not actively implemented
 - User authentication schema exists but no auth routes defined
-- Ready to connect to Neon Postgres or similar managed database service

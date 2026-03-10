@@ -55,10 +55,10 @@ export default function ContactForm() {
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6" data-testid="text-contact-heading">
-            Let's Build the Future
+            Ready to ship your startup's tech?
           </h2>
-          <p className="text-xl text-white/70 max-w-2xl mx-auto" data-testid="text-contact-description">
-            Get your engineering team deployed in 48 hours
+          <p className="text-lg text-white/60 max-w-2xl mx-auto" data-testid="text-contact-description">
+            Get a free 30-min Tech Audit. No commitment. Just clarity.
           </p>
         </div>
 
@@ -67,9 +67,9 @@ export default function ContactForm() {
             <div className="flex items-start gap-4">
               <Calendar className="h-6 w-6 mt-1 flex-shrink-0" />
               <div>
-                <h3 className="font-semibold mb-2">Schedule a Call</h3>
-                <p className="text-sm text-white/70 mb-3">
-                  Book a 30-minute discovery call to discuss your project
+                <h3 className="font-semibold mb-2">Book a Free Tech Audit</h3>
+                <p className="text-sm text-white/60 mb-3">
+                  30 minutes to discuss your startup and biggest tech challenge
                 </p>
                 <a 
                   href="https://calendly.com/shashankchauhan7498" 
@@ -78,7 +78,7 @@ export default function ContactForm() {
                   className="text-sm underline hover:text-white/70 transition-colors" 
                   data-testid="link-calendly"
                 >
-                  Open Calendly →
+                  Open Calendly
                 </a>
               </div>
             </div>
@@ -87,7 +87,7 @@ export default function ContactForm() {
               <Mail className="h-6 w-6 mt-1 flex-shrink-0" />
               <div>
                 <h3 className="font-semibold mb-2">Email Us</h3>
-                <p className="text-sm text-white/70 mb-2">
+                <p className="text-sm text-white/60 mb-2">
                   Prefer email? Drop us a line
                 </p>
                 <a href="mailto:shashank@techflows.co" className="text-sm underline hover:text-white/70 transition-colors" data-testid="link-email-direct">
@@ -100,7 +100,7 @@ export default function ContactForm() {
               <Clock className="h-6 w-6 mt-1 flex-shrink-0" />
               <div>
                 <h3 className="font-semibold mb-2">48-Hour Guarantee</h3>
-                <p className="text-sm text-white/70">
+                <p className="text-sm text-white/60">
                   Your engineering team deployed and ready to start in just 48 hours
                 </p>
               </div>
@@ -118,7 +118,7 @@ export default function ContactForm() {
                       <FormItem>
                         <FormLabel className="text-white">Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" {...field} className="bg-white/10 border-white/20 text-white placeholder:text-white/50" data-testid="input-name" />
+                          <Input placeholder="John Doe" {...field} className="bg-white/10 border-white/20 text-white placeholder:text-white/40" data-testid="input-name" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -131,7 +131,7 @@ export default function ContactForm() {
                       <FormItem>
                         <FormLabel className="text-white">Company</FormLabel>
                         <FormControl>
-                          <Input placeholder="Acme Inc." {...field} className="bg-white/10 border-white/20 text-white placeholder:text-white/50" data-testid="input-company" />
+                          <Input placeholder="Acme Inc." {...field} className="bg-white/10 border-white/20 text-white placeholder:text-white/40" data-testid="input-company" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -146,7 +146,7 @@ export default function ContactForm() {
                     <FormItem>
                       <FormLabel className="text-white">Email</FormLabel>
                       <FormControl>
-                        <Input type="email" placeholder="john@acme.com" {...field} className="bg-white/10 border-white/20 text-white placeholder:text-white/50" data-testid="input-email" />
+                        <Input type="email" placeholder="john@acme.com" {...field} className="bg-white/10 border-white/20 text-white placeholder:text-white/40" data-testid="input-email" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -158,11 +158,11 @@ export default function ContactForm() {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-white">Message</FormLabel>
+                      <FormLabel className="text-white">Tell us about your startup</FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder="Tell us about your project needs - AI/ML, full-stack development, cloud infrastructure, or complete product teams..."
-                          className="min-h-32 bg-white/10 border-white/20 text-white placeholder:text-white/50"
+                          placeholder="What's your biggest tech challenge right now?"
+                          className="min-h-32 bg-white/10 border-white/20 text-white placeholder:text-white/40"
                           {...field}
                           data-testid="input-message"
                         />
@@ -184,7 +184,7 @@ export default function ContactForm() {
                     "Sending..."
                   ) : (
                     <>
-                      Send Message
+                      Get Your Free Tech Audit
                       <Send className="ml-2 h-4 w-4" />
                     </>
                   )}

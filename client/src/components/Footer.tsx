@@ -9,16 +9,16 @@ export default function Footer() {
           <div>
             <span className="font-bold text-xl mb-4 block">TechFlows</span>
             <p className="text-sm text-muted-foreground mb-4">
-              Elite AI/ML engineering teams deployed in 48 hours.
+              Tech partner for startup founders. Ship fast, save smart.
             </p>
             <div className="flex gap-3">
-              <a href="#" className="hover-lift" data-testid="link-linkedin">
+              <a href="#" data-testid="link-linkedin">
                 <Linkedin className="h-5 w-5 text-muted-foreground hover:text-foreground transition-colors" />
               </a>
-              <a href="#" className="hover-lift" data-testid="link-twitter">
+              <a href="#" data-testid="link-twitter">
                 <Twitter className="h-5 w-5 text-muted-foreground hover:text-foreground transition-colors" />
               </a>
-              <a href="#" className="hover-lift" data-testid="link-github">
+              <a href="#" data-testid="link-github">
                 <Github className="h-5 w-5 text-muted-foreground hover:text-foreground transition-colors" />
               </a>
             </div>
@@ -35,14 +35,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-footer-careers">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-footer-blog">
-                  Blog
-                </a>
+                <Link href="/how-it-works">
+                  <span className="text-sm text-muted-foreground hover:text-foreground cursor-pointer transition-colors" data-testid="link-footer-how">
+                    How It Works
+                  </span>
+                </Link>
               </li>
             </ul>
           </div>
@@ -58,13 +55,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-footer-ml">
-                  Machine Learning
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-footer-ai">
-                  AI Agents
+                <a href="https://calendly.com/shashankchauhan7498" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-footer-audit">
+                  Free Tech Audit
                 </a>
               </li>
             </ul>
@@ -92,9 +84,9 @@ export default function Footer() {
 
         <div className="border-t mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © 2025 TechFlows. All rights reserved.
+            2025 TechFlows. All rights reserved.
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap gap-6">
             <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-privacy">
               Privacy Policy
             </a>
