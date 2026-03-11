@@ -51,24 +51,32 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="min-h-screen bg-black text-white py-24">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+    <section className="min-h-screen bg-black text-white py-28 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute w-96 h-96 rounded-full bg-white/20 -top-48 -right-48 blur-3xl" />
+        <div className="absolute w-96 h-96 rounded-full bg-white/10 -bottom-48 -left-48 blur-3xl" />
+        <div className="absolute w-64 h-64 rounded-full bg-white/15 top-1/2 left-1/3 blur-3xl" />
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6" data-testid="text-contact-heading">
-            Ready to ship your startup's tech?
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" data-testid="text-contact-heading">
+            Ready to ship your
+            <br />
+            startup's tech?
           </h2>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto" data-testid="text-contact-description">
+          <p className="text-lg text-white/50 max-w-2xl mx-auto" data-testid="text-contact-description">
             Get a free 30-min Tech Audit. No commitment. Just clarity.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          <div className="space-y-8">
-            <div className="flex items-start gap-4">
-              <Calendar className="h-6 w-6 mt-1 flex-shrink-0" />
+          <div className="space-y-6">
+            <div className="flex items-start gap-4 rounded-md border border-white/10 p-6 backdrop-blur-sm bg-white/5">
+              <Calendar className="h-6 w-6 mt-1 flex-shrink-0 text-white/80" />
               <div>
                 <h3 className="font-semibold mb-2">Book a Free Tech Audit</h3>
-                <p className="text-sm text-white/60 mb-3">
+                <p className="text-sm text-white/50 mb-3">
                   30 minutes to discuss your startup and biggest tech challenge
                 </p>
                 <a 
@@ -83,11 +91,11 @@ export default function ContactForm() {
               </div>
             </div>
 
-            <div className="flex items-start gap-4">
-              <Mail className="h-6 w-6 mt-1 flex-shrink-0" />
+            <div className="flex items-start gap-4 rounded-md border border-white/10 p-6 backdrop-blur-sm bg-white/5">
+              <Mail className="h-6 w-6 mt-1 flex-shrink-0 text-white/80" />
               <div>
                 <h3 className="font-semibold mb-2">Email Us</h3>
-                <p className="text-sm text-white/60 mb-2">
+                <p className="text-sm text-white/50 mb-2">
                   Prefer email? Drop us a line
                 </p>
                 <a href="mailto:shashank@techflows.co" className="text-sm underline hover:text-white/70 transition-colors" data-testid="link-email-direct">
@@ -96,18 +104,18 @@ export default function ContactForm() {
               </div>
             </div>
 
-            <div className="flex items-start gap-4">
-              <Clock className="h-6 w-6 mt-1 flex-shrink-0" />
+            <div className="flex items-start gap-4 rounded-md border border-white/10 p-6 backdrop-blur-sm bg-white/5">
+              <Clock className="h-6 w-6 mt-1 flex-shrink-0 text-white/80" />
               <div>
                 <h3 className="font-semibold mb-2">48-Hour Guarantee</h3>
-                <p className="text-sm text-white/60">
+                <p className="text-sm text-white/50">
                   Your engineering team deployed and ready to start in just 48 hours
                 </p>
               </div>
             </div>
           </div>
 
-          <div>
+          <div className="rounded-md border border-white/10 p-8 backdrop-blur-sm bg-white/5">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -116,9 +124,9 @@ export default function ContactForm() {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white">Name</FormLabel>
+                        <FormLabel className="text-white/80">Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" {...field} className="bg-white/10 border-white/20 text-white placeholder:text-white/40" data-testid="input-name" />
+                          <Input placeholder="John Doe" {...field} className="bg-white/10 border-white/15 text-white placeholder:text-white/30" data-testid="input-name" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -129,9 +137,9 @@ export default function ContactForm() {
                     name="company"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white">Company</FormLabel>
+                        <FormLabel className="text-white/80">Company</FormLabel>
                         <FormControl>
-                          <Input placeholder="Acme Inc." {...field} className="bg-white/10 border-white/20 text-white placeholder:text-white/40" data-testid="input-company" />
+                          <Input placeholder="Acme Inc." {...field} className="bg-white/10 border-white/15 text-white placeholder:text-white/30" data-testid="input-company" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -144,9 +152,9 @@ export default function ContactForm() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-white">Email</FormLabel>
+                      <FormLabel className="text-white/80">Email</FormLabel>
                       <FormControl>
-                        <Input type="email" placeholder="john@acme.com" {...field} className="bg-white/10 border-white/20 text-white placeholder:text-white/40" data-testid="input-email" />
+                        <Input type="email" placeholder="john@acme.com" {...field} className="bg-white/10 border-white/15 text-white placeholder:text-white/30" data-testid="input-email" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -158,11 +166,11 @@ export default function ContactForm() {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-white">Tell us about your startup</FormLabel>
+                      <FormLabel className="text-white/80">Tell us about your startup</FormLabel>
                       <FormControl>
                         <Textarea
                           placeholder="What's your biggest tech challenge right now?"
-                          className="min-h-32 bg-white/10 border-white/20 text-white placeholder:text-white/40"
+                          className="min-h-32 bg-white/10 border-white/15 text-white placeholder:text-white/30"
                           {...field}
                           data-testid="input-message"
                         />
@@ -176,7 +184,7 @@ export default function ContactForm() {
                   type="submit"
                   size="lg"
                   variant="secondary"
-                  className="w-full px-8"
+                  className="w-full shadow-3d-lg"
                   disabled={submitMutation.isPending}
                   data-testid="button-submit-contact"
                 >

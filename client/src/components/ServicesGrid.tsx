@@ -29,7 +29,7 @@ export default function ServicesGrid() {
   ];
 
   return (
-    <section className="py-24 bg-secondary/30">
+    <section className="py-28 bg-white">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4" data-testid="text-services-heading">
@@ -37,19 +37,19 @@ export default function ServicesGrid() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {services.map((service, index) => (
-            <div key={index} className="bg-white p-8 rounded-md border hover-elevate" data-testid={`card-service-${index}`}>
+            <div key={index} className="p-8 rounded-md border shadow-3d card-3d bg-white" data-testid={`card-service-${index}`}>
               <div className="flex items-start gap-5">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-black text-white flex-shrink-0">
-                  <service.icon className="h-6 w-6" />
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-md bg-black text-white flex-shrink-0 shadow-3d">
+                  <service.icon className="h-7 w-7" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold mb-2" data-testid={`text-service-title-${index}`}>{service.title}</h3>
                   <p className="text-muted-foreground italic mb-3 text-sm" data-testid={`text-service-pain-${index}`}>
                     {service.pain}
                   </p>
-                  <p className="text-foreground" data-testid={`text-service-solution-${index}`}>
+                  <p className="text-foreground leading-relaxed" data-testid={`text-service-solution-${index}`}>
                     {service.solution}
                   </p>
                 </div>

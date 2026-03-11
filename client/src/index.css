@@ -63,22 +63,97 @@
 }
 
 @layer utilities {
-  /* Premium minimal hover effects */
   .hover-lift {
-    @apply transition-all duration-200 ease-out;
+    @apply transition-all duration-300 ease-out;
   }
   
   .hover-lift:hover {
     @apply -translate-y-1;
   }
 
-  /* Subtle shadow for cards */
-  .subtle-shadow {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  .shadow-3d {
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.07),
+      0 2px 4px rgba(0, 0, 0, 0.07),
+      0 4px 8px rgba(0, 0, 0, 0.07),
+      0 8px 16px rgba(0, 0, 0, 0.07);
   }
 
-  /* Text gradient for minimal accent */
+  .shadow-3d-lg {
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.04),
+      0 4px 8px rgba(0, 0, 0, 0.04),
+      0 8px 16px rgba(0, 0, 0, 0.04),
+      0 16px 32px rgba(0, 0, 0, 0.04),
+      0 32px 64px rgba(0, 0, 0, 0.06);
+  }
+
+  .shadow-3d-xl {
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.02),
+      0 4px 8px rgba(0, 0, 0, 0.02),
+      0 8px 16px rgba(0, 0, 0, 0.04),
+      0 16px 32px rgba(0, 0, 0, 0.06),
+      0 32px 64px rgba(0, 0, 0, 0.08),
+      0 64px 128px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-3d {
+    @apply transition-all duration-300 ease-out;
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+  }
+
+  .card-3d:hover {
+    transform: perspective(1000px) rotateX(-2deg) rotateY(2deg) translateY(-4px);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .gradient-mesh {
+    background:
+      radial-gradient(at 27% 37%, hsla(0, 0%, 98%, 1) 0px, transparent 50%),
+      radial-gradient(at 97% 21%, hsla(0, 0%, 94%, 1) 0px, transparent 50%),
+      radial-gradient(at 52% 99%, hsla(0, 0%, 96%, 1) 0px, transparent 50%),
+      radial-gradient(at 10% 29%, hsla(0, 0%, 100%, 1) 0px, transparent 50%),
+      radial-gradient(at 97% 96%, hsla(0, 0%, 92%, 1) 0px, transparent 50%);
+  }
+
   .text-gradient-minimal {
     @apply bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent;
   }
+
+  .floating-dot {
+    @apply absolute rounded-full bg-black/5;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+  }
+
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
 }

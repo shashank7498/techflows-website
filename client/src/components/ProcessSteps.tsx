@@ -26,7 +26,7 @@ export default function ProcessSteps() {
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-28 gradient-mesh">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight" data-testid="text-process-heading">
@@ -37,16 +37,16 @@ export default function ProcessSteps() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {steps.map((step, index) => (
-            <div key={index} className="text-center" data-testid={`card-step-${index}`}>
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-black text-white mb-6">
+            <div key={index} className="text-center glass-card rounded-md p-10 card-3d" data-testid={`card-step-${index}`}>
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-md bg-black text-white mb-6 shadow-3d">
                 <step.icon className="h-8 w-8" />
               </div>
-              <div className="text-5xl font-bold text-muted-foreground/20 mb-4" data-testid={`text-step-number-${index}`}>
+              <div className="text-6xl font-bold text-muted-foreground/10 mb-4" data-testid={`text-step-number-${index}`}>
                 {step.number}
               </div>
-              <h3 className="text-2xl font-bold mb-4" data-testid={`text-step-title-${index}`}>
+              <h3 className="text-xl font-bold mb-4" data-testid={`text-step-title-${index}`}>
                 {step.title}
               </h3>
               <p className="text-muted-foreground leading-relaxed" data-testid={`text-step-description-${index}`}>

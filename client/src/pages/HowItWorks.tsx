@@ -1,7 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ProcessSteps from "@/components/ProcessSteps";
-import PricingSection from "@/components/PricingSection";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
@@ -40,17 +39,20 @@ export default function HowItWorks() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navigation />
       <main className="pt-16">
-        <section className="py-32 bg-white">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight" data-testid="text-how-heading">
+        <section className="py-32 gradient-mesh relative overflow-hidden">
+          <div className="floating-dot w-48 h-48 top-10 right-20 opacity-30" style={{ animationDelay: '0s' }} />
+          <div className="floating-dot w-32 h-32 bottom-10 left-20 opacity-40" style={{ animationDelay: '2s' }} />
+
+          <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight animate-fade-in-up" data-testid="text-how-heading">
               Built for Speed.
               <br />
-              Designed for You.
+              <span className="text-gradient-minimal">Designed for You.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto" data-testid="text-how-description">
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto animate-fade-in-up animate-delay-100" data-testid="text-how-description">
               From first call to shipped product — here's how we work with founders.
             </p>
           </div>
@@ -58,16 +60,14 @@ export default function HowItWorks() {
 
         <ProcessSteps />
 
-        <PricingSection />
-
-        <section className="py-24 bg-white">
+        <section className="py-28 bg-white">
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
             <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center" data-testid="text-faq-heading">
               Common Questions
             </h2>
-            <div className="space-y-8">
+            <div className="space-y-4">
               {faqs.map((faq, index) => (
-                <div key={index} className="bg-white p-8 rounded-md border" data-testid={`accordion-faq-${index}`}>
+                <div key={index} className="p-8 rounded-md border shadow-3d card-3d bg-white" data-testid={`accordion-faq-${index}`}>
                   <h3 className="text-xl font-bold mb-3" data-testid={`button-faq-${index}`}>
                     {faq.question}
                   </h3>
@@ -80,16 +80,21 @@ export default function HowItWorks() {
           </div>
         </section>
 
-        <section className="py-24 bg-black text-white">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+        <section className="py-28 bg-black text-white relative overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute w-96 h-96 rounded-full bg-white/20 -top-48 -right-48 blur-3xl" />
+            <div className="absolute w-96 h-96 rounded-full bg-white/10 -bottom-48 -left-48 blur-3xl" />
+          </div>
+
+          <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Ready to ship your startup's tech?
             </h2>
-            <p className="text-lg text-white/60 mb-10 max-w-2xl mx-auto">
+            <p className="text-lg text-white/50 mb-12 max-w-2xl mx-auto">
               No commitment. Just clarity.
             </p>
             <a href="https://calendly.com/shashankchauhan7498" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" variant="secondary" className="px-8 py-6 text-base" data-testid="button-how-audit">
+              <Button size="lg" variant="secondary" className="text-base shadow-3d-lg" data-testid="button-how-audit">
                 Get a Free 30-min Tech Audit
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
