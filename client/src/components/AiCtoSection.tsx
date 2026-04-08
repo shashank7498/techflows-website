@@ -1,182 +1,102 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "@formspree/react";
-import { ArrowRight, ChevronDown, ChevronUp, Check, Brain, FileText } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 // ─── constants ─────────────────────────────────────────────────────────────────
 
-const PAIN_POINTS = [
+const PAIN_OPTIONS = [
   "No technical co-founder",
   "Don't know what stack to use",
   "MVP stuck or delayed",
-  "Wrong architecture",
+  "Wrong architecture risk",
   "Can't afford a CTO",
   "Freelancer ghosted me",
   "Don't know what to build next",
 ];
 
-const FAQ_ITEMS = [
+// ─── FAQ data ──────────────────────────────────────────────────────────────────
+
+interface FAQItemData { q: string; a: React.ReactNode }
+
+const p = (text: React.ReactNode, extra?: React.CSSProperties) => (
+  <p style={{ fontSize: 13, color: "#7A9BB5", lineHeight: 1.8, marginBottom: 10, ...extra }}>{text}</p>
+);
+
+const FAQ_ITEMS: FAQItemData[] = [
   {
-    q: "Do I need to know anything about tech?",
-    a: "Nope! That's the whole point. You describe your idea in simple words — like telling a friend what you want to build. AI CTO handles all the tech stuff and explains everything in plain English.",
+    q: "Why not just use ChatGPT or Claude directly — they're free?",
+    a: (<>
+      {p('GPT and Claude give you answers to the questions you ask. The problem: you don\'t know which questions to ask. A non-technical founder types "what database should I use?" and gets a generic 500-word essay on PostgreSQL vs MongoDB.', { marginTop: 14 })}
+      {p('What they needed to ask was: "Given that I\'m building a multi-tenant HealthTech SaaS with HIPAA requirements, scaling from 10 to 100 clinics, which database architecture prevents a complete rewrite at client #15?"')}
+      {p(<>TechFlows AI CTO asks that second question automatically — and 46 others like it — based on your specific situation. Think of it as the difference between a search engine and a doctor.</>)}
+    </>),
   },
   {
-    q: "Is this just another chatbot?",
-    a: "Think of the difference between Google Maps and a random person giving directions. Chatbots just answer your questions. AI CTO asks YOU the right questions first, then gives you a complete step-by-step plan — not just generic answers.",
+    q: "Is this a real CTO or just another AI chatbot?",
+    a: (<>
+      {p("Let's be direct: it does not replace a CTO at a Series B company with 30 engineers. That person manages teams, handles board relationships, and carries accountability with their career.", { marginTop: 14 })}
+      {p("What it IS: a structured AI system built on real startup technical decisions that gives every pre-seed and seed-stage non-technical founder access to specific CTO thinking — architecture planning, risk flagging, sprint roadmapping — specific to their product, industry, compliance needs, and scale. Not a chatbot. A structured expert process.")}
+    </>),
+  },
+  {
+    q: "I have zero technical background. Will I understand the Blueprint?",
+    a: (<>
+      {p('This is built specifically for you. Zero technical knowledge required to start — "I\'m building a marketplace for freelance nurses" is enough.', { marginTop: 14 })}
+      {p("The Blueprint explains every decision in plain English: what was chosen, why it was chosen, and what would happen if a different choice was made. After reading it, you'll fully understand the technical foundation of your own product — and can confidently discuss it with engineers, freelancers, and investors.")}
+    </>),
+  },
+  {
+    q: "How is this different from Lovable, Bolt, or v0?",
+    a: (<>
+      {p("Lovable, Bolt, and v0 are excellent — and TechFlows AI CTO uses them as the build engine. They generate code brilliantly. The difference: they don't advise on what to build, how to structure it, whether your architecture survives 1,000 users, or whether you're HIPAA compliant.", { marginTop: 14 })}
+      {p('They\'re the engine. AI CTO is the navigator. Most non-technical founders hit the "Technical Cliff" — Lovable builds something beautiful, then you need to connect a database, configure auth, set up deployment. AI CTO ensures your foundation is right before you build on it.')}
+    </>),
+  },
+  {
+    q: "Is my idea and data safe? Who can see it?",
+    a: (<>
+      {p("Your idea and data are completely private. TechFlows never shares, sells, or uses your product details for any purpose other than delivering your Blueprint.", { marginTop: 14 })}
+      {p("We use the Anthropic Claude API for AI processing. By default, Anthropic does not use API data to train their models. All data is encrypted in transit and at rest. You can request full deletion of your project data at any time.")}
+    </>),
+  },
+  {
+    q: "When does it launch? What do waitlist members actually get?",
+    a: (<>
+      {p("Launching Q3 2026. We're currently in private development with a small group of early founders whose feedback is shaping the product.", { marginTop: 14 })}
+      {p(<>Waitlist benefits: First 50 founders get the Technical Blueprint at <strong style={{ color: "#EEF4FF" }}>$99 instead of $499</strong> (80% off founding price). Early access before public launch. Invited to direct feedback sessions with the founding team. No credit card needed to join.</>)}
+    </>),
+  },
+  {
+    q: "What industries and product types does it work for?",
+    a: (<>
+      {p("AI CTO works for any digital product — SaaS, marketplaces, AI tools, FinTech, HealthTech, EdTech, PropTech, and more. Built specifically for pre-seed to seed stage (idea through first 500 users).", { marginTop: 14 })}
+      {p("It has deep knowledge of industry-specific compliance — HIPAA, GDPR, PCI DSS, SOC 2. When your product triggers a compliance requirement, the AI CTO flags it immediately and explains exactly what it means for your architecture — before it becomes an expensive problem.")}
+    </>),
   },
   {
     q: "I've already started building. Is it too late?",
-    a: "Not at all! AI CTO can review what you've already built and tell you exactly what to fix, what to keep, and what to do next. Better to check now than to discover a big (expensive) problem later.",
-  },
-  {
-    q: "How is this different from Lovable or Bolt?",
-    a: "Lovable and Bolt build the code. AI CTO is the strategist that decides WHAT to build and HOW to structure it before any code is written. Think of AI CTO as the architect. Lovable/Bolt are the construction workers.",
-  },
-  {
-    q: "Why can't I just use ChatGPT?",
-    a: "ChatGPT only answers the questions you ask. The problem? You don't know which questions to ask! AI CTO knows exactly which 46 questions every good tech decision needs — and asks them for you.",
-  },
-  {
-    q: "When does it launch?",
-    a: "Q3 2026. Founders on the waitlist get in first, get a special founding discount, and get to help shape what we build. Join now — first 50 spots only.",
+    a: (<>
+      {p("Not at all. The Technical Blueprint works at any stage. If you've already started, the AI CTO performs a Technical Audit of your existing choices — identifying risks in what's been built, and recommending how to move forward without unnecessary rewrites.", { marginTop: 14 })}
+      {p('Many founders who come to TechFlows have an existing MVP that "works but I\'m scared it will break." The audit tells you exactly what will break, when, and what to do before it happens. Better a $499 audit now than a $30K emergency rewrite later.')}
+    </>),
   },
 ];
 
 // ─── sub-components ────────────────────────────────────────────────────────────
 
-function FAQItem({ q, a }: { q: string; a: string }) {
+function FAQItem({ q, a }: FAQItemData) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border-b last:border-b-0">
+    <div style={{ background: "#0C1828", border: "1px solid #1A3048", borderRadius: 12, overflow: "hidden" }}>
       <button
         onClick={() => setOpen(!open)}
-        className="w-full py-5 flex justify-between items-start text-left gap-6 hover:opacity-70 transition-opacity"
+        style={{ width: "100%", padding: "17px 20px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "none", border: "none", cursor: "pointer", fontFamily: "inherit", textAlign: "left", gap: 12 }}
       >
-        <span className="font-semibold text-base leading-snug">{q}</span>
-        {open
-          ? <ChevronUp className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-1" />
-          : <ChevronDown className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-1" />}
+        <span style={{ fontSize: 14, fontWeight: 600, color: "#CBD5E1", lineHeight: 1.4 }}>{q}</span>
+        <span style={{ color: "#3D6080", fontSize: 22, fontWeight: 300, flexShrink: 0, lineHeight: 1 }}>{open ? "−" : "+"}</span>
       </button>
-      {open && <p className="text-muted-foreground leading-relaxed pb-5 text-sm">{a}</p>}
-    </div>
-  );
-}
-
-/** Visual product glimpse: mock AI chat conversation */
-function MockChat() {
-  return (
-    <div className="bg-[#0f0f0f] text-white rounded-2xl overflow-hidden border border-white/10 shadow-3d-xl">
-      {/* Header */}
-      <div className="flex items-center gap-3 px-5 py-4 border-b border-white/10 bg-white/[0.03]">
-        <div className="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0">
-          <Brain className="h-4 w-4 text-black" />
-        </div>
-        <div>
-          <p className="text-sm font-bold">AI CTO</p>
-          <p className="text-xs text-white/30">Your personal tech expert</p>
-        </div>
-        <span className="ml-auto flex items-center gap-1.5 text-xs text-emerald-400 font-semibold">
-          <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
-          Online
-        </span>
-      </div>
-
-      {/* Messages */}
-      <div className="p-5 space-y-4">
-        {/* AI greeting */}
-        <div className="flex gap-3">
-          <div className="w-7 h-7 bg-white/10 rounded-full flex-shrink-0 mt-0.5" />
-          <div className="bg-white/10 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%]">
-            <p className="text-sm">Hey! Tell me what app you want to build — in one sentence is fine 👋</p>
-          </div>
-        </div>
-
-        {/* User */}
-        <div className="flex gap-3 justify-end">
-          <div className="bg-white text-black rounded-2xl rounded-tr-sm px-4 py-3 max-w-[85%]">
-            <p className="text-sm">An app for booking dog walkers near me</p>
-          </div>
-        </div>
-
-        {/* AI response with question card */}
-        <div className="flex gap-3">
-          <div className="w-7 h-7 bg-white/10 rounded-full flex-shrink-0 mt-0.5" />
-          <div className="space-y-2 max-w-[90%]">
-            <div className="bg-white/10 rounded-2xl rounded-tl-sm px-4 py-3">
-              <p className="text-sm">Got it! I've got 12 quick questions before we pick your tech stack ⚡</p>
-            </div>
-            <div className="bg-white/[0.06] border border-white/10 rounded-xl px-4 py-3">
-              <p className="text-xs text-white/30 mb-1.5">Question 1 of 12</p>
-              <p className="text-sm font-medium mb-3">How many users do you expect in your first 3 months?</p>
-              <div className="flex gap-2 flex-wrap">
-                {["Less than 100", "100–1,000", "1,000+"].map((opt) => (
-                  <span key={opt} className="text-xs bg-white/10 hover:bg-white/20 transition-colors px-3 py-1.5 rounded-lg cursor-pointer">
-                    {opt}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Typing indicator */}
-        <div className="flex gap-3">
-          <div className="w-7 h-7 bg-white/10 rounded-full flex-shrink-0 mt-0.5" />
-          <div className="bg-white/10 rounded-2xl rounded-tl-sm px-4 py-3">
-            <div className="flex gap-1.5 items-center">
-              <div className="w-1.5 h-1.5 bg-white/40 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-              <div className="w-1.5 h-1.5 bg-white/40 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-              <div className="w-1.5 h-1.5 bg-white/40 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/** Visual product glimpse: mock blueprint output */
-function MockBlueprint() {
-  const items = [
-    { emoji: "🛠️", label: "Recommended Tech Stack", value: "React Native + Node.js + PostgreSQL" },
-    { emoji: "⏱️", label: "Time to Build MVP",       value: "6–8 weeks" },
-    { emoji: "💰", label: "Estimated Cost",           value: "$8,000 – $12,000" },
-    { emoji: "⚠️", label: "Biggest Risk to Avoid",   value: "Payment compliance (Stripe required)" },
-    { emoji: "🚀", label: "Build This First",         value: "Booking flow + Walker profiles" },
-  ];
-
-  return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-3d-xl p-7">
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-6 pb-5 border-b">
-        <div className="w-11 h-11 bg-black text-white rounded-xl flex items-center justify-center flex-shrink-0">
-          <FileText className="h-5 w-5" />
-        </div>
-        <div className="min-w-0 flex-1">
-          <p className="font-bold text-base">Technical Blueprint</p>
-          <p className="text-xs text-muted-foreground">Dog Walker Booking App · Generated in 4 min</p>
-        </div>
-        <span className="text-xs bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1 rounded-full font-semibold flex-shrink-0">
-          ✓ Ready
-        </span>
-      </div>
-
-      {/* Blueprint items */}
-      <div className="space-y-2.5">
-        {items.map((item) => (
-          <div key={item.label} className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors">
-            <span className="text-2xl flex-shrink-0">{item.emoji}</span>
-            <div className="flex-1 min-w-0">
-              <p className="text-xs text-muted-foreground">{item.label}</p>
-              <p className="text-sm font-semibold truncate">{item.value}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-5 bg-black text-white rounded-xl px-4 py-3 text-sm text-center font-medium">
-        + 40 more decisions explained in plain English →
-      </div>
+      {open && (
+        <div style={{ padding: "0 20px 18px", borderTop: "1px solid #0F1828" }}>{a}</div>
+      )}
     </div>
   );
 }
@@ -185,476 +105,297 @@ function WaitlistForm() {
   const [state, handleSubmit] = useForm("mpqonrob");
   const [selectedPains, setSelectedPains] = useState<string[]>([]);
 
-  const togglePain = (pain: string) =>
-    setSelectedPains((prev) =>
-      prev.includes(pain) ? prev.filter((p) => p !== pain) : [...prev, pain]
-    );
+  const toggle = (pain: string) =>
+    setSelectedPains(prev => prev.includes(pain) ? prev.filter(x => x !== pain) : [...prev, pain]);
 
   if (state.succeeded) {
     return (
-      <div className="bg-white rounded-2xl border shadow-3d-lg p-10 text-center">
-        <div className="text-5xl mb-4">🎉</div>
-        <h3 className="text-2xl font-bold mb-3">You're in!</h3>
-        <p className="text-muted-foreground leading-relaxed">
-          Your spot is saved. You'll get early access before anyone else —
-          with your founding member discount locked in forever.
-          <br /><br />
-          Check your inbox — we'll send a quick survey so you can help shape what we build first.
-        </p>
+      <div style={{ background: "#0C1828", border: "1px solid rgba(0,229,160,.28)", borderRadius: 16, padding: "36px 28px" }}>
+        <div style={{ fontSize: 34, marginBottom: 12 }}>🎉</div>
+        <div style={{ fontSize: 20, fontWeight: 800, color: "#00E5A0", marginBottom: 8 }}>You're in!</div>
+        <div style={{ fontSize: 14, color: "#7A9BB5", lineHeight: 1.7 }}>
+          Founding member spot saved. You'll get an email when early access opens — locked in at{" "}
+          <strong style={{ color: "#EEF4FF" }}>$99</strong> instead of $499.<br /><br />
+          Watch your inbox. We'll also send a short survey to help shape what we build first.
+        </div>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-2xl border shadow-3d-lg p-8">
-      <input type="hidden" name="source"       value="techflows_aicto_waitlist" />
-      <input type="hidden" name="pain_points"  value={selectedPains.join(", ") || "none selected"} />
+    <form onSubmit={handleSubmit} style={{ background: "#0C1828", border: "1px solid rgba(45,126,248,.22)", borderRadius: 16, padding: 28 }}>
+      <input type="hidden" name="source" value="techflows_aicto_waitlist" />
+      <input type="hidden" name="pain_points" value={selectedPains.join(", ") || "none selected"} />
 
-      <div className="flex flex-col gap-3 mb-6">
+      <div style={{ display: "flex", flexDirection: "column", gap: 9, marginBottom: 14 }}>
         <input
-          type="text"
-          name="name"
-          placeholder="Your name"
-          className="w-full border rounded-xl px-4 py-3 text-sm bg-white outline-none focus:ring-2 focus:ring-black transition"
+          type="text" name="name" placeholder="Your name"
+          style={{ width: "100%", background: "#070E18", border: "1px solid #1A3048", borderRadius: 10, padding: "13px 15px", color: "#EEF4FF", fontSize: 14, outline: "none", fontFamily: "inherit" }}
+          onFocus={e => (e.target.style.borderColor = "#2D7EF8")}
+          onBlur={e => (e.target.style.borderColor = "#1A3048")}
         />
         <input
-          type="email"
-          name="email"
-          placeholder="your@email.com"
-          required
-          className="w-full border rounded-xl px-4 py-3 text-sm bg-white outline-none focus:ring-2 focus:ring-black transition"
+          type="email" name="email" placeholder="your@email.com" required
+          style={{ width: "100%", background: "#070E18", border: "1px solid #1A3048", borderRadius: 10, padding: "13px 15px", color: "#EEF4FF", fontSize: 14, outline: "none", fontFamily: "inherit" }}
+          onFocus={e => (e.target.style.borderColor = "#2D7EF8")}
+          onBlur={e => (e.target.style.borderColor = "#1A3048")}
         />
       </div>
 
-      <div className="mb-6">
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
-          What's your biggest challenge?{" "}
-          <span className="normal-case font-normal">(optional — helps us build the right thing first)</span>
-        </p>
-        <div className="flex flex-wrap gap-2">
-          {PAIN_POINTS.map((pain) => {
+      <div style={{ marginBottom: 18, textAlign: "left" }}>
+        <div style={{ fontSize: 12, color: "#3D5580", marginBottom: 8, fontWeight: 600 }}>
+          What's your biggest challenge right now?{" "}
+          <span style={{ fontWeight: 400, color: "#2A4060" }}>(helps us build the right thing)</span>
+        </div>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+          {PAIN_OPTIONS.map(pain => {
             const on = selectedPains.includes(pain);
             return (
               <button
-                key={pain}
-                type="button"
-                onClick={() => togglePain(pain)}
-                className={`px-3 py-1.5 text-xs rounded-xl border font-medium transition-all ${
-                  on
-                    ? "bg-black text-white border-black"
-                    : "bg-white text-muted-foreground border-border hover:border-black hover:text-foreground"
-                }`}
-              >
-                {pain}
-              </button>
+                key={pain} type="button" onClick={() => toggle(pain)}
+                style={{ padding: "5px 12px", background: on ? "rgba(45,126,248,0.14)" : "#070E18", border: `1px solid ${on ? "#2D7EF8" : "#1A3048"}`, borderRadius: 20, color: on ? "#93C5FD" : "#6B8CAE", fontSize: 11, cursor: "pointer", fontFamily: "inherit", transition: "all 0.15s" }}
+              >{pain}</button>
             );
           })}
         </div>
       </div>
 
-      <Button type="submit" disabled={state.submitting} className="w-full rounded-xl shadow-3d" size="lg">
-        {state.submitting ? "Saving your spot…" : "Claim my early access spot — it's free"}
-        <ArrowRight className="ml-2 h-4 w-4" />
-      </Button>
-      <p className="text-xs text-muted-foreground text-center mt-4">
-        No credit card · No spam · 47 founders already waiting
-      </p>
+      <button
+        type="submit" disabled={state.submitting}
+        style={{ width: "100%", padding: 15, background: "linear-gradient(135deg,#163a8a,#2D7EF8)", border: "none", borderRadius: 11, color: "#fff", fontSize: 15, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}
+      >
+        {state.submitting ? "Reserving your spot…" : "Reserve my founding spot →"}
+      </button>
+      <div style={{ fontSize: 11, color: "#243550", textAlign: "center", marginTop: 10 }}>
+        No credit card · No spam · <span style={{ color: "#2D4870", fontWeight: 600 }}>47 founders</span> already on the list
+      </div>
     </form>
   );
 }
 
-// ─── main ──────────────────────────────────────────────────────────────────────
+// ─── main export ───────────────────────────────────────────────────────────────
 
 export default function AiCtoSection() {
+  // shared dot-grid background
+  const dotGrid = { backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "40px 40px" };
+
   return (
-    <div id="ai-cto">
+    <div id="ai-cto" style={{ fontFamily: "'Segoe UI',system-ui,-apple-system,sans-serif" }}>
 
       {/* ══════════════════════════════════════════════════════════
-          1. HERO — 2-col: copy left, mock chat right
+          ANNOUNCEMENT BAR
       ══════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex items-center bg-black text-white overflow-hidden">
-        {/* Dot grid */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "40px 40px" }}
-        />
-        {/* Glow */}
-        <div
-          className="absolute top-0 right-0 w-2/3 h-full pointer-events-none"
-          style={{ background: "radial-gradient(ellipse at 80% 30%, rgba(255,255,255,0.05) 0%, transparent 60%)" }}
-        />
+      <div style={{ background: "linear-gradient(90deg,#080D1C,#0D1630,#080D1C)", borderBottom: "1px solid #162040", padding: "11px 24px", display: "flex", alignItems: "center", justifyContent: "center", gap: 14, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, background: "rgba(0,229,160,.1)", border: "1px solid rgba(0,229,160,.28)", borderRadius: 20, padding: "3px 12px" }}>
+          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#00E5A0", animation: "acp 2s infinite" }} />
+          <span style={{ fontSize: 11, fontWeight: 800, color: "#00E5A0", letterSpacing: "0.08em" }}>NOW BUILDING</span>
+        </div>
+        <span style={{ fontSize: 13, color: "#94A3B8" }}>Introducing <strong style={{ color: "#fff" }}>TechFlows AI CTO</strong> — technical co-founder intelligence, on demand.</span>
+        <a href="#aicto-waitlist" style={{ display: "inline-flex", alignItems: "center", gap: 4, background: "linear-gradient(135deg,#163a8a,#2D7EF8)", borderRadius: 20, padding: "5px 14px", color: "#fff", fontSize: 12, fontWeight: 700, textDecoration: "none" }}>
+          Get early access →
+        </a>
+      </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-32 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      {/* ══════════════════════════════════════════════════════════
+          HERO
+      ══════════════════════════════════════════════════════════ */}
+      <section style={{ background: "#030812", padding: "88px 24px 72px", overflow: "hidden", position: "relative" }}>
+        <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: 900, height: 500, background: "radial-gradient(ellipse at 50% 0%,rgba(45,126,248,.13) 0%,transparent 62%)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", bottom: 0, left: "15%", width: 500, height: 300, background: "radial-gradient(ellipse,rgba(0,212,255,.05) 0%,transparent 70%)", pointerEvents: "none" }} />
 
-            {/* Left: Copy */}
-            <div>
-              <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-xl px-4 py-2 text-sm font-semibold mb-8 backdrop-blur-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />
-                Launching Q3 2026 · 47 founders on the waitlist
+        <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 1 }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(45,126,248,.1)", border: "1px solid rgba(45,126,248,.32)", borderRadius: 20, padding: "7px 18px", marginBottom: 28 }}>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#2D7EF8" strokeWidth="1.5"/><path d="M6 3.5v2.5l1.5 1.5" stroke="#2D7EF8" strokeWidth="1.5" strokeLinecap="round"/></svg>
+            <span style={{ fontSize: 12, fontWeight: 700, color: "#2D7EF8", letterSpacing: "0.07em", textTransform: "uppercase" }}>Launching Q3 2026 — Join the Waitlist</span>
+          </div>
+
+          <h2 style={{ fontSize: "clamp(34px,6vw,62px)", fontWeight: 900, color: "#EEF4FF", lineHeight: 1.06, letterSpacing: "-0.04em", marginBottom: 20 }}>
+            Your startup needs a CTO.<br />
+            <span style={{ background: "linear-gradient(135deg,#2D7EF8,#00D4FF,#00E5A0)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundSize: "200%", animation: "acsh 4s linear infinite", display: "inline-block" }}>
+              Now you have one.
+            </span>
+          </h2>
+
+          <p style={{ fontSize: 18, color: "#7A9BB5", lineHeight: 1.7, maxWidth: 580, margin: "0 auto 48px" }}>
+            Non-technical founder? Stop guessing about architecture, stack, and technical decisions. TechFlows AI CTO thinks <em>with</em> you — not just for you. The CTO brain every founder deserves, at a price every founder can afford.
+          </p>
+
+          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 52 }}>
+            <a href="#aicto-waitlist" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "linear-gradient(135deg,#1a4fa8,#2D7EF8)", borderRadius: 12, padding: "14px 28px", color: "#fff", fontSize: 15, fontWeight: 700, textDecoration: "none" }}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><path d="M8 2l1.8 3.8L14 6.5l-3 2.9.7 4L8 11.3l-3.7 2.1.7-4-3-2.9 4.2-.7z"/></svg>
+              Join Waitlist — Free
+            </a>
+            <a href="#aicto-how" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", border: "1px solid #1E3A5F", borderRadius: 12, padding: "14px 28px", color: "#94A3B8", fontSize: 15, fontWeight: 600, textDecoration: "none" }}>
+              See how it works ↓
+            </a>
+          </div>
+
+          {/* stat pills */}
+          <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
+            {[
+              { n: "$499", label: "vs $150K CTO salary" },
+              { n: "24hrs", label: "full blueprint" },
+              { n: "0%", label: "equity taken" },
+            ].map(s => (
+              <div key={s.n} style={{ background: "#0C1828", border: "1px solid #1A3048", borderRadius: 20, padding: "8px 18px", display: "flex", alignItems: "center", gap: 8 }}>
+                <span style={{ fontSize: 19, fontWeight: 900, color: "#EEF4FF" }}>{s.n}</span>
+                <span style={{ fontSize: 12, color: "#6B8CAE" }}>{s.label}</span>
               </div>
+            ))}
+            <div style={{ background: "#0C1828", border: "1px solid rgba(0,229,160,.28)", borderRadius: 20, padding: "8px 18px", display: "flex", alignItems: "center", gap: 8 }}>
+              <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#00E5A0", animation: "acp 2s infinite" }} />
+              <span style={{ fontSize: 12, color: "#00E5A0", fontWeight: 600 }}>47 founders on waitlist</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              <h1 className="text-5xl md:text-6xl lg:text-[4.2rem] font-bold tracking-tight mb-6 leading-[1.07]">
-                You have an idea.
-                <br />
-                <span className="text-white/35">Don't build it</span>
-                <br />
-                <span className="text-white/35">the wrong way.</span>
-              </h1>
+      {/* ══════════════════════════════════════════════════════════
+          THE PROBLEM
+      ══════════════════════════════════════════════════════════ */}
+      <section style={{ background: "#040912", padding: "72px 24px", borderTop: "1px solid #0F1E2E" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 44 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#F87171", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 10 }}>The problem every non-technical founder knows</div>
+            <h3 style={{ fontSize: "clamp(26px,4vw,38px)", fontWeight: 800, color: "#EEF4FF", lineHeight: 1.2, letterSpacing: "-0.02em" }}>
+              You're building blind.<br /><span style={{ color: "#7A9BB5", fontWeight: 400 }}>And it's not your fault.</span>
+            </h3>
+          </div>
 
-              <p className="text-lg md:text-xl text-white/55 mb-10 leading-relaxed max-w-lg">
-                AI CTO is like having a super-smart tech friend who's built hundreds of apps.
-                Tell it your idea — it tells you <em>exactly</em> what to do, in plain English.
-                No tech knowledge needed. Ever.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 items-start mb-14">
-                <a href="#aicto-waitlist">
-                  <Button size="lg" variant="secondary" className="bg-white text-black hover:bg-white/90 rounded-xl px-8 text-base shadow-3d">
-                    Get early access — it's free
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </a>
-                <a
-                  href="#aicto-how"
-                  className="text-white/40 hover:text-white transition-colors text-sm font-medium flex items-center gap-2 mt-3 sm:mt-4"
-                >
-                  See how it works
-                  <ChevronDown className="h-4 w-4" />
-                </a>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: 10, marginBottom: 36 }}>
+            {[
+              { title: '❌ "I don\'t know what stack to choose"', body: "You pick React because everyone talks about it. Six months later your engineer says the whole architecture needs a rewrite. That's a $30K mistake." },
+              { title: '❌ "My freelancer disappeared mid-build"', body: "No documentation. No handoff. You own code you can't read, built on an architecture nobody explained to you. Starting over costs more than starting right." },
+              { title: '❌ "I used Lovable but hit a wall"', body: 'Beautiful UI in 60 seconds. Then "connect your Supabase." Three days debugging RLS policies later, you realise the tool generated frontend magic but nobody warned you about the backend.' },
+              { title: '❌ "Am I HIPAA / GDPR compliant?"', body: "You're building a healthcare product and storing user data. Nobody told you HIPAA requires a Business Associate Agreement with your cloud provider before you write line one." },
+              { title: '❌ "Can\'t find a technical co-founder"', body: "6 months of founder dating. Nobody wants to join pre-revenue. The ones who do want 20–25% equity before writing a line of code. Your runway is burning." },
+              { title: '❌ "I don\'t know what to build next"', body: "MVP is live. Users are using it. You have 30 feature requests, mounting technical debt, and investor pressure. No technical brain to help you prioritise." },
+            ].map(card => (
+              <div key={card.title} style={{ background: "#0A1520", border: "1px solid #1A3048", borderLeft: "3px solid #F87171", borderRadius: 12, padding: "18px 20px" }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: "#FCA5A5", marginBottom: 6 }}>{card.title}</div>
+                <div style={{ fontSize: 12, color: "#6B8CAE", lineHeight: 1.7 }}>{card.body}</div>
               </div>
+            ))}
+          </div>
 
-              {/* 3 quick stats */}
-              <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/10">
-                {[
-                  { n: "$47K",   label: "Average cost of one bad tech decision" },
-                  { n: "73%",   label: "Founders make critical mistakes in year one" },
-                  { n: "6 mo.", label: "Wasted finding a technical co-founder" },
-                ].map((s) => (
-                  <div key={s.n}>
-                    <p className="text-2xl font-bold">{s.n}</p>
-                    <p className="text-xs text-white/35 mt-1 leading-snug">{s.label}</p>
+          <div style={{ background: "rgba(45,126,248,.07)", border: "1px solid rgba(45,126,248,.18)", borderRadius: 14, padding: "22px 28px", textAlign: "center" }}>
+            <p style={{ fontSize: 15, color: "#CBD5E1", lineHeight: 1.7 }}>
+              These are not skill gaps. They are <strong style={{ color: "#EEF4FF" }}>knowledge gaps</strong> — the kind a great CTO fills in their first week. A great CTO costs <strong style={{ color: "#EEF4FF" }}>$150,000/year + equity</strong>. Until now, you had no alternative.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════
+          HOW IT WORKS
+      ══════════════════════════════════════════════════════════ */}
+      <section id="aicto-how" style={{ background: "#030812", padding: "80px 24px", borderTop: "1px solid #0F1E2E" }}>
+        <div style={{ maxWidth: 820, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 52 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#00D4FF", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 10 }}>How it works</div>
+            <h3 style={{ fontSize: "clamp(26px,4vw,38px)", fontWeight: 800, color: "#EEF4FF", lineHeight: 1.2, letterSpacing: "-0.02em" }}>
+              From idea to built product.<br />With a CTO at every step.
+            </h3>
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+            {/* Step 1 */}
+            <StepRow n="1" circleGrad="linear-gradient(135deg,#163a8a,#2D7EF8)" lineGrad="linear-gradient(#2D7EF8,#1A3048)" borderColor="#1A3048" emoji="💬" title="Describe your idea in plain English" meta="5 minutes · no technical knowledge needed" metaColor="#3D5580" last={false}>
+              <p style={{ fontSize: 13, color: "#7A9BB5", lineHeight: 1.7 }}>"I'm building a marketplace for freelance nurses" is enough to start. No jargon required.</p>
+            </StepRow>
+
+            {/* Step 2 */}
+            <StepRow n="2" circleGrad="linear-gradient(135deg,#0d6efd,#00D4FF)" lineGrad="linear-gradient(#00D4FF,#1A3048)" borderColor="#1A3048" emoji="🧠" title="AI CTO asks the questions you didn't know to ask" meta="structured 6-question technical discovery" metaColor="#3D5580" last={false}>
+              <p style={{ fontSize: 13, color: "#7A9BB5", lineHeight: 1.7, marginBottom: 10 }}>The same questions a great CTO asks before writing a single line of code — surfacing decisions you didn't know you needed to make.</p>
+              <div style={{ background: "#070E18", borderRadius: 8, padding: "11px 14px" }}>
+                <div style={{ fontSize: 11, color: "#3D5580", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 7 }}>Example questions it asks:</div>
+                <div style={{ fontSize: 12, color: "#94A3B8", lineHeight: 1.9 }}>
+                  → Do you store personal health data? <span style={{ color: "#3D6080" }}>(triggers HIPAA check)</span><br />
+                  → How many users in year 2? <span style={{ color: "#3D6080" }}>(determines architecture pattern)</span><br />
+                  → Do clients need data isolation? <span style={{ color: "#3D6080" }}>(multi-tenancy decision)</span><br />
+                  → Are you pitching investors? <span style={{ color: "#3D6080" }}>(affects tech stack choices)</span>
+                </div>
+              </div>
+            </StepRow>
+
+            {/* Step 3 */}
+            <StepRow n="3" circleGrad="linear-gradient(135deg,#065f46,#00E5A0)" lineGrad="linear-gradient(#00E5A0,#1A3048)" borderColor="rgba(0,229,160,.2)" emoji="📋" title="Get your Technical Blueprint" meta="delivered in 24 hours · $499" metaColor="#00E5A0" last={false}>
+              <p style={{ fontSize: 13, color: "#7A9BB5", lineHeight: 1.7, marginBottom: 12 }}>A complete technical plan specific to your product — not generic advice:</p>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 7 }}>
+                {[["Architecture decision","with full reasoning"],["Stack recommendation","for your specific case"],["Risk assessment","— 3 things that could kill it"],["Sprint roadmap","— week-by-week build plan"],["Cost estimate","— realistic MVP budget"],["Key decisions","— 5 choices that determine everything"]].map(([b, r]) => (
+                  <div key={b} style={{ background: "#070E18", borderRadius: 7, padding: "9px 11px", fontSize: 12, color: "#94A3B8", display: "flex", gap: 6 }}>
+                    <span style={{ color: "#00E5A0", flexShrink: 0 }}>✓</span>
+                    <span><strong style={{ color: "#CBD5E1" }}>{b}</strong> {r}</span>
                   </div>
                 ))}
               </div>
-            </div>
+            </StepRow>
 
-            {/* Right: Mock chat */}
-            <div className="lg:pl-4">
-              <MockChat />
-              <p className="text-xs text-white/25 text-center mt-3">← This is what AI CTO actually looks like</p>
-            </div>
+            {/* Step 4 */}
+            <StepRow n="4" circleGrad="linear-gradient(135deg,#4c1d95,#9B6FFF)" lineGrad="linear-gradient(#9B6FFF,#1A3048)" borderColor="#1A3048" emoji="🚀" title="Build + launch with TechFlows" meta="$3K–$15K · fixed price · 4–6 weeks" metaColor="#3D5580" last={false}>
+              <p style={{ fontSize: 13, color: "#7A9BB5", lineHeight: 1.7 }}>Optionally, TechFlows engineers execute the Blueprint. AI code generation (Lovable, Bolt, Cursor) for speed, human engineers for complexity. Fixed price. No equity.</p>
+            </StepRow>
 
+            {/* Step 5 */}
+            <StepRow n="5" circleGrad="linear-gradient(135deg,#78350f,#FFB800)" lineGrad={null} borderColor="rgba(255,184,0,.2)" emoji="🤝" title="AI CTO Co-pilot — always on" meta="$500–$2,000/month · cancel anytime" metaColor="#FFB800" last={true}>
+              <p style={{ fontSize: 13, color: "#7A9BB5", lineHeight: 1.7 }}>After launch, the AI CTO stays. Monitors your live product, flags issues before they become crises, tells you what to build next based on actual usage, answers technical questions 24/7.</p>
+            </StepRow>
           </div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════════
-          2. EXPLAINER — "What even IS a CTO?" (simple language)
+          COMPARISON TABLE
       ══════════════════════════════════════════════════════════ */}
-      <section className="py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-4">Let's keep it simple</p>
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-              What the heck is
-              <br />
-              <span className="text-gradient-minimal">an AI CTO? 🤔</span>
-            </h2>
+      <section style={{ background: "#040912", padding: "72px 24px", borderTop: "1px solid #0F1E2E" }}>
+        <div style={{ maxWidth: 820, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#FFB800", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 10 }}>How it compares</div>
+            <h3 style={{ fontSize: "clamp(24px,4vw,36px)", fontWeight: 800, color: "#EEF4FF", lineHeight: 1.2, letterSpacing: "-0.02em" }}>Everything you need. Nothing you don't.</h3>
           </div>
-
-          {/* GPS analogy card */}
-          <div className="bg-gray-50 rounded-3xl p-10 md:p-14 mb-12 text-center max-w-3xl mx-auto">
-            <div className="text-7xl mb-6">🗺️</div>
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">Think of it like GPS for your startup</h3>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              When you drive somewhere new, GPS tells you exactly which roads to take.
-              You don't need to know every road —{" "}
-              <strong className="text-foreground">you just follow the directions.</strong>
-              <br /><br />
-              AI CTO does the same thing for building your app.
-              You don't need to know how to code.
-              <strong className="text-foreground"> You just follow the plan it gives you.</strong>
-            </p>
-          </div>
-
-          {/* 3-card explainer */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                emoji: "🧑‍💼",
-                title: "What's a CTO?",
-                body: "A CTO (Chief Technology Officer) is the tech expert at a company. They decide WHAT to build, HOW to build it, and which tools to use. Big companies pay them $200,000+ a year.",
-              },
-              {
-                emoji: "😩",
-                title: "Why most founders don't have one",
-                body: "Hiring a CTO takes 6 months and costs a fortune. Most early-stage founders are left making huge tech decisions completely alone — decisions that can quietly kill their startup.",
-              },
-              {
-                emoji: "🤖",
-                title: "What AI CTO does",
-                body: "We trained AI on how the world's best CTOs think. Now you get the same expert guidance — instantly, in plain English, without hiring anyone or giving up equity.",
-              },
-            ].map((card) => (
-              <div key={card.title} className="p-8 rounded-2xl border shadow-3d card-3d bg-white text-center">
-                <div className="text-5xl mb-5">{card.emoji}</div>
-                <h3 className="font-bold text-lg mb-3">{card.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{card.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════
-          3. THE PROBLEM — story-driven, not bullet points
-      ══════════════════════════════════════════════════════════ */}
-      <section className="py-24 gradient-mesh">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-4">Does this sound familiar?</p>
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-              This is what happens
-              <br />
-              <span className="text-gradient-minimal">without an AI CTO</span>
-            </h2>
-          </div>
-
-          {/* Story timeline */}
-          <div className="space-y-4 mb-14">
-            {[
-              {
-                emoji: "💡",
-                step: "Month 1",
-                title: "You have an amazing idea",
-                body: "You're excited. You start describing it to developers. They nod and give you a quote. It all seems simple.",
-                dark: false,
-              },
-              {
-                emoji: "🤝",
-                step: "Month 2",
-                title: "You hire developers and start building",
-                body: "Things seem to be going well. But quietly, dozens of technical decisions are being made — and you have no idea they're happening.",
-                dark: false,
-              },
-              {
-                emoji: "😰",
-                step: "Month 5",
-                title: "Things start breaking",
-                body: "The app is slow. It crashes with 100 users. The developers go quiet, then say... \"We need to rebuild it from scratch.\"",
-                dark: false,
-              },
-              {
-                emoji: "💸",
-                step: "Month 6",
-                title: "You've lost $47,000 and 6 months",
-                body: "Not because you had a bad idea. Because nobody set up the right foundation before building. A CTO would have caught this on Day 1.",
-                dark: true,
-              },
-            ].map((card) => (
-              <div
-                key={card.step}
-                className={`flex items-start gap-6 p-7 rounded-2xl border card-3d ${
-                  card.dark
-                    ? "bg-black text-white border-black shadow-3d-xl"
-                    : "bg-white shadow-3d"
-                }`}
-              >
-                <div className="text-4xl flex-shrink-0">{card.emoji}</div>
-                <div>
-                  <p className={`text-xs font-bold tracking-widest mb-1.5 ${card.dark ? "text-white/30" : "text-muted-foreground"}`}>
-                    {card.step.toUpperCase()}
-                  </p>
-                  <h3 className="font-bold text-lg mb-1.5">{card.title}</h3>
-                  <p className={`text-sm leading-relaxed ${card.dark ? "text-white/60" : "text-muted-foreground"}`}>
-                    {card.body}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="glass-card rounded-2xl border p-8 text-center max-w-2xl mx-auto">
-            <p className="text-xl font-bold mb-2">
-              This doesn't happen because you're not smart enough. 😔
-            </p>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              It happens because you didn't have a tech expert in your corner <em>before</em> you started.
-              That's exactly what AI CTO fixes.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════
-          4. HOW IT WORKS — 4 big simple steps
-      ══════════════════════════════════════════════════════════ */}
-      <section id="aicto-how" className="py-24 bg-white">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-4">How it works</p>
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-              From blank idea to
-              <br />
-              <span className="text-gradient-minimal">complete plan. In minutes.</span>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {[
-              {
-                n: "01",
-                emoji: "💬",
-                title: "Tell us your idea",
-                body: "Just say it in plain English. \"I want to build an app for booking dog walkers.\" No tech words needed. Ever.",
-                dark: false,
-              },
-              {
-                n: "02",
-                emoji: "🧠",
-                title: "AI CTO asks the smart questions",
-                body: "It asks the same 46 questions a great CTO asks before building anything. You just answer honestly. No jargon, no stress.",
-                dark: false,
-              },
-              {
-                n: "03",
-                emoji: "📋",
-                title: "You get your complete blueprint",
-                body: "What to build, how to build it, in what order, with what tools, and how much it'll cost. All written in plain English.",
-                dark: true,
-                extras: ["Best tech stack", "Step-by-step roadmap", "Cost estimate", "Risks to avoid", "What to build first", "Plain English — always"],
-              },
-              {
-                n: "04",
-                emoji: "🚀",
-                title: "Build it — or let us do it",
-                body: "Take your blueprint to any developer. Or let TechFlows build it for you — fixed price, fixed timeline, zero equity.",
-                dark: false,
-              },
-            ].map((step) => (
-              <div
-                key={step.n}
-                className={`p-8 rounded-2xl border card-3d ${
-                  step.dark
-                    ? "bg-black text-white border-black shadow-3d-xl"
-                    : "bg-white shadow-3d"
-                }`}
-              >
-                <div className="flex items-start gap-5">
-                  <div className="text-4xl flex-shrink-0">{step.emoji}</div>
-                  <div>
-                    <p className={`text-xs font-bold tracking-widest mb-2 ${step.dark ? "text-white/30" : "text-muted-foreground"}`}>
-                      STEP {step.n}
-                    </p>
-                    <h3 className="font-bold text-xl mb-3">{step.title}</h3>
-                    <p className={`text-sm leading-relaxed ${step.dark ? "text-white/60" : "text-muted-foreground"}`}>
-                      {step.body}
-                    </p>
-                    {step.extras && (
-                      <div className="mt-5 grid grid-cols-2 gap-2">
-                        {step.extras.map((f) => (
-                          <div key={f} className="flex items-center gap-2 text-xs text-white/55">
-                            <Check className="h-3 w-3 text-white/35 flex-shrink-0" />
-                            {f}
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════
-          5. PRODUCT GLIMPSE — chat + blueprint side by side
-      ══════════════════════════════════════════════════════════ */}
-      <section className="py-24 bg-black text-white relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-[0.035]"
-          style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "40px 40px" }}
-        />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.04) 0%, transparent 65%)" }}
-        />
-
-        <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <p className="text-sm font-semibold uppercase tracking-widest text-white/30 mb-4">A sneak peek 👀</p>
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-              Here's what you actually get
-            </h2>
-            <p className="text-xl text-white/40 mt-4 max-w-xl mx-auto">
-              No fluff. No jargon. Just clear answers — specific to your idea.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-            <div>
-              <p className="text-xs font-semibold text-white/30 mb-4 uppercase tracking-widest">The conversation with AI CTO</p>
-              <MockChat />
-            </div>
-            <div>
-              <p className="text-xs font-semibold text-white/30 mb-4 uppercase tracking-widest">Your blueprint (what you walk away with)</p>
-              <MockBlueprint />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════
-          6. COMPARISON TABLE
-      ══════════════════════════════════════════════════════════ */}
-      <section className="py-24 bg-white">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-4">How we compare</p>
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-              The only solution that
-              <br />
-              <span className="text-gradient-minimal">actually fills the gap.</span>
-            </h2>
-          </div>
-
-          <div className="rounded-2xl border shadow-3d-lg overflow-hidden">
-            <table className="w-full text-sm">
+          <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 540 }}>
               <thead>
-                <tr className="border-b bg-gray-50">
-                  <th className="px-6 py-5 text-left font-semibold text-muted-foreground w-2/5">What you get</th>
-                  <th className="px-4 py-5 text-center font-semibold text-muted-foreground">Full-time CTO</th>
-                  <th className="px-4 py-5 text-center font-semibold text-muted-foreground">Lovable / Bolt</th>
-                  <th className="px-4 py-5 text-center font-bold bg-black text-white">AI CTO ✦</th>
+                <tr>
+                  <th style={{ padding: "11px 14px", textAlign: "left", fontSize: 12, color: "#3D6080", fontWeight: 600, borderBottom: "1px solid #1A3048", width: "34%" }}>Feature</th>
+                  <th style={{ padding: "11px 14px", textAlign: "center", fontSize: 12, color: "#3D6080", fontWeight: 600, borderBottom: "1px solid #1A3048", width: "22%" }}>Full-time CTO</th>
+                  <th style={{ padding: "11px 14px", textAlign: "center", fontSize: 12, color: "#3D6080", fontWeight: 600, borderBottom: "1px solid #1A3048", width: "22%" }}>Lovable / Bolt</th>
+                  <th style={{ padding: "11px 14px", textAlign: "center", fontSize: 12, color: "#2D7EF8", fontWeight: 700, borderBottom: "2px solid #2D7EF8", background: "rgba(45,126,248,.07)", width: "22%" }}>TechFlows AI CTO</th>
                 </tr>
               </thead>
               <tbody>
-                {(
-                  [
-                    ["Tech strategy & planning",       true,  false, true],
-                    ["Architecture decisions",          true,  false, true],
-                    ["Plain English explanations",     false,  false, true],
-                    ["Risk assessment",                 true,  false, true],
-                    ["Ready in 24 hours",              false,  true,  true],
-                    ["No salary or equity needed",     false,  true,  true],
-                    ["Stays with you post-launch",      true,  false, true],
-                  ] as [string, boolean, boolean, boolean][]
-                ).map(([feat, cto, tool, ours], i) => (
-                  <tr key={feat} className={i % 2 === 0 ? "bg-white" : "bg-gray-50/60"}>
-                    <td className="px-6 py-4 font-medium border-b">{feat}</td>
-                    <td className="px-4 py-4 text-center border-b">
-                      {cto  ? <span className="text-emerald-600 font-bold text-base">✓</span> : <span className="text-gray-300 text-base">—</span>}
-                    </td>
-                    <td className="px-4 py-4 text-center border-b">
-                      {tool ? <span className="text-emerald-600 font-bold text-base">✓</span> : <span className="text-gray-300 text-base">—</span>}
-                    </td>
-                    <td className="px-4 py-4 text-center border-b bg-black/[0.04] font-bold">
-                      {ours ? <span className="text-emerald-600 font-bold text-base">✓</span> : <span className="text-gray-300 text-base">—</span>}
-                    </td>
+                <tr>
+                  <td style={{ padding: "10px 14px", fontSize: 13, color: "#94A3B8", borderBottom: "1px solid #0F1828" }}>Cost</td>
+                  <td style={{ padding: "10px 14px", textAlign: "center", fontSize: 12, color: "#F87171", borderBottom: "1px solid #0F1828" }}>$150K+ + equity</td>
+                  <td style={{ padding: "10px 14px", textAlign: "center", fontSize: 12, color: "#94A3B8", borderBottom: "1px solid #0F1828" }}>$20–100/mo</td>
+                  <td style={{ padding: "10px 14px", textAlign: "center", fontSize: 13, fontWeight: 700, color: "#00E5A0", borderBottom: "1px solid #0F1828", background: "rgba(45,126,248,.04)" }}>$499 blueprint</td>
+                </tr>
+                <tr>
+                  <td style={{ padding: "10px 14px", fontSize: 13, color: "#94A3B8", borderBottom: "1px solid #0F1828" }}>Time to start</td>
+                  <td style={{ padding: "10px 14px", textAlign: "center", fontSize: 12, color: "#F87171", borderBottom: "1px solid #0F1828" }}>3–6 months</td>
+                  <td style={{ padding: "10px 14px", textAlign: "center", fontSize: 12, color: "#00E5A0", borderBottom: "1px solid #0F1828" }}>Minutes</td>
+                  <td style={{ padding: "10px 14px", textAlign: "center", fontSize: 13, fontWeight: 700, color: "#00E5A0", borderBottom: "1px solid #0F1828", background: "rgba(45,126,248,.04)" }}>Same day</td>
+                </tr>
+                {[
+                  ["Technical strategy", true, false, true],
+                  ["Architecture planning", true, false, true],
+                  ["Code generation", true, true, true],
+                  ["Risk assessment", true, false, true],
+                  ["Ongoing co-pilot", true, false, true],
+                ].map(([feat, cto, tool, ours]) => (
+                  <tr key={String(feat)}>
+                    <td style={{ padding: "10px 14px", fontSize: 13, color: "#94A3B8", borderBottom: "1px solid #0F1828" }}>{feat}</td>
+                    <td style={{ padding: "10px 14px", textAlign: "center", borderBottom: "1px solid #0F1828" }}>{cto ? "✅" : <span style={{ color: "#F87171" }}>✗</span>}</td>
+                    <td style={{ padding: "10px 14px", textAlign: "center", borderBottom: "1px solid #0F1828" }}>{tool ? "✅" : <span style={{ color: "#F87171" }}>✗</span>}</td>
+                    <td style={{ padding: "10px 14px", textAlign: "center", borderBottom: "1px solid #0F1828", background: "rgba(45,126,248,.04)" }}>{ours ? "✅" : <span style={{ color: "#F87171" }}>✗</span>}</td>
                   </tr>
                 ))}
+                <tr>
+                  <td style={{ padding: "10px 14px", fontSize: 13, color: "#94A3B8" }}>Equity required</td>
+                  <td style={{ padding: "10px 14px", textAlign: "center", fontSize: 12, color: "#F87171" }}>3–7%</td>
+                  <td style={{ padding: "10px 14px", textAlign: "center", fontSize: 12, color: "#00E5A0" }}>0%</td>
+                  <td style={{ padding: "10px 14px", textAlign: "center", fontSize: 13, fontWeight: 700, color: "#00E5A0", background: "rgba(45,126,248,.04)" }}>0%</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -662,61 +403,129 @@ export default function AiCtoSection() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════
-          7. FAQ — simple language
+          PRICING
       ══════════════════════════════════════════════════════════ */}
-      <section className="py-24 gradient-mesh">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-4">Got questions?</p>
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-              We've got
-              <br />
-              <span className="text-gradient-minimal">simple answers.</span>
-            </h2>
+      <section style={{ background: "#030812", padding: "72px 24px", borderTop: "1px solid #0F1E2E" }}>
+        <div style={{ maxWidth: 820, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#9B6FFF", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 10 }}>Pricing</div>
+            <h3 style={{ fontSize: "clamp(24px,4vw,36px)", fontWeight: 800, color: "#EEF4FF", lineHeight: 1.2, letterSpacing: "-0.02em" }}>Simple. Transparent. No equity.</h3>
           </div>
-          <div className="glass-card rounded-2xl border shadow-3d-lg px-8 divide-y">
-            {FAQ_ITEMS.map((item) => (
-              <FAQItem key={item.q} q={item.q} a={item.a} />
-            ))}
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(230px,1fr))", gap: 12 }}>
+            {/* Think */}
+            <div style={{ background: "#0C1828", border: "1px solid #1A3048", borderRadius: 14, padding: 24 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: "#6B8CAE", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 12 }}>Think</div>
+              <div style={{ fontSize: 34, fontWeight: 900, color: "#EEF4FF", lineHeight: 1, marginBottom: 3 }}>$499</div>
+              <div style={{ fontSize: 13, color: "#6B8CAE", marginBottom: 18 }}>one-time · 24hr delivery</div>
+              <div style={{ height: 1, background: "#1A3048", marginBottom: 16 }} />
+              {[["Technical Blueprint"],["Architecture recommendation"],["Stack with full reasoning"],["Risk assessment"],["Sprint roadmap"],["Cost estimate"]].map(([f]) => (
+                <div key={f} style={{ display: "flex", gap: 7, fontSize: 13, color: "#94A3B8", marginBottom: 9 }}>
+                  <span style={{ color: "#2D7EF8" }}>→</span>{f}
+                </div>
+              ))}
+            </div>
+
+            {/* Think + Build — highlighted */}
+            <div style={{ background: "#0C1828", border: "2px solid #2D7EF8", borderRadius: 14, padding: 24, position: "relative" }}>
+              <div style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#163a8a,#2D7EF8)", borderRadius: 20, padding: "3px 14px", fontSize: 11, fontWeight: 700, color: "#fff", whiteSpace: "nowrap" }}>Most popular</div>
+              <div style={{ fontSize: 11, fontWeight: 700, color: "#2D7EF8", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 12 }}>Think + Build</div>
+              <div style={{ fontSize: 34, fontWeight: 900, color: "#EEF4FF", lineHeight: 1, marginBottom: 3 }}>$3K–$15K</div>
+              <div style={{ fontSize: 13, color: "#6B8CAE", marginBottom: 18 }}>per project · fixed price</div>
+              <div style={{ height: 1, background: "#1A3048", marginBottom: 16 }} />
+              {[["Everything in Think"],["AI-orchestrated build"],["Human engineers for complexity"],["QA + deployment included"],["MVP in 4–6 weeks"]].map(([f]) => (
+                <div key={f} style={{ display: "flex", gap: 7, fontSize: 13, color: "#94A3B8", marginBottom: 9 }}>
+                  <span style={{ color: "#00E5A0" }}>✓</span>{f}
+                </div>
+              ))}
+            </div>
+
+            {/* Co-pilot */}
+            <div style={{ background: "#0C1828", border: "1px solid #1A3048", borderRadius: 14, padding: 24 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: "#FFB800", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 12 }}>Co-pilot</div>
+              <div style={{ fontSize: 34, fontWeight: 900, color: "#EEF4FF", lineHeight: 1, marginBottom: 3 }}>$500</div>
+              <div style={{ fontSize: 13, color: "#6B8CAE", marginBottom: 18 }}>per month · cancel anytime</div>
+              <div style={{ height: 1, background: "#1A3048", marginBottom: 16 }} />
+              {[["Always-on AI CTO"],["Product health monitoring"],["What to build next"],["Code review on changes"],["Technical Q&A 24/7"]].map(([f]) => (
+                <div key={f} style={{ display: "flex", gap: 7, fontSize: 13, color: "#94A3B8", marginBottom: 9 }}>
+                  <span style={{ color: "#FFB800" }}>→</span>{f}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════════
-          8. WAITLIST CTA
+          FAQ
       ══════════════════════════════════════════════════════════ */}
-      <section id="aicto-waitlist" className="py-24 bg-black text-white relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "40px 40px" }}
-        />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.05) 0%, transparent 65%)" }}
-        />
-
-        <div className="relative max-w-xl mx-auto px-6 lg:px-8 text-center">
-          <div className="text-6xl mb-6">🚀</div>
-
-          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-xl px-4 py-2 text-sm font-semibold mb-8 backdrop-blur-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />
-            Only 50 founding member spots
+      <section style={{ background: "#040912", padding: "72px 24px", borderTop: "1px solid #0F1E2E" }}>
+        <div style={{ maxWidth: 700, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#00D4FF", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 10 }}>FAQ</div>
+            <h3 style={{ fontSize: "clamp(24px,4vw,34px)", fontWeight: 800, color: "#EEF4FF", lineHeight: 1.2, letterSpacing: "-0.02em" }}>Every question, answered.</h3>
           </div>
-
-          <h2 className="text-4xl md:text-6xl font-bold mb-5 leading-tight">
-            Ready to build
-            <br />
-            the right way?
-          </h2>
-          <p className="text-lg text-white/45 mb-10 leading-relaxed">
-            Join the waitlist. Get in before everyone else.
-            Founding members get early access and a special discount that never expires.
-          </p>
-
-          <WaitlistForm />
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {FAQ_ITEMS.map(item => <FAQItem key={item.q} q={item.q} a={item.a} />)}
+          </div>
         </div>
       </section>
 
+      {/* ══════════════════════════════════════════════════════════
+          WAITLIST
+      ══════════════════════════════════════════════════════════ */}
+      <section id="aicto-waitlist" style={{ background: "#030812", padding: "80px 24px", borderTop: "1px solid #0F1E2E" }}>
+        <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center", position: "relative" }}>
+          <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 500, height: 350, background: "radial-gradient(ellipse,rgba(45,126,248,.11) 0%,transparent 70%)", pointerEvents: "none", zIndex: 0 }} />
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "rgba(45,126,248,.1)", border: "1px solid rgba(45,126,248,.28)", borderRadius: 20, padding: "6px 16px", marginBottom: 20 }}>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="#2D7EF8"><path d="M6 1L7.5 4.5H11L8.5 6.5L9.5 10L6 8L2.5 10L3.5 6.5L1 4.5H4.5L6 1Z"/></svg>
+              <span style={{ fontSize: 12, fontWeight: 700, color: "#2D7EF8" }}>First 50 founders — 80% off at launch</span>
+            </div>
+
+            <h3 style={{ fontSize: "clamp(26px,5vw,42px)", fontWeight: 900, color: "#EEF4FF", lineHeight: 1.14, letterSpacing: "-0.03em", marginBottom: 12 }}>
+              Reserve your founding<br />member spot.
+            </h3>
+            <p style={{ fontSize: 15, color: "#6B8CAE", lineHeight: 1.7, marginBottom: 32 }}>
+              Get the Technical Blueprint at <strong style={{ color: "#EEF4FF" }}>$99</strong> instead of $499 when we launch. No credit card. No spam. Just early access and a direct say in shaping the product.
+            </p>
+
+            <WaitlistForm />
+          </div>
+        </div>
+      </section>
+
+    </div>
+  );
+}
+
+// ─── StepRow helper ────────────────────────────────────────────────────────────
+
+function StepRow({
+  n, circleGrad, lineGrad, borderColor, emoji, title, meta, metaColor, last, children,
+}: {
+  n: string; circleGrad: string; lineGrad: string | null; borderColor: string;
+  emoji: string; title: string; meta: string; metaColor: string; last: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <div style={{ display: "flex", gap: 0, alignItems: "stretch" }}>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: 50, flexShrink: 0 }}>
+        <div style={{ width: 38, height: 38, borderRadius: "50%", background: circleGrad, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 900, color: "#fff" }}>{n}</div>
+        {!last && lineGrad && (
+          <div style={{ width: 2, flex: 1, background: lineGrad, margin: "5px 0", minHeight: 24 }} />
+        )}
+      </div>
+      <div style={{ background: "#0C1828", border: `1px solid ${borderColor}`, borderRadius: 12, padding: "20px 22px", marginLeft: 14, marginBottom: last ? 0 : 10, flex: 1 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 9, marginBottom: 9 }}>
+          <span style={{ fontSize: 18 }}>{emoji}</span>
+          <div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: "#EEF4FF" }}>{title}</div>
+            <div style={{ fontSize: 11, color: metaColor, marginTop: 1 }}>{meta}</div>
+          </div>
+        </div>
+        {children}
+      </div>
     </div>
   );
 }
