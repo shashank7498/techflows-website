@@ -56,15 +56,16 @@ export default function Services() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ background: "#030812" }}>
       <Navigation />
       <main className="pt-16">
+        {/* Hero */}
         <section className="py-32 gradient-mesh relative overflow-hidden">
           <div className="floating-dot w-48 h-48 top-20 right-10 opacity-40" style={{ animationDelay: '1s' }} />
           <div className="floating-dot w-32 h-32 bottom-20 left-20 opacity-30" style={{ animationDelay: '3s' }} />
 
           <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight animate-fade-in-up" data-testid="text-services-page-heading">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight animate-fade-in-up" style={{ color: "#EEF4FF" }} data-testid="text-services-page-heading">
               What founders
               <br />
               <span className="text-gradient-minimal">come to us for</span>
@@ -75,35 +76,40 @@ export default function Services() {
           </div>
         </section>
 
-        <section className="py-28 bg-white">
+        {/* Service cards */}
+        <section className="py-28" style={{ background: "#040912", borderTop: "1px solid #0F1E2E" }}>
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {services.map((service, index) => (
-                <div 
-                  key={index} 
-                  className="p-8 rounded-md border shadow-3d card-3d bg-white" 
+                <div
+                  key={index}
+                  className="p-8 rounded-xl card-3d"
+                  style={{ background: "#0C1828", border: "1px solid #1A3048" }}
                   data-testid={`card-service-detail-${index}`}
                 >
                   <div className="flex items-start gap-5 mb-6">
-                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-md bg-black text-white flex-shrink-0 shadow-3d">
-                      <service.icon className="h-7 w-7" />
+                    <div
+                      className="inline-flex items-center justify-center w-14 h-14 rounded-xl flex-shrink-0"
+                      style={{ background: "linear-gradient(135deg,#163a8a,#2D7EF8)" }}
+                    >
+                      <service.icon className="h-7 w-7 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold mb-2" data-testid={`text-service-detail-title-${index}`}>
+                      <h3 className="text-2xl font-bold mb-2" style={{ color: "#EEF4FF" }} data-testid={`text-service-detail-title-${index}`}>
                         {service.title}
                       </h3>
-                      <p className="text-sm text-muted-foreground italic" data-testid={`text-service-detail-pain-${index}`}>
+                      <p className="text-sm italic" style={{ color: "#7A9BB5" }} data-testid={`text-service-detail-pain-${index}`}>
                         {service.pain}
                       </p>
                     </div>
                   </div>
-                  <p className="text-foreground mb-6 leading-relaxed" data-testid={`text-service-detail-solution-${index}`}>
+                  <p className="mb-6 leading-relaxed" style={{ color: "#CBD5E1" }} data-testid={`text-service-detail-solution-${index}`}>
                     {service.solution}
                   </p>
                   <div className="space-y-2 pl-1">
                     {service.details.map((detail, dIndex) => (
-                      <div key={dIndex} className="text-sm text-muted-foreground flex items-center gap-2">
-                        <div className="w-1 h-1 rounded-full bg-black flex-shrink-0" />
+                      <div key={dIndex} className="text-sm flex items-center gap-2" style={{ color: "#94A3B8" }}>
+                        <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "#2D7EF8" }} />
                         {detail}
                       </div>
                     ))}
@@ -114,17 +120,14 @@ export default function Services() {
           </div>
         </section>
 
-        <section className="py-28 bg-black text-white relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute w-96 h-96 rounded-full bg-white/20 -top-48 -right-48 blur-3xl" />
-            <div className="absolute w-96 h-96 rounded-full bg-white/10 -bottom-48 -left-48 blur-3xl" />
-          </div>
-
+        {/* CTA */}
+        <section className="py-28 relative overflow-hidden" style={{ background: "#030812", borderTop: "1px solid #0F1E2E" }}>
+          <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 700, height: 400, background: "radial-gradient(ellipse,rgba(45,126,248,.12) 0%,transparent 70%)", pointerEvents: "none" }} />
           <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: "#EEF4FF" }}>
               Ready to ship your startup's tech?
             </h2>
-            <p className="text-lg text-white/50 mb-12 max-w-2xl mx-auto">
+            <p className="text-lg mb-12 max-w-2xl mx-auto" style={{ color: "#6B8CAE" }}>
               No commitment. Just clarity.
             </p>
             <a href="https://calendly.com/shashankchauhan7498" target="_blank" rel="noopener noreferrer">

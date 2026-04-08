@@ -39,15 +39,16 @@ export default function HowItWorks() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ background: "#030812" }}>
       <Navigation />
       <main className="pt-16">
+        {/* Hero */}
         <section className="py-32 gradient-mesh relative overflow-hidden">
           <div className="floating-dot w-48 h-48 top-10 right-20 opacity-30" style={{ animationDelay: '0s' }} />
           <div className="floating-dot w-32 h-32 bottom-10 left-20 opacity-40" style={{ animationDelay: '2s' }} />
 
           <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight animate-fade-in-up" data-testid="text-how-heading">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight animate-fade-in-up" style={{ color: "#EEF4FF" }} data-testid="text-how-heading">
               Built for Speed.
               <br />
               <span className="text-gradient-minimal">Designed for You.</span>
@@ -60,18 +61,24 @@ export default function HowItWorks() {
 
         <ProcessSteps />
 
-        <section className="py-28 bg-white">
+        {/* FAQ */}
+        <section className="py-28" style={{ background: "#030812", borderTop: "1px solid #0F1E2E" }}>
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
-            <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center" data-testid="text-faq-heading">
+            <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center" style={{ color: "#EEF4FF" }} data-testid="text-faq-heading">
               Common Questions
             </h2>
             <div className="space-y-4">
               {faqs.map((faq, index) => (
-                <div key={index} className="p-8 rounded-md border shadow-3d card-3d bg-white" data-testid={`accordion-faq-${index}`}>
-                  <h3 className="text-xl font-bold mb-3" data-testid={`button-faq-${index}`}>
+                <div
+                  key={index}
+                  className="p-8 rounded-xl card-3d"
+                  style={{ background: "#0C1828", border: "1px solid #1A3048" }}
+                  data-testid={`accordion-faq-${index}`}
+                >
+                  <h3 className="text-xl font-bold mb-3" style={{ color: "#EEF4FF" }} data-testid={`button-faq-${index}`}>
                     {faq.question}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed" data-testid={`text-faq-answer-${index}`}>
+                  <p className="leading-relaxed" style={{ color: "#7A9BB5" }} data-testid={`text-faq-answer-${index}`}>
                     {faq.answer}
                   </p>
                 </div>
@@ -80,17 +87,14 @@ export default function HowItWorks() {
           </div>
         </section>
 
-        <section className="py-28 bg-black text-white relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute w-96 h-96 rounded-full bg-white/20 -top-48 -right-48 blur-3xl" />
-            <div className="absolute w-96 h-96 rounded-full bg-white/10 -bottom-48 -left-48 blur-3xl" />
-          </div>
-
+        {/* CTA */}
+        <section className="py-28 relative overflow-hidden" style={{ background: "#040912", borderTop: "1px solid #0F1E2E" }}>
+          <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 700, height: 400, background: "radial-gradient(ellipse,rgba(45,126,248,.12) 0%,transparent 70%)", pointerEvents: "none" }} />
           <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: "#EEF4FF" }}>
               Ready to ship your startup's tech?
             </h2>
-            <p className="text-lg text-white/50 mb-12 max-w-2xl mx-auto">
+            <p className="text-lg mb-12 max-w-2xl mx-auto" style={{ color: "#6B8CAE" }}>
               No commitment. Just clarity.
             </p>
             <a href="https://calendly.com/shashankchauhan7498" target="_blank" rel="noopener noreferrer">
