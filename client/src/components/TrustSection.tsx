@@ -10,9 +10,9 @@ export default function TrustSection() {
   ];
 
   return (
-    <section className="py-28 gradient-mesh">
+    <section className="py-28 gradient-mesh" style={{ borderTop: "1px solid #0F1E2E" }}>
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
-        <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center" data-testid="text-trust-heading">
+        <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center" data-testid="text-trust-heading" style={{ color: "#EEF4FF" }}>
           Why founders choose TechFlows
           <br />
           <span className="text-gradient-minimal">over agencies</span>
@@ -21,10 +21,13 @@ export default function TrustSection() {
         <div className="space-y-4">
           {reasons.map((reason, index) => (
             <div key={index} className="flex items-center gap-5 glass-card rounded-md p-5 card-3d" data-testid={`item-trust-${index}`}>
-              <div className="inline-flex items-center justify-center w-10 h-10 rounded-md bg-black text-white flex-shrink-0 shadow-3d">
-                <Check className="h-5 w-5" />
+              <div
+                className="inline-flex items-center justify-center w-10 h-10 rounded-md flex-shrink-0"
+                style={{ background: "linear-gradient(135deg,#163a8a,#2D7EF8)" }}
+              >
+                <Check className="h-5 w-5 text-white" />
               </div>
-              <p className="text-lg font-medium">{reason}</p>
+              <p className="text-lg font-medium" style={{ color: "#CBD5E1" }}>{reason}</p>
             </div>
           ))}
         </div>
