@@ -4,16 +4,43 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
 export default function Navigation() {
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/#ai-cto", label: "AI CTO ✦" },
+  const scrollToSection = (id: string) => {
+    setMobileMenuOpen(false);
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleAiCtoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    if (location === "/") {
+      scrollToSection("ai-cto");
+    } else {
+      setLocation("/");
+      setTimeout(() => scrollToSection("ai-cto"), 150);
+    }
+  };
+
+  const handleWaitlistClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    if (location === "/") {
+      scrollToSection("aicto-waitlist");
+    } else {
+      setLocation("/");
+      setTimeout(() => scrollToSection("aicto-waitlist"), 150);
+    }
+  };
+
+  const pageLinks = [
     { href: "/services", label: "Services" },
     { href: "/how-it-works", label: "How It Works" },
     { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact" },
   ];
 
   return (
@@ -27,8 +54,17 @@ export default function Navigation() {
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} data-testid={`link-nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}>
+            <a
+              href="#ai-cto"
+              onClick={handleAiCtoClick}
+              data-testid="link-nav-ai-cto"
+              className="text-sm font-medium cursor-pointer transition-colors text-muted-foreground hover:text-foreground"
+            >
+              AI CTO ✦
+            </a>
+
+            {pageLinks.map((link) => (
+              <Link key={link.href} href={link.href} data-testid={`link-nav-${link.label.toLowerCase().replace(/\s+/g, "-")}`}>
                 <span
                   className={`text-sm font-medium cursor-pointer transition-colors ${
                     location === link.href ? "text-foreground" : "text-muted-foreground hover:text-foreground"
@@ -38,9 +74,10 @@ export default function Navigation() {
                 </span>
               </Link>
             ))}
-            <a href="https://calendly.com/shashankchauhan7498" target="_blank" rel="noopener noreferrer">
-              <Button data-testid="button-book-audit" size="sm">
-                Free Tech Audit
+
+            <a href="#aicto-waitlist" onClick={handleWaitlistClick}>
+              <Button data-testid="button-join-waitlist" size="sm">
+                Join Waitlist
               </Button>
             </a>
           </div>
@@ -60,22 +97,32 @@ export default function Navigation() {
       {mobileMenuOpen && (
         <div className="md:hidden border-t bg-white">
           <div className="px-6 py-4 space-y-3">
-            {navLinks.map((link) => (
+            <a
+              href="#ai-cto"
+              onClick={handleAiCtoClick}
+              data-testid="link-mobile-ai-cto"
+              className="block py-2 text-base font-medium cursor-pointer text-muted-foreground"
+            >
+              AI CTO ✦
+            </a>
+
+            {pageLinks.map((link) => (
               <Link key={link.href} href={link.href}>
                 <div
                   className={`block py-2 text-base font-medium cursor-pointer ${
                     location === link.href ? "text-foreground" : "text-muted-foreground"
                   }`}
                   onClick={() => setMobileMenuOpen(false)}
-                  data-testid={`link-mobile-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
+                  data-testid={`link-mobile-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
                 >
                   {link.label}
                 </div>
               </Link>
             ))}
-            <a href="https://calendly.com/shashankchauhan7498" target="_blank" rel="noopener noreferrer">
-              <Button className="w-full mt-2" onClick={() => setMobileMenuOpen(false)} data-testid="button-mobile-audit">
-                Free Tech Audit
+
+            <a href="#aicto-waitlist" onClick={handleWaitlistClick}>
+              <Button className="w-full mt-2" data-testid="button-mobile-waitlist">
+                Join Waitlist
               </Button>
             </a>
           </div>
