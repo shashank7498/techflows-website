@@ -62,7 +62,7 @@ const FAQ_ITEMS: FAQItemData[] = [
     q: "When does it launch? What do waitlist members actually get?",
     a: (<>
       {p("Launching Q3 2026. We're currently in private development with a small group of early founders whose feedback is shaping the product.", { marginTop: 14 })}
-      {p(<>Waitlist benefits: First 50 founders get the Technical Blueprint at <strong style={{ color: "#EEF4FF" }}>$99 instead of $499</strong> (80% off founding price). Early access before public launch. Invited to direct feedback sessions with the founding team. No credit card needed to join.</>)}
+      {p(<>Waitlist benefits: First 50 founders get early access at a <strong style={{ color: "#EEF4FF" }}>founding member discount</strong>. Early access before public launch. Invited to direct feedback sessions with the founding team. No credit card needed to join.</>)}
     </>),
   },
   {
@@ -76,7 +76,7 @@ const FAQ_ITEMS: FAQItemData[] = [
     q: "I've already started building. Is it too late?",
     a: (<>
       {p("Not at all. The Technical Blueprint works at any stage. If you've already started, the AI CTO performs a Technical Audit of your existing choices — identifying risks in what's been built, and recommending how to move forward without unnecessary rewrites.", { marginTop: 14 })}
-      {p('Many founders who come to TechFlows have an existing MVP that "works but I\'m scared it will break." The audit tells you exactly what will break, when, and what to do before it happens. Better a $499 audit now than a $30K emergency rewrite later.')}
+      {p('Many founders who come to TechFlows have an existing MVP that "works but I\'m scared it will break." The audit tells you exactly what will break, when, and what to do before it happens. Better a quick audit now than a $30K emergency rewrite later.')}
     </>),
   },
 ];
@@ -114,8 +114,7 @@ function WaitlistForm() {
         <div style={{ fontSize: 34, marginBottom: 12 }}>🎉</div>
         <div style={{ fontSize: 20, fontWeight: 800, color: "#00E5A0", marginBottom: 8 }}>You're in!</div>
         <div style={{ fontSize: 14, color: "#7A9BB5", lineHeight: 1.7 }}>
-          Founding member spot saved. You'll get an email when early access opens — locked in at{" "}
-          <strong style={{ color: "#EEF4FF" }}>$99</strong> instead of $499.<br /><br />
+          Founding member spot saved. You'll get an email when early access opens.<br /><br />
           Watch your inbox. We'll also send a short survey to help shape what we build first.
         </div>
       </div>
@@ -233,9 +232,9 @@ export default function AiCtoSection() {
           {/* stat pills */}
           <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
             {[
-              { n: "$499", label: "vs $150K CTO salary" },
-              { n: "24hrs", label: "full blueprint" },
+              { n: "24hrs", label: "technical blueprint" },
               { n: "0%", label: "equity taken" },
+              { n: "5 min", label: "to get started" },
             ].map(s => (
               <div key={s.n} style={{ background: "#0C1828", border: "1px solid #1A3048", borderRadius: 20, padding: "8px 18px", display: "flex", alignItems: "center", gap: 8 }}>
                 <span style={{ fontSize: 19, fontWeight: 900, color: "#EEF4FF" }}>{s.n}</span>
@@ -319,7 +318,7 @@ export default function AiCtoSection() {
             </StepRow>
 
             {/* Step 3 */}
-            <StepRow n="3" circleGrad="linear-gradient(135deg,#065f46,#00E5A0)" lineGrad="linear-gradient(#00E5A0,#1A3048)" borderColor="rgba(0,229,160,.2)" emoji="📋" title="Get your Technical Blueprint" meta="delivered in 24 hours · $499" metaColor="#00E5A0" last={false}>
+            <StepRow n="3" circleGrad="linear-gradient(135deg,#065f46,#00E5A0)" lineGrad="linear-gradient(#00E5A0,#1A3048)" borderColor="rgba(0,229,160,.2)" emoji="📋" title="Get your Technical Blueprint" meta="delivered in 24 hours · early access" metaColor="#00E5A0" last={false}>
               <p style={{ fontSize: 13, color: "#7A9BB5", lineHeight: 1.7, marginBottom: 12 }}>A complete technical plan specific to your product — not generic advice:</p>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 7 }}>
                 {[["Architecture decision","with full reasoning"],["Stack recommendation","for your specific case"],["Risk assessment","— 3 things that could kill it"],["Sprint roadmap","— week-by-week build plan"],["Cost estimate","— realistic MVP budget"],["Key decisions","— 5 choices that determine everything"]].map(([b, r]) => (
@@ -332,14 +331,87 @@ export default function AiCtoSection() {
             </StepRow>
 
             {/* Step 4 */}
-            <StepRow n="4" circleGrad="linear-gradient(135deg,#4c1d95,#9B6FFF)" lineGrad="linear-gradient(#9B6FFF,#1A3048)" borderColor="#1A3048" emoji="🚀" title="Build + launch with TechFlows" meta="$3K–$15K · fixed price · 4–6 weeks" metaColor="#3D5580" last={false}>
+            <StepRow n="4" circleGrad="linear-gradient(135deg,#4c1d95,#9B6FFF)" lineGrad="linear-gradient(#9B6FFF,#1A3048)" borderColor="#1A3048" emoji="🚀" title="Build + launch with TechFlows" meta="fixed price · 4–6 weeks · no equity" metaColor="#3D5580" last={false}>
               <p style={{ fontSize: 13, color: "#7A9BB5", lineHeight: 1.7 }}>Optionally, TechFlows engineers execute the Blueprint. AI code generation (Lovable, Bolt, Cursor) for speed, human engineers for complexity. Fixed price. No equity.</p>
             </StepRow>
 
             {/* Step 5 */}
-            <StepRow n="5" circleGrad="linear-gradient(135deg,#78350f,#FFB800)" lineGrad={null} borderColor="rgba(255,184,0,.2)" emoji="🤝" title="AI CTO Co-pilot — always on" meta="$500–$2,000/month · cancel anytime" metaColor="#FFB800" last={true}>
+            <StepRow n="5" circleGrad="linear-gradient(135deg,#78350f,#FFB800)" lineGrad={null} borderColor="rgba(255,184,0,.2)" emoji="🤝" title="AI CTO Co-pilot — always on" meta="ongoing · cancel anytime" metaColor="#FFB800" last={true}>
               <p style={{ fontSize: 13, color: "#7A9BB5", lineHeight: 1.7 }}>After launch, the AI CTO stays. Monitors your live product, flags issues before they become crises, tells you what to build next based on actual usage, answers technical questions 24/7.</p>
             </StepRow>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════
+          SAMPLE CHAT SHOWCASE
+      ══════════════════════════════════════════════════════════ */}
+      <section style={{ background: "#040912", padding: "72px 24px", borderTop: "1px solid #0F1E2E" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 48 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#9B6FFF", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 10 }}>Real Conversations</div>
+            <h3 style={{ fontSize: "clamp(26px,4vw,38px)", fontWeight: 800, color: "#EEF4FF", lineHeight: 1.2, letterSpacing: "-0.02em" }}>
+              See AI CTO in action.
+            </h3>
+            <p style={{ fontSize: 15, color: "#7A9BB5", marginTop: 12, maxWidth: 480, margin: "12px auto 0" }}>
+              Real examples of how founders get expert guidance in minutes — not months.
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(380px,1fr))", gap: 16 }}>
+
+            {/* Chat 1: HealthTech / HIPAA */}
+            <ChatCard
+              tag="HealthTech · HIPAA"
+              tagColor="#F87171"
+              tagBg="rgba(248,113,113,.1)"
+              messages={[
+                { role: "founder", text: "I'm building an app for nurses to log patient medications. Do I need to worry about HIPAA?" },
+                { role: "aicto",   text: "Yes — storing PHI (protected health info) triggers HIPAA immediately. You'll need a BAA with your cloud provider before writing line one, end-to-end encryption, and audit logging. I've flagged 4 architecture decisions your Blueprint must resolve before you build." },
+                { role: "founder", text: "What's a BAA?" },
+                { role: "aicto",   text: "A Business Associate Agreement — a legal contract with vendors like AWS or GCP before they can process PHI on your behalf. Without it, you're non-compliant at launch. Your Blueprint lists every vendor and agreement required." },
+              ]}
+            />
+
+            {/* Chat 2: SaaS Scaling */}
+            <ChatCard
+              tag="SaaS · Scaling"
+              tagColor="#00D4FF"
+              tagBg="rgba(0,212,255,.1)"
+              messages={[
+                { role: "founder", text: "We have 50 users now but we're pitching a clinic chain — could be 10,000 overnight. Will our app break?" },
+                { role: "aicto",   text: "Yes, based on your current stack. Your DB connection pool saturates around 200 concurrent users. Three changes fix this: add PgBouncer (connection pooler), move background jobs to a Redis queue, and move file storage to S3. That handles 50,000 users — no rewrite needed." },
+                { role: "founder", text: "How long does that take to implement?" },
+                { role: "aicto",   text: "2–3 days for an engineer who knows the stack. Your Blueprint includes the exact config files and migration steps. No guesswork." },
+              ]}
+            />
+
+            {/* Chat 3: Stack Choice */}
+            <ChatCard
+              tag="Pre-seed · Stack"
+              tagColor="#00E5A0"
+              tagBg="rgba(0,229,160,.1)"
+              messages={[
+                { role: "founder", text: "Everyone tells me different things — React + Node, Next.js, no-code. I'm totally confused. What should I actually use?" },
+                { role: "aicto",   text: "For a multi-tenant SaaS dashboard with auth and real-time data: Next.js + Supabase + Vercel. Gets you to MVP in 3–4 weeks, costs ~$25/month at 500 users, and is investor-friendly. I ruled out no-code — your data model needs custom joins that visual tools can't handle cleanly at scale." },
+                { role: "founder", text: "Why not plain React?" },
+                { role: "aicto",   text: "Plain React needs a separate API layer, separate auth, and separate deployment — that's 3 things to configure instead of 1. Next.js gives you all three in one framework. Less to break, faster to ship." },
+              ]}
+            />
+
+            {/* Chat 4: Technical Rescue */}
+            <ChatCard
+              tag="Post-MVP · Rescue"
+              tagColor="#FFB800"
+              tagBg="rgba(255,184,0,.1)"
+              messages={[
+                { role: "founder", text: "My freelancer left 3 months ago. I have a working app but I'm terrified to touch the codebase. What do I do?" },
+                { role: "aicto",   text: "I'll audit your existing code. From what you've described I'm flagging 3 immediate risks: no database migrations (schema changes will break prod), hardcoded API keys in the frontend (critical security risk), and no error monitoring. Here's a 3-step rescue plan — starting with the security issue this week." },
+                { role: "founder", text: "Can it be fixed without a full rewrite?" },
+                { role: "aicto",   text: "Yes, in your case. 80% of rescues don't need rewrites — just targeted fixes. I'll give you a prioritised list: what's on fire now, what can wait 30 days, and what's fine to ignore. Estimated 2 weeks of engineer time to stabilise." },
+              ]}
+            />
+
           </div>
         </div>
       </section>
@@ -368,7 +440,7 @@ export default function AiCtoSection() {
                   <td style={{ padding: "10px 14px", fontSize: 13, color: "#94A3B8", borderBottom: "1px solid #0F1828" }}>Cost</td>
                   <td style={{ padding: "10px 14px", textAlign: "center", fontSize: 12, color: "#F87171", borderBottom: "1px solid #0F1828" }}>$150K+ + equity</td>
                   <td style={{ padding: "10px 14px", textAlign: "center", fontSize: 12, color: "#94A3B8", borderBottom: "1px solid #0F1828" }}>$20–100/mo</td>
-                  <td style={{ padding: "10px 14px", textAlign: "center", fontSize: 13, fontWeight: 700, color: "#00E5A0", borderBottom: "1px solid #0F1828", background: "rgba(45,126,248,.04)" }}>$499 blueprint</td>
+                  <td style={{ padding: "10px 14px", textAlign: "center", fontSize: 13, fontWeight: 700, color: "#00E5A0", borderBottom: "1px solid #0F1828", background: "rgba(45,126,248,.04)" }}>Early access</td>
                 </tr>
                 <tr>
                   <td style={{ padding: "10px 14px", fontSize: 13, color: "#94A3B8", borderBottom: "1px solid #0F1828" }}>Time to start</td>
@@ -403,60 +475,6 @@ export default function AiCtoSection() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════
-          PRICING
-      ══════════════════════════════════════════════════════════ */}
-      <section style={{ background: "#030812", padding: "72px 24px", borderTop: "1px solid #0F1E2E" }}>
-        <div style={{ maxWidth: 820, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: "#9B6FFF", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 10 }}>Pricing</div>
-            <h3 style={{ fontSize: "clamp(24px,4vw,36px)", fontWeight: 800, color: "#EEF4FF", lineHeight: 1.2, letterSpacing: "-0.02em" }}>Simple. Transparent. No equity.</h3>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(230px,1fr))", gap: 12 }}>
-            {/* Think */}
-            <div style={{ background: "#0C1828", border: "1px solid #1A3048", borderRadius: 14, padding: 24 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: "#6B8CAE", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 12 }}>Think</div>
-              <div style={{ fontSize: 34, fontWeight: 900, color: "#EEF4FF", lineHeight: 1, marginBottom: 3 }}>$499</div>
-              <div style={{ fontSize: 13, color: "#6B8CAE", marginBottom: 18 }}>one-time · 24hr delivery</div>
-              <div style={{ height: 1, background: "#1A3048", marginBottom: 16 }} />
-              {[["Technical Blueprint"],["Architecture recommendation"],["Stack with full reasoning"],["Risk assessment"],["Sprint roadmap"],["Cost estimate"]].map(([f]) => (
-                <div key={f} style={{ display: "flex", gap: 7, fontSize: 13, color: "#94A3B8", marginBottom: 9 }}>
-                  <span style={{ color: "#2D7EF8" }}>→</span>{f}
-                </div>
-              ))}
-            </div>
-
-            {/* Think + Build — highlighted */}
-            <div style={{ background: "#0C1828", border: "2px solid #2D7EF8", borderRadius: 14, padding: 24, position: "relative" }}>
-              <div style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#163a8a,#2D7EF8)", borderRadius: 20, padding: "3px 14px", fontSize: 11, fontWeight: 700, color: "#fff", whiteSpace: "nowrap" }}>Most popular</div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: "#2D7EF8", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 12 }}>Think + Build</div>
-              <div style={{ fontSize: 34, fontWeight: 900, color: "#EEF4FF", lineHeight: 1, marginBottom: 3 }}>$3K–$15K</div>
-              <div style={{ fontSize: 13, color: "#6B8CAE", marginBottom: 18 }}>per project · fixed price</div>
-              <div style={{ height: 1, background: "#1A3048", marginBottom: 16 }} />
-              {[["Everything in Think"],["AI-orchestrated build"],["Human engineers for complexity"],["QA + deployment included"],["MVP in 4–6 weeks"]].map(([f]) => (
-                <div key={f} style={{ display: "flex", gap: 7, fontSize: 13, color: "#94A3B8", marginBottom: 9 }}>
-                  <span style={{ color: "#00E5A0" }}>✓</span>{f}
-                </div>
-              ))}
-            </div>
-
-            {/* Co-pilot */}
-            <div style={{ background: "#0C1828", border: "1px solid #1A3048", borderRadius: 14, padding: 24 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: "#FFB800", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 12 }}>Co-pilot</div>
-              <div style={{ fontSize: 34, fontWeight: 900, color: "#EEF4FF", lineHeight: 1, marginBottom: 3 }}>$500</div>
-              <div style={{ fontSize: 13, color: "#6B8CAE", marginBottom: 18 }}>per month · cancel anytime</div>
-              <div style={{ height: 1, background: "#1A3048", marginBottom: 16 }} />
-              {[["Always-on AI CTO"],["Product health monitoring"],["What to build next"],["Code review on changes"],["Technical Q&A 24/7"]].map(([f]) => (
-                <div key={f} style={{ display: "flex", gap: 7, fontSize: 13, color: "#94A3B8", marginBottom: 9 }}>
-                  <span style={{ color: "#FFB800" }}>→</span>{f}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════
           FAQ
       ══════════════════════════════════════════════════════════ */}
       <section style={{ background: "#040912", padding: "72px 24px", borderTop: "1px solid #0F1E2E" }}>
@@ -480,14 +498,14 @@ export default function AiCtoSection() {
           <div style={{ position: "relative", zIndex: 1 }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "rgba(45,126,248,.1)", border: "1px solid rgba(45,126,248,.28)", borderRadius: 20, padding: "6px 16px", marginBottom: 20 }}>
               <svg width="12" height="12" viewBox="0 0 12 12" fill="#2D7EF8"><path d="M6 1L7.5 4.5H11L8.5 6.5L9.5 10L6 8L2.5 10L3.5 6.5L1 4.5H4.5L6 1Z"/></svg>
-              <span style={{ fontSize: 12, fontWeight: 700, color: "#2D7EF8" }}>First 50 founders — 80% off at launch</span>
+              <span style={{ fontSize: 12, fontWeight: 700, color: "#2D7EF8" }}>First 50 founders — founding member access</span>
             </div>
 
             <h3 style={{ fontSize: "clamp(26px,5vw,42px)", fontWeight: 900, color: "#EEF4FF", lineHeight: 1.14, letterSpacing: "-0.03em", marginBottom: 12 }}>
               Reserve your founding<br />member spot.
             </h3>
             <p style={{ fontSize: 15, color: "#6B8CAE", lineHeight: 1.7, marginBottom: 32 }}>
-              Get the Technical Blueprint at <strong style={{ color: "#EEF4FF" }}>$99</strong> instead of $499 when we launch. No credit card. No spam. Just early access and a direct say in shaping the product.
+              Get founding member access when we launch. No credit card. No spam. Just early access and a direct say in shaping the product.
             </p>
 
             <WaitlistForm />
@@ -495,6 +513,54 @@ export default function AiCtoSection() {
         </div>
       </section>
 
+    </div>
+  );
+}
+
+// ─── ChatCard helper ────────────────────────────────────────────────────────────
+
+interface ChatMessage { role: "founder" | "aicto"; text: string }
+
+function ChatCard({
+  tag, tagColor, tagBg, messages,
+}: {
+  tag: string; tagColor: string; tagBg: string;
+  messages: ChatMessage[];
+}) {
+  return (
+    <div style={{ background: "#0C1828", border: "1px solid #1A3048", borderRadius: 14, overflow: "hidden" }}>
+      {/* Card header */}
+      <div style={{ padding: "14px 18px", borderBottom: "1px solid #0F1828", display: "flex", alignItems: "center", gap: 10 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+          <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#00E5A0", animation: "acp 2s infinite" }} />
+          <span style={{ fontSize: 11, fontWeight: 700, color: "#00E5A0" }}>AI CTO</span>
+        </div>
+        <div style={{ flex: 1 }} />
+        <span style={{ fontSize: 11, fontWeight: 700, color: tagColor, background: tagBg, borderRadius: 20, padding: "3px 10px" }}>{tag}</span>
+      </div>
+
+      {/* Messages */}
+      <div style={{ padding: "16px 18px", display: "flex", flexDirection: "column", gap: 10 }}>
+        {messages.map((msg, i) => (
+          <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: msg.role === "founder" ? "flex-end" : "flex-start" }}>
+            <div style={{ fontSize: 10, fontWeight: 700, color: msg.role === "founder" ? "#6B8CAE" : "#3D6080", marginBottom: 3, letterSpacing: "0.05em", textTransform: "uppercase" }}>
+              {msg.role === "founder" ? "Founder" : "AI CTO"}
+            </div>
+            <div style={{
+              maxWidth: "88%",
+              padding: "9px 13px",
+              borderRadius: msg.role === "founder" ? "10px 10px 2px 10px" : "10px 10px 10px 2px",
+              background: msg.role === "founder" ? "#07101C" : "rgba(45,126,248,.1)",
+              border: `1px solid ${msg.role === "founder" ? "#1A3048" : "rgba(45,126,248,.22)"}`,
+              fontSize: 12,
+              color: msg.role === "founder" ? "#94A3B8" : "#CBD5E1",
+              lineHeight: 1.6,
+            }}>
+              {msg.text}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

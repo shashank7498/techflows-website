@@ -3,11 +3,11 @@ import { Mail, Linkedin, Twitter, Github } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t bg-white mt-20">
+    <footer className="border-t mt-20" style={{ background: "#030812", borderColor: "#1A3048" }}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <span className="font-bold text-xl mb-4 block">TechFlows</span>
+            <span className="font-bold text-xl mb-4 block" style={{ color: "#EEF4FF" }}>TechFlows</span>
             <p className="text-sm text-muted-foreground mb-4">
               Tech partner for startup founders. Ship fast, save smart.
             </p>
@@ -25,7 +25,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Company</h4>
+            <h4 className="font-semibold mb-4" style={{ color: "#EEF4FF" }}>Company</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="/about">
@@ -45,7 +45,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Services</h4>
+            <h4 className="font-semibold mb-4" style={{ color: "#EEF4FF" }}>Services</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="/services">
@@ -63,7 +63,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Contact</h4>
+            <h4 className="font-semibold mb-4" style={{ color: "#EEF4FF" }}>Contact</h4>
             <ul className="space-y-2">
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-muted-foreground" />
@@ -82,7 +82,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="border-t mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4" style={{ borderColor: "#1A3048" }}>
           <p className="text-sm text-muted-foreground">
             2025 TechFlows. All rights reserved.
           </p>
