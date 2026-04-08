@@ -12,9 +12,9 @@ export default function Home() {
       <Navigation />
       <main className="pt-16">
         <Hero />
+        <AiCtoSection />
         <ServicesGrid />
         <TrustSection />
-        <AiCtoSection />
         <CTASection />
       </main>
       <Footer />
