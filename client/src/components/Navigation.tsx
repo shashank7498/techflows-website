@@ -9,6 +9,7 @@ export default function Navigation() {
 
   const navLinks = [
     { href: "/", label: "Home" },
+    { href: "/#ai-cto", label: "AI CTO ✦" },
     { href: "/services", label: "Services" },
     { href: "/how-it-works", label: "How It Works" },
     { href: "/about", label: "About" },
